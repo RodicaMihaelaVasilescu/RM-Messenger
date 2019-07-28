@@ -3,62 +3,102 @@ using ChatApp.Helper;
 using ChatApp.Model;
 using ChatApp.Properties;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using HorizontalAlignment = System.Windows.HorizontalAlignment;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace ChatApp.ViewModel
 {
-    class HomepageViewModel : INotifyPropertyChanged
+  class HomepageViewModel : INotifyPropertyChanged
+  {
+    #region Properties
+    public Action CloseAction { get; set; }
+
+    private Window window;
+
+    public ICommand LogoutCommand { get; set; }
+
+    private string _welcomeText;
+
+    private ObservableCollection<MessageModel> messagesList;
+
+    private ObservableCollection<UserModel> contactsList;
+
+    public string WelcomeText
     {
-        #region Properties
-        public Action CloseAction { get; set; }
-
-        private Window window;
-
-        public ICommand LogoutCommand { get; set; }
-
-        private string _welcomeText;
-
-        public string WelcomeText
-        {
-            get { return _welcomeText; }
-            set
-            {
-                if (_welcomeText == value) return;
-                _welcomeText = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("WelcomeText"));
-            }
-        }
-    #endregion
-
-        #region Constructor
-        public HomepageViewModel(Window window)
-        {
-            this.window = window;
-            LogoutCommand = new RelayCommand(LogoutCommandExecute);
-            WelcomeText = UserModel.Instance.Email;
-        }
-    #endregion
-   
-        #region Private Methods
-        private void LogoutCommandExecute()
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log out", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                var loginViewModel = new LoginViewModel(window);
-                WindowManager.ChangeWindowContent(window, loginViewModel, Resources.LoginWindowTitle, Resources.LoginControlPath);
-            }
-        }
-        #endregion
-
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
+      get { return _welcomeText; }
+      set
+      {
+        if (_welcomeText == value) return;
+        _welcomeText = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("WelcomeText"));
+      }
     }
+
+    public ObservableCollection<MessageModel> MessagesList
+    {
+      get { return messagesList; }
+      set
+      {
+        if (messagesList == value) return;
+        messagesList = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MessagesList"));
+      }
+    }
+
+    public ObservableCollection<UserModel> ContactsList
+    {
+      get { return contactsList; }
+      set
+      {
+        if (contactsList == value) return;
+        contactsList = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ContactsList"));
+      }
+    }
+    #endregion
+
+    #region Constructor
+    public HomepageViewModel(Window window)
+    {
+      this.window = window;
+      WelcomeText = "Welcome ";
+      LogoutCommand = new RelayCommand(LogoutCommandExecute);
+
+      ContactsList = new ObservableCollection<UserModel>();
+
+      ContactsList.Add(new UserModel {Email = "email", FirstName = "Rodica", LastName="Mihaela" });
+      ContactsList.Add(new UserModel { Email = "email", FirstName = "Diana", LastName = "Stefania" });
+
+      MessagesList = new ObservableCollection<MessageModel>();
+      MessagesList.Add( new MessageModel { Content = "My first Message" , HorizontalAlignment = HorizontalAlignment.Left });
+      MessagesList.Add(new MessageModel { Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
+      MessagesList.Add(new MessageModel { HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
+      MessagesList.Add(new MessageModel { Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
+    }
+    #endregion
+
+    #region Private Methods
+    private void LogoutCommandExecute()
+    {
+      DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log out", MessageBoxButtons.YesNo);
+      if (dialogResult == DialogResult.Yes)
+      {
+        var loginViewModel = new LoginViewModel(window);
+        WindowManager.ChangeWindowContent(window, loginViewModel, Resources.LoginWindowTitle, Resources.LoginControlPath);
+      }
+    }
+    #endregion
+
+    #region INotifyPropertyChanged
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    #endregion
+  }
 }

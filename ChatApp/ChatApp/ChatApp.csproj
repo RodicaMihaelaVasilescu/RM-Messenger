@@ -63,8 +63,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Converters\NameConverter.cs" />
+    <Compile Include="Converters\ValueToHorizontalAlignmentConverter.cs" />
     <Compile Include="Helpers\AccountManager.cs" />
     <Compile Include="Helpers\WindowManager.cs" />
+    <Compile Include="Model\MessageModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="ViewModel\HomepageViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -133,6 +136,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ChatBubble.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SendEmailImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SendImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

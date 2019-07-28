@@ -3,13 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:ChatApp.View"
+             xmlns:converter="clr-namespace:ChatApp.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-  <StackPanel>
-    <StackPanel.Background>
+             d:DesignHeight="650" d:DesignWidth="800">
+  <UserControl.Resources>
+    <converter:ValueToHorizontalAlignmentConverter x:Key="AlignmentConverter"/>
+    <converter:NameConverter x:Key="NameConverter"/>
+  </UserControl.Resources>
+
+  <ScrollViewer>
+    <ScrollViewer.Background>
       <ImageBrush ImageSource="../Resources/Background.jpg" Stretch="UniformToFill" />
-    </StackPanel.Background>
+    </ScrollViewer.Background>
+
     <!--<TextBlock
             Width="250"
             Height="30"
@@ -29,77 +37,124 @@
             Text="{Binding WelcomeText}"
             TextAlignment="Center"
             TextWrapping="Wrap" />-->
-    <Grid>
+    <Grid >
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
-        <RowDefinition />
+        <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="3*"/>
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
 
+
+      <Button Content="Rodica Mihaela" 
+              HorizontalContentAlignment="Left"
+              Foreground ="White"
+              Grid.Row="0" 
+              Grid.Column="0" 
+              Margin="10, 10, 10, 0"/>
       <Border BorderThickness="1"
+              BorderBrush="#1E98F7"
               Grid.Column="0"
-              Grid.Row="0"
-              Grid.RowSpan="3"
+              Grid.Row="1"
+              Grid.RowSpan="2"
               Margin="10"
+              Background="White"
               >
-        <Canvas 
+        <!--<Canvas 
               x:Name="MyCanvas">
-        </Canvas>
+        </Canvas>-->
+
+        <!--<DataGrid Margin="10">
+
+        </DataGrid>-->
+        <ListBox
+          VerticalAlignment="Top"
+            ItemsSource="{Binding MessagesList, Mode=OneWay}"
+            ScrollViewer.VerticalScrollBarVisibility="Auto">
+          <ListBox.Resources>
+            <Style TargetType="{x:Type ListBoxItem}">
+              <Setter Property="OverridesDefaultStyle" Value="true" />
+              <Setter Property="SnapsToDevicePixels" Value="true" />
+              <Setter Property="Template">
+                <Setter.Value>
+                  <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid Margin="15" Width="400" 
+                          HorizontalAlignment="{Binding HorizontalAlignment,
+                                                Converter={StaticResource AlignmentConverter}}">
+                      <Rectangle Fill="AliceBlue" 
+                               StrokeThickness="1"
+                               Stroke="#1E98F7"
+                               RadiusX="10"  
+                               RadiusY="10" />
+                      <TextBlock Text="{Binding Content}" 
+                                 Margin="5"
+                                 TextWrapping="Wrap"/>
+                    </Grid>
+                  </ControlTemplate>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </ListBox.Resources>
+        </ListBox>
       </Border>
 
+
       <Button Content="{Binding WelcomeText}" 
-              Command="{Binding AddShapeCommand}" 
+              Foreground ="White"
               Grid.Row="0" 
               Grid.Column="1" 
               Margin="10, 10, 10, 0"/>
-      <!--Button Content="Show shape" Command="{Binding ShowShapeCommand}" Grid.Row="1" Grid.Column="1" Margin="10, 10, 10, 0"/-->
-
-      <GroupBox Grid.Row ="1"
-                Grid.Column="1" 
-                Header="Show Shape" 
-                Margin="10, 10, 10, 0" >
-        <StackPanel>
-          <Label  Content="Select a shape: "   />
-          <DataGrid  ItemsSource="{Binding ShapesList}" AutoGenerateColumns="False" Height="200"
-                          IsReadOnly="True" SelectedItem="{Binding SelectedShape}">
-            <DataGrid.Columns>
-              <DataGridTextColumn Header="Shape" Binding="{Binding}" Width="*"/>
-            </DataGrid.Columns>
-          </DataGrid>
-        </StackPanel>
-      </GroupBox>
 
       <GroupBox Grid.Row ="1" 
                 Grid.Column="1" 
-                Header="Show Shape" 
+                Header="Show contacts" 
                 Margin="10 10 10 0" 
                 >
         <StackPanel>
-          <Label  Content="Select a shape: "   />
+          <Label  Content="Select a contact: "   />
           <DataGrid
             MinHeight="450"
-            ItemsSource="{Binding ShapesList}" 
+            ItemsSource="{Binding ContactsList}" 
             AutoGenerateColumns="False" 
             IsReadOnly="True" 
-            SelectedItem="{Binding SelectedShape}">
+            SelectedItem="{Binding SelectedContact}">
             <DataGrid.Columns>
               <DataGridTextColumn Header="Contacts"
-                                  Binding="{Binding}" 
-                                  Width="3*"/>
-              <DataGridTemplateColumn Header="Call"  
+                                  Width="3*"
+                                  >
+                <DataGridTextColumn.Binding>
+                  <MultiBinding Converter="{StaticResource NameConverter}"
+                     ConverterParameter="FormatFirstLast">
+                    <Binding Path="FirstName"/>
+                    <Binding Path="LastName"/>
+                  </MultiBinding>
+                </DataGridTextColumn.Binding>
+
+              </DataGridTextColumn>
+              <DataGridTemplateColumn Header="Mail"  
                                       Width="*" >
                 <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
-                    <Button 
-                      Content="Delete"        
+                    <!--<Button 
+                      
+                      Height="10"
                       Command="{Binding Path=DataContext.DeleteShapeCommand,
                       RelativeSource={RelativeSource FindAncestor,  AncestorType={x:Type DataGrid}}}"
-                      CommandParameter="{Binding}"></Button>
+                      CommandParameter="{Binding}"></Button>-->
+                    <!--<Button Height="10" 
+                            Background="Transparent" 
+                            BorderThickness="0"
+                            Content="call"
+                            FontSize="15">-->
+                    <Image 
+                            Height="20"
+                            Width="20"
+                            Source="pack://application:,,,/ChatApp;component/Resources/Icon.ico" />
+                    <!--</Button>-->
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>
@@ -115,7 +170,46 @@
             Command="{Binding LogoutCommand}"
             Content="LOG OUT"
             FontSize="18" />
+
+      <Grid Grid.Row="2"
+              Grid.Column="0"
+              Margin="10, 10, 10, 0">
+        <Rectangle Fill="AliceBlue" 
+                   StrokeThickness="1"
+                   Stroke="#1E98F7"
+                   RadiusX="10"  
+                   RadiusY="10"
+                   
+                   />
+        <!--<Image Source="pack://application:,,,/ChatApp;component/Resources/ChatBubble.png"
+               Width="500"
+               Height="30"/>-->
+        <TextBox  Margin="10 0"
+            BorderBrush="Gray"
+            FontSize="18"
+            Foreground="Black"
+            TextWrapping="Wrap"/>
+        <Image HorizontalAlignment="Right"
+               Margin="10 0"
+               Height="50"
+               Width="20"
+               Source="pack://application:,,,/ChatApp;component/Resources/SendImage.png" />
+
+        <materialDesign:HintAssist.Hint>
+          <TextBlock Foreground="Gray">Write your message here...</TextBlock>
+        </materialDesign:HintAssist.Hint>
+      </Grid>
+
+      <!--<Border BorderThickness="1"
+              BorderBrush="AliceBlue"
+              Grid.Row="2"
+              Grid.Column="0"
+              Margin="10, 10, 10, 0">
+        <TextBox
+            Text="Write your message here.."
+            FontSize="18" />
+      </Border>-->
     </Grid>
 
-  </StackPanel>
+  </ScrollViewer>
 </UserControl>
