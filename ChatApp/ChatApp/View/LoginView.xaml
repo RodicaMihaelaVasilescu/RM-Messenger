@@ -7,7 +7,7 @@
         Icon="../Resources/Icon.ico"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="LoginView">
+        Title="ChatApp - Login">
   <Window.Background>
     <ImageBrush ImageSource="pack://application:,,,/ChatApp;component/Resources/Background.jpg"></ImageBrush>
   </Window.Background>
