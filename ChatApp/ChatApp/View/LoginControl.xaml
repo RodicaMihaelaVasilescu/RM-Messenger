@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ChatApp.View"
+
              mc:Ignorable="d"
-             Height="450" Width="650">
+             Height="650" Width="290">
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="auto" />
@@ -15,32 +16,41 @@
       <RowDefinition Height="auto" />
       <RowDefinition Height="auto" />
       <RowDefinition Height="auto" />
-      <RowDefinition Height="*" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
-    <Grid.Background>
+    <!--<Grid.Background>
       <ImageBrush ImageSource="../Resources/LoginControlBackground.png" 
                   
                   />
-    </Grid.Background>
-    
-    <TextBlock
+    </Grid.Background>-->
+
+    <!--<TextBlock
             Grid.Row="0"
-            Width="550"
+            Width="150"
             Height="40"
             Margin="0,30,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            FontSize="30"
+            FontSize="25"
             Foreground="White"
             Text="Login"
             TextAlignment="Center"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" />-->
+
+    <Image
+         Width="90"
+         Height="90"
+         Margin="30"
+         HorizontalAlignment="Center"
+         Source="pack://application:,,,/ChatApp;component/Resources/YahooMessengerLoginImage.png" />
+
     <TextBox
             x:Name="Email"
             Grid.Row="2"
-            Width="550"
-            Height="40"
+            Width="250"
+            Height="30"
             Margin="0,20,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -59,8 +69,8 @@
     <PasswordBox
             Name="Password"
             Grid.Row="4"
-            Width="550"
-            Height="40"
+            Width="250"
+            Height="30"
             Margin="0,20,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -78,8 +88,8 @@
     <Button
             x:Name="Login"
             Grid.Row="5"
-            Width="550"
-            Height="40"
+            Width="250"
+            Height="30"
             Margin="0,40,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -90,8 +100,7 @@
     <Button
             x:Name="ForgotPassword"
             Grid.Row="6"
-            Width="155"
-            Margin="30,10"
+            Margin="10,10,10,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
@@ -101,25 +110,25 @@
             Click="Click"
             Command="{Binding ForgotPasswordCommand}"
             Content="Forgot Password?"
-            FontSize="13"
-            Foreground="Black" />
+            FontSize="11"
+            Foreground="white" />
 
     <Button
             x:Name="Register"
-            Grid.Row="6"
+            Grid.Row="7"
             Height="45"
-            Margin="20 10 30 10"
-            HorizontalAlignment="Right"
+            Margin="10 0 30 10"
+            HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            HorizontalContentAlignment="Center"
+            HorizontalContentAlignment="Left"
             VerticalContentAlignment="Center"
             Background="Transparent"
             BorderThickness="0"
             Click="Click"
             Command="{Binding RegisterCommand}"
-            Content="Don't have an account? Register here!"
-            FontSize="13"
-            Foreground="Black" />
+            Content="Don't have an account?&#x0a; Register here!"
+            FontSize="11"
+            Foreground="White" />
   </Grid>
 </UserControl>
 

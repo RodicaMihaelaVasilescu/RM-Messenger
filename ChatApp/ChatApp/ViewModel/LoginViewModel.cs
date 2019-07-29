@@ -70,6 +70,14 @@ namespace ChatApp.ViewModel
         {
           homepageViewModel.CloseAction = () => window.Close();
         }
+        var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
+
+        window.Width = 300;
+        window.Left = desktopWorkingArea.Right - window.Width;
+        window.Top = desktopWorkingArea.Top;
+        window.Height = desktopWorkingArea.Bottom;
+        
+        window.ResizeMode = ResizeMode.NoResize;
       }
       else
       {

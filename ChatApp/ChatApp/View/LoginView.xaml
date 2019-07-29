@@ -6,10 +6,7 @@
         xmlns:local="clr-namespace:ChatApp.View"
         Icon="../Resources/Icon.ico"
         mc:Ignorable="d"
-        WindowState="Maximized"
+        Background="#782370"
         Title="ChatApp - Login">
-  <Window.Background>
-    <ImageBrush ImageSource="pack://application:,,,/ChatApp;component/Resources/Background.jpg"></ImageBrush>
-  </Window.Background>
-  <local:LoginControl />
+  <local:LoginControl VerticalAlignment="Top" />
 </Window>

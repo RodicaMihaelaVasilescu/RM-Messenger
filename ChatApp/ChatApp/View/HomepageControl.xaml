@@ -7,39 +7,33 @@
     xmlns:local="clr-namespace:ChatApp.View"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="650"
-    d:DesignWidth="800"
+    Background="#782370"
+    Width="300"
     mc:Ignorable="d">
     <UserControl.Resources>
         <converter:ValueToHorizontalAlignmentConverter x:Key="AlignmentConverter" />
         <converter:NameConverter x:Key="NameConverter" />
     </UserControl.Resources>
 
-    <ScrollViewer>
-        <ScrollViewer.Background>
-            <ImageBrush ImageSource="../Resources/Background.jpg" Stretch="UniformToFill" />
-        </ScrollViewer.Background>
+  <ScrollViewer>
 
-        <Grid>
+    <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
 
-            <Button
+
+            <!--<Button
                 Grid.Row="0"
                 Grid.Column="0"
                 Margin="20,10,10,0"
                 HorizontalContentAlignment="Left"
                 Content="Rodica Mihaela"
-                Foreground="White" />
-            <Border
+                Foreground="White" />-->
+            <!--<Border
                 Grid.Row="1"
                 Grid.Column="0"
                 Margin="20,10,10,0"
@@ -78,20 +72,16 @@
                         </Style>
                     </ListBox.Resources>
                 </ListBox>
-            </Border>
+            </Border>-->
 
 
             <Button
-                Grid.Row="0"
-                Grid.Column="1"
                 Margin="10,10,10,0"
                 Content="{Binding WelcomeText}"
                 Foreground="White" />
 
             <GroupBox
                 Grid.Row="1"
-                Grid.RowSpan="2"
-                Grid.Column="1"
                 Margin="10,10,10,0"
                 Header="All contacts:">
                 <DataGrid
@@ -132,13 +122,12 @@
             <Button
                 x:Name="Logout"
                 Grid.Row="2"
-                Grid.Column="1"
                 Margin="10,10,10,20"
                 Command="{Binding LogoutCommand}"
                 Content="LOG OUT"
                 FontSize="18" />
 
-            <Grid
+            <!--<Grid
                 Grid.Row="2"
                 Grid.Column="0"
                 Margin="20,0,10,20">
@@ -148,9 +137,9 @@
                     RadiusY="10"
                     Stroke="#1E98F7"
                     StrokeThickness="1" />
-                <!--<Image Source="pack://application:,,,/ChatApp;component/Resources/ChatBubble.png"
+                --><!--<Image Source="pack://application:,,,/ChatApp;component/Resources/ChatBubble.png"
                Width="500"
-               Height="30"/>-->
+               Height="30"/>--><!--
                 <TextBox
                     x:Name="MessageBox"
                     Margin="10,0,30,10"
@@ -181,7 +170,7 @@
                 <materialDesign:HintAssist.Hint>
                     <TextBlock Foreground="Gray">Write your message here...</TextBlock>
                 </materialDesign:HintAssist.Hint>
-            </Grid>
+            </Grid>-->
 
             <!--<Border BorderThickness="1"
               BorderBrush="AliceBlue"

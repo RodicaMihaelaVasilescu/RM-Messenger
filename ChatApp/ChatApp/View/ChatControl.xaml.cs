@@ -15,14 +15,28 @@ using System.Windows.Shapes;
 
 namespace ChatApp.View
 {
-    /// <summary>
-    /// Interaction logic for ChatView.xaml
-    /// </summary>
-    public partial class ChatControl : UserControl
+  /// <summary>
+  /// Interaction logic for ChatView.xaml
+  /// </summary>
+  public partial class ChatControl : UserControl
+  {
+    public ChatControl()
     {
-        public ChatControl()
-        {
-            InitializeComponent();
-        }
+      InitializeComponent();
+      MessageBox.Focus();
     }
+    private void TS_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+      ScrollViewer scrollviewer = sender as ScrollViewer;
+      if (e.Delta > 0)
+      {
+        scrollviewer.LineUp();
+      }
+      else
+      {
+        scrollviewer.LineDown();
+      }
+      e.Handled = true;
+    }
+  }
 }

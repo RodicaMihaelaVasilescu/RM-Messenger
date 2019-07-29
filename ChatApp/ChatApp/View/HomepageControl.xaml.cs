@@ -23,7 +23,7 @@ namespace ChatApp.View
     public HomepageControl()
     {
       InitializeComponent();
-      MessageBox.Focus();
+      //MessageBox.Focus();
     }
   }
 }

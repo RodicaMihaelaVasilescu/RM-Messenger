@@ -66,6 +66,7 @@
     <Compile Include="Converters\NameConverter.cs" />
     <Compile Include="Converters\ValueToHorizontalAlignmentConverter.cs" />
     <Compile Include="Helpers\AccountManager.cs" />
+    <Compile Include="Helpers\AutoScrollHelper.cs" />
     <Compile Include="Helpers\WindowManager.cs" />
     <Compile Include="Model\MessageModel.cs" />
     <Compile Include="Model\UserModel.cs" />
@@ -153,6 +154,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\SendImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\YahooMessengerLoginImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\yahoo.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
