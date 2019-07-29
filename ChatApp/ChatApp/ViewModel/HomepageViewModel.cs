@@ -121,8 +121,7 @@ namespace ChatApp.ViewModel
             {
                 chatViewModel.CloseAction = () => window.Close();
             }
-            child.Height = 400;
-            child.Width = 600;
+            child.SizeToContent = SizeToContent.WidthAndHeight;
             child.Show();
         }
 
