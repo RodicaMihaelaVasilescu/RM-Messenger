@@ -31,6 +31,7 @@ namespace ChatApp.ViewModel
 
         private ObservableCollection<UserModel> contactsList;
         private string messageBoxContent;
+        private UserModel selectedContact;
 
         public string WelcomeText
         {
@@ -75,6 +76,18 @@ namespace ChatApp.ViewModel
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ContactsList"));
             }
         }
+
+        public UserModel SelectedContact
+        {
+            get { return selectedContact; }
+            set
+            {
+                if (selectedContact == value) return;
+                selectedContact = value;
+                SelectCommandExecute(SelectedContact);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedContact"));
+            }
+        }
         #endregion
 
         #region Constructor
@@ -95,6 +108,22 @@ namespace ChatApp.ViewModel
             MessagesList.Add(new MessageModel { Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
             MessagesList.Add(new MessageModel { HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
             MessagesList.Add(new MessageModel { Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
+        }
+
+        private void SelectCommandExecute(UserModel user)
+        {
+            Window child = new Window();
+            child.Tag = "child";
+            var chatViewModel = new ChatViewModel(child, user);
+            WindowManager.ChangeWindowContent(child, chatViewModel, Resources.ChatWindowTitle, Resources.ChatControlPath);
+
+            if (chatViewModel.CloseAction == null)
+            {
+                chatViewModel.CloseAction = () => window.Close();
+            }
+            child.Height = 400;
+            child.Width = 600;
+            child.Show();
         }
 
         private void SendCommandExecute()

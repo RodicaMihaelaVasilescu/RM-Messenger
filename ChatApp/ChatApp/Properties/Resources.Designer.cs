@@ -61,6 +61,24 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ChatApp.View.ChatControl.
+        /// </summary>
+        internal static string ChatControlPath {
+            get {
+                return ResourceManager.GetString("ChatControlPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ChatApp - Chat.
+        /// </summary>
+        internal static string ChatWindowTitle {
+            get {
+                return ResourceManager.GetString("ChatWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ChatApp.View.HomepageControl.
         /// </summary>
         internal static string HomepageControlPath {

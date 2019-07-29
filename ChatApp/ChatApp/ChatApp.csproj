@@ -69,8 +69,12 @@
     <Compile Include="Helpers\WindowManager.cs" />
     <Compile Include="Model\MessageModel.cs" />
     <Compile Include="Model\UserModel.cs" />
+    <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\HomepageViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="View\ChatControl.xaml.cs">
+      <DependentUpon>ChatControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomepageControl.xaml.cs">
       <DependentUpon>HomepageControl.xaml</DependentUpon>
     </Compile>
@@ -84,6 +88,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ChatControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\HomepageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
