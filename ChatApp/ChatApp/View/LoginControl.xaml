@@ -3,6 +3,7 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:gif="http://wpfanimatedgif.codeplex.com"
   xmlns:local="clr-namespace:ChatApp.View"
   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -66,18 +67,34 @@
 
     <Image
       Grid.Row="1"
+      Width="150"
+      Height="90"
+      Margin="0,50,0,20"
+      gif:ImageBehavior.AnimatedSource="{Binding Gif}" />
+    <!--  pack://application:,,,/ChatApp;component/Resources/YahooMessengerSleep.gif  -->
+    <!--<Image
+      Grid.Row="1"
       Width="90"
       Height="90"
       Margin="0,50,0,20"
       HorizontalAlignment="Center"
-      Source="pack://application:,,,/ChatApp;component/Resources/YahooMessenger.png" />
+      Source="pack://application:,,,/ChatApp;component/Resources/YahooMessenger.png" />-->
 
     <Label
       Grid.Row="2"
       Margin="40,0"
       HorizontalAlignment="Stretch"
       Content="Yahoo! _ID:"
-      Foreground="White" />
+      Foreground="White"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+    
+    <Label
+      Grid.Row="2"
+      Margin="40,0"
+      HorizontalAlignment="Center"
+      Content="{Binding MessageOnSingingIn}"
+      Foreground="White"
+      Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
 
     <TextBox
       x:Name="Email"
@@ -94,14 +111,16 @@
       Foreground="Black"
       IsEnabled="True"
       Text="{Binding Email, Mode=TwoWay}"
-      TextWrapping="NoWrap" />
+      TextWrapping="NoWrap"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
 
     <Label
       Grid.Row="4"
       Margin="40,0"
       HorizontalAlignment="Stretch"
       Content="_Password:"
-      Foreground="White" />
+      Foreground="White"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
     <PasswordBox
       Name="Password"
       Grid.Row="5"
@@ -115,12 +134,14 @@
       BorderBrush="White"
       FontSize="12"
       Foreground="Black"
-      PasswordChanged="Password_PasswordChanged" />
+      PasswordChanged="Password_PasswordChanged"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
 
     <StackPanel
       Grid.Row="6"
       Margin="40,20"
-      HorizontalAlignment="Stretch">
+      HorizontalAlignment="Stretch"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
       <CheckBox
         Background="White"
         Content="_Remember my ID password"
@@ -136,6 +157,23 @@
     </StackPanel>
 
     <Button
+      x:Name="Cancel"
+      Grid.Row="3"
+      Width="100"
+      Height="25"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Top"
+      Background="#53244E"
+      BorderBrush="White"
+      BorderThickness="0.5"
+      Command="{Binding CancelCommand}"
+      Content="Cancel"
+      FontSize="13"
+      Foreground="White"
+      Style="{StaticResource MaterialDesignRaisedAccentButton}"
+      Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
+
+    <Button
       x:Name="Login"
       Grid.Row="7"
       Width="100"
@@ -149,24 +187,34 @@
       Content="Sign in"
       FontSize="13"
       Foreground="White"
-      Style="{StaticResource MaterialDesignRaisedAccentButton}" />
+      Style="{StaticResource MaterialDesignRaisedAccentButton}"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+
 
     <Label
       Grid.Row="8"
-      Margin="40,0"
+      Margin="40,20,40,0"
       HorizontalAlignment="Stretch"
       Content="_Language:"
-      Foreground="White" />
+      Foreground="White"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+
     <ComboBox
       Grid.Row="9"
       Margin="40,0"
-      HorizontalAlignment="Stretch" />
+      HorizontalAlignment="Stretch"
+      IsReadOnly="True"
+      Text="Please Select"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+      <ComboBoxItem Name="create" IsSelected="True">Englsh (U.S.)</ComboBoxItem>
+    </ComboBox>
 
     <StackPanel
       Grid.Row="10"
       Margin="0,50"
       HorizontalAlignment="Center"
-      VerticalAlignment="Bottom">
+      VerticalAlignment="Bottom"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
       <Button
         x:Name="Register"
         Height="21"

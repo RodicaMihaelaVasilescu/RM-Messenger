@@ -56,6 +56,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.18.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.18\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -157,6 +160,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\YahooMessenger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\YahooMessengerAwake.GIF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\YahooMessengerSleep.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

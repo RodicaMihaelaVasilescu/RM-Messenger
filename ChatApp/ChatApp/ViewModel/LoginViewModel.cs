@@ -6,6 +6,8 @@ using System.Windows.Input;
 using ChatApp.Helper;
 using ChatApp.Properties;
 using ChatApp.Command;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ChatApp.ViewModel
 {
@@ -17,6 +19,7 @@ namespace ChatApp.ViewModel
 
     private Window window;
 
+
     public ICommand LoginCommand { get; set; }
 
     public ICommand RegisterCommand { get; set; }
@@ -26,6 +29,10 @@ namespace ChatApp.ViewModel
     public Action CloseAction { get; set; }
 
     private string _email;
+    private string gif;
+    private Visibility visibilityOfLoginFields;
+    private Visibility visibilityOfMessageOnSingIn;
+    private string messageOnSingingIn;
 
     public string Email
     {
@@ -35,6 +42,50 @@ namespace ChatApp.ViewModel
         if (_email == value) return;
         _email = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Email"));
+      }
+    }
+
+    public string MessageOnSingingIn
+    {
+      get { return messageOnSingingIn; }
+      set
+      {
+        if (messageOnSingingIn == value) return;
+        messageOnSingingIn = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MessageOnSingingIn"));
+      }
+    }
+
+    public string Gif
+    {
+      get { return gif; }
+      set
+      {
+        if (gif == value) return;
+        gif = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Gif"));
+      }
+    }
+
+    public Visibility VisibilityOfLoginFields
+    {
+      get { return visibilityOfLoginFields; }
+      set
+      {
+        if (visibilityOfLoginFields == value) return;
+        visibilityOfLoginFields = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("VisibilityOfLoginFields"));
+      }
+    }
+
+    public Visibility VisibilityOfMessageOnSingIn
+    {
+      get { return visibilityOfMessageOnSingIn; }
+      set
+      {
+        if (visibilityOfMessageOnSingIn == value) return;
+        visibilityOfMessageOnSingIn = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("VisibilityOfMessageOnSingIn"));
       }
     }
 
@@ -48,12 +99,16 @@ namespace ChatApp.ViewModel
       LoginCommand = new RelayCommand(LoginCommandExecute);
       RegisterCommand = new RelayCommand(RegisterCommandExecute);
       ForgotPasswordCommand = new RelayCommand(ForgotPasswordCommandExecute);
+      Gif = "pack://application:,,,/ChatApp;component/Resources/YahooMessengerSleep.gif";
+      visibilityOfLoginFields = Visibility.Visible;
+      visibilityOfMessageOnSingIn = Visibility.Hidden;
+
       Login();
     }
     #endregion
 
     #region Private Methods
-    private void LoginCommandExecute()
+    private async void LoginCommandExecute()
     {
       UserModel.Instance.Email = Email;
       //if (UserModel.Instance.Email == null || UserModel.Instance.Password == null)
@@ -63,6 +118,11 @@ namespace ChatApp.ViewModel
       //}
       if (true/*AccountManager.AccountExists(UserModel.Instance.Email, UserModel.Instance.Password)*/)
       {
+        Gif = "pack://application:,,,/ChatApp;component/Resources/YahooMessengerAwake.gif";
+        MessageOnSingingIn = "Sign in as " + Email;
+        VisibilityOfLoginFields = Visibility.Hidden;
+        VisibilityOfMessageOnSingIn = Visibility.Visible;
+        await Task.Delay(5000);
         var homepageViewModel = new HomepageViewModel(window);
         WindowManager.ChangeWindowContent(window, homepageViewModel, Resources.HomepageWindowTitle, Resources.HomepageControlPath);
 
