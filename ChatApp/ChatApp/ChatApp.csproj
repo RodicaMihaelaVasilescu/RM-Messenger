@@ -156,10 +156,7 @@
     <Resource Include="Resources\SendImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\YahooMessengerLoginImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\yahoo.gif" />
+    <Resource Include="Resources\YahooMessenger.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
