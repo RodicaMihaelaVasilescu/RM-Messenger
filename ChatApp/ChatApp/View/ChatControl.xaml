@@ -30,7 +30,7 @@
 
     <Button
       Grid.Row="0"
-      Margin="20,10,20,0"
+      Margin="10"
       HorizontalContentAlignment="Left"
       Foreground="White">
       <Button.Content>
@@ -42,7 +42,7 @@
     </Button>
     <Border
       Grid.Row="1"
-      Margin="20,10,20,0"
+      Margin="10"
       Background="White"
       BorderBrush="#1E98F7"
       BorderThickness="1">
@@ -84,7 +84,7 @@
       </ScrollViewer>
     </Border>
 
-    <Grid Grid.Row="2" Margin="20,0,20,20">
+    <Grid Grid.Row="2" Margin="10,0,10,10">
       <Rectangle
         Fill="AliceBlue"
         RadiusX="10"

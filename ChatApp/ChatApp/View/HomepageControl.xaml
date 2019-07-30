@@ -122,7 +122,7 @@
             <Button
                 x:Name="Logout"
                 Grid.Row="2"
-                Margin="10,10,10,20"
+                Margin="10"
                 Command="{Binding LogoutCommand}"
                 Content="LOG OUT"
                 FontSize="18" />
