@@ -8,7 +8,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="#782370"
-    Width="300"
+    Width="400"
     mc:Ignorable="d">
     <UserControl.Resources>
         <converter:ValueToHorizontalAlignmentConverter x:Key="AlignmentConverter" />
