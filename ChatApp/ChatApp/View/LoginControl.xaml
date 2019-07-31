@@ -96,6 +96,23 @@
       Foreground="White"
       Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
 
+    <Button
+      x:Name="Cancel"
+      Grid.Row="3"
+      Width="100"
+      Height="25"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Top"
+      Background="#53244E"
+      BorderBrush="White"
+      BorderThickness="0.5"
+      Command="{Binding CancelCommand}"
+      Content="Cancel"
+      FontSize="13"
+      Foreground="White"
+      Style="{StaticResource MaterialDesignRaisedAccentButton}"
+      Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
+    
     <TextBox
       x:Name="Email"
       Grid.Row="3"
@@ -155,23 +172,6 @@
         Content="Sign in as _invisible to everyone"
         Foreground="White" />
     </StackPanel>
-
-    <Button
-      x:Name="Cancel"
-      Grid.Row="3"
-      Width="100"
-      Height="25"
-      HorizontalAlignment="Center"
-      VerticalAlignment="Top"
-      Background="#53244E"
-      BorderBrush="White"
-      BorderThickness="0.5"
-      Command="{Binding CancelCommand}"
-      Content="Cancel"
-      FontSize="13"
-      Foreground="White"
-      Style="{StaticResource MaterialDesignRaisedAccentButton}"
-      Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
 
     <Button
       x:Name="Login"

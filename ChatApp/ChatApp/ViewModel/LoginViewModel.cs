@@ -19,12 +19,14 @@ namespace ChatApp.ViewModel
 
     private Window window;
 
-
+    private bool cancelButtonPressed;
     public ICommand LoginCommand { get; set; }
 
     public ICommand RegisterCommand { get; set; }
 
     public ICommand ForgotPasswordCommand { get; set; }
+
+    public ICommand CancelCommand { get; set; }
 
     public Action CloseAction { get; set; }
 
@@ -99,15 +101,25 @@ namespace ChatApp.ViewModel
       LoginCommand = new RelayCommand(LoginCommandExecute);
       RegisterCommand = new RelayCommand(RegisterCommandExecute);
       ForgotPasswordCommand = new RelayCommand(ForgotPasswordCommandExecute);
+      CancelCommand = new RelayCommand(CancelCommandExecute);
       Gif = "pack://application:,,,/ChatApp;component/Resources/YahooMessengerSleep.gif";
       visibilityOfLoginFields = Visibility.Visible;
       visibilityOfMessageOnSingIn = Visibility.Hidden;
+      cancelButtonPressed = false;
 
       Login();
     }
+
     #endregion
 
     #region Private Methods
+    private void CancelCommandExecute()
+    {
+      cancelButtonPressed = true;
+      var loginViewModel = new LoginViewModel(window);
+      WindowManager.ChangeWindowContent(window, loginViewModel, Resources.LoginWindowTitle, Resources.LoginControlPath);
+      //window.VerticalContentAlignment = VerticalAlignment.Top;
+    }
     private async void LoginCommandExecute()
     {
       UserModel.Instance.Email = Email;
@@ -123,6 +135,11 @@ namespace ChatApp.ViewModel
         VisibilityOfLoginFields = Visibility.Hidden;
         VisibilityOfMessageOnSingIn = Visibility.Visible;
         await Task.Delay(5000);
+        if(cancelButtonPressed)
+        {
+          return;
+        }
+
         var homepageViewModel = new HomepageViewModel(window);
         WindowManager.ChangeWindowContent(window, homepageViewModel, Resources.HomepageWindowTitle, Resources.HomepageControlPath);
 
@@ -132,7 +149,7 @@ namespace ChatApp.ViewModel
         }
         var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
 
-        window.Width = desktopWorkingArea.Right/ 4;
+        window.Width = desktopWorkingArea.Right/ 5;
         window.Left = desktopWorkingArea.Right - window.Width;
         window.Top = desktopWorkingArea.Top;
         window.Height = desktopWorkingArea.Bottom;
