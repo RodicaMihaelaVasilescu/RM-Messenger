@@ -87,7 +87,7 @@
       Content="Yahoo! _ID:"
       Foreground="White"
       Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
-    
+
     <Label
       Grid.Row="2"
       Margin="40,0"
@@ -112,7 +112,7 @@
       Foreground="White"
       Style="{StaticResource MaterialDesignRaisedAccentButton}"
       Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
-    
+
     <TextBox
       x:Name="Email"
       Grid.Row="3"
@@ -206,7 +206,7 @@
       IsReadOnly="True"
       Text="Please Select"
       Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
-      <ComboBoxItem Name="create" IsSelected="True">Englsh (U.S.)</ComboBoxItem>
+      <ComboBoxItem Name="create" IsSelected="True">English (U.S.)</ComboBoxItem>
     </ComboBox>
 
     <StackPanel
