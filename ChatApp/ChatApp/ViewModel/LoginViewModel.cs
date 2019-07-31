@@ -149,7 +149,7 @@ namespace ChatApp.ViewModel
         }
         var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
 
-        window.Width = desktopWorkingArea.Right/ 5;
+        window.Width = 370;
         window.Left = desktopWorkingArea.Right - window.Width;
         window.Top = desktopWorkingArea.Top;
         window.Height = desktopWorkingArea.Bottom;
