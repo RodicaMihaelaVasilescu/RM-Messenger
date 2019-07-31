@@ -25,8 +25,8 @@ namespace ChatApp.View
       InitializeComponent();
       DataContext = new LoginViewModel(this);
       var desktopWorkingArea = SystemParameters.WorkArea;
-      //this.Width = desktopWorkingArea.Right/5;
-      this.Width = 370;
+      this.Width = desktopWorkingArea.Right/4.5;
+      //this.Width = 370;
       this.Left = desktopWorkingArea.Right - this.Width;
       this.Top = desktopWorkingArea.Top;
       this.Height = desktopWorkingArea.Bottom;
