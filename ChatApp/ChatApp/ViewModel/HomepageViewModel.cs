@@ -32,6 +32,18 @@ namespace ChatApp.ViewModel
     private ObservableCollection<UserModel> contactsList;
     private string messageBoxContent;
     private UserModel selectedContact;
+    private string _email;
+
+    public string Email
+    {
+      get { return _email; }
+      set
+      {
+        if (_email == value) return;
+        _email = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Email"));
+      }
+    }
 
     public string WelcomeText
     {
@@ -95,6 +107,7 @@ namespace ChatApp.ViewModel
     {
       this.window = window;
       WelcomeText = "Welcome ";
+      Email = UserModel.Instance.Email;
       LogoutCommand = new RelayCommand(LogoutCommandExecute);
       SendCommand = new RelayCommand(SendCommandExecute);
 

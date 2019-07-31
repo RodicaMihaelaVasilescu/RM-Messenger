@@ -167,5 +167,20 @@
   <ItemGroup>
     <Resource Include="Resources\YahooMessengerSleep.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ProfilePicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\On_YellowCircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\mobile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\games.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\phone.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
