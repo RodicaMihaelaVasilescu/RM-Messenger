@@ -1,4 +1,5 @@
-﻿using ChatApp.ViewModel;
+﻿using ChatApp.Helper;
+using ChatApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,7 @@ namespace ChatApp.View
     {
       InitializeComponent();
       DataContext = new LoginViewModel(this);
-      var desktopWorkingArea = SystemParameters.WorkArea;
-      this.Width = desktopWorkingArea.Right/4.5;
-      //this.Width = 370;
-      this.Left = desktopWorkingArea.Right - this.Width;
-      this.Top = desktopWorkingArea.Top;
-      this.Height = desktopWorkingArea.Bottom;
+      WindowManager.ResizeWindow(this);
     }
   }
 }

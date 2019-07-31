@@ -20,5 +20,13 @@ namespace ChatApp.Helper
       newControl.DataContext = viewModel;
       window.Content = newControl;
     }
+    public static void ResizeWindow(Window window)
+    {
+      var desktopWorkingArea = SystemParameters.WorkArea;
+      window.Top = desktopWorkingArea.Top;
+      window.Height = desktopWorkingArea.Bottom;
+      window.Width = window.Height / 2.35;
+      window.Left = desktopWorkingArea.Right - window.Width;
+    }
   }
 }

@@ -135,7 +135,7 @@ namespace ChatApp.ViewModel
         VisibilityOfLoginFields = Visibility.Hidden;
         VisibilityOfMessageOnSingIn = Visibility.Visible;
         await Task.Delay(5000);
-        if(cancelButtonPressed)
+        if (cancelButtonPressed)
         {
           return;
         }
@@ -149,11 +149,8 @@ namespace ChatApp.ViewModel
         }
         var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
 
-        window.Width = desktopWorkingArea.Right/4.5;
-        window.Left = desktopWorkingArea.Right - window.Width;
-        window.Top = desktopWorkingArea.Top;
-        window.Height = desktopWorkingArea.Bottom;
-        
+        WindowManager.ResizeWindow(window);
+
         window.ResizeMode = ResizeMode.NoResize;
       }
       else
