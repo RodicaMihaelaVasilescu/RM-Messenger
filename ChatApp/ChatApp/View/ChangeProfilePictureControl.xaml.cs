@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace ChatApp.View
     public ChangeProfilePictureControl()
     {
       InitializeComponent();
+      var viewModel = new ChangeProfilePictureViewModel();
+      DataContext = viewModel;
     }
   }
 }

@@ -101,7 +101,7 @@
         Placement="Left"
         PlacementTarget="{Binding ElementName=ProfileImage}">
         <StackPanel>
-          <local:ChangeProfilePictureControl />
+          <local:ChangeProfilePictureControl x:Name="ChangeProfilePictureControl"/>
         </StackPanel>
       </Popup>
       

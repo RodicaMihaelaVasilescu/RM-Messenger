@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,10 @@ namespace ChatApp.View
   {
     public HomepageControl()
     {
-      InitializeComponent();
+      InitializeComponent(); ;
+      var viewModel = new ChangeProfilePictureViewModel();
+      //viewModel.CloseAction() => ProfilePicturePopupTooltip.IsOpen = false;
+      ChangeProfilePictureControl.DataContext = viewModel;
       //MessageBox.Focus();
     }
 

@@ -38,6 +38,7 @@
         VerticalAlignment="Top"
         Background="Transparent"
         BorderThickness="0"
+        Command="{Binding CloseCommand}"
         Style="{StaticResource MaterialDesignRaisedAccentButton}">
 
         <StackPanel>
