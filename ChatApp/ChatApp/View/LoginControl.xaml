@@ -7,7 +7,6 @@
   xmlns:local="clr-namespace:ChatApp.View"
   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
   Background="#782370"
   mc:Ignorable="d">
 
@@ -19,8 +18,8 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
-  <Grid>
 
+  <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="auto" />
       <RowDefinition Height="auto" />
@@ -34,6 +33,13 @@
       <RowDefinition Height="auto" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
+
+    <Image
+      Grid.RowSpan="4"
+      Height="90"
+      VerticalAlignment="Top"
+      Opacity="0.4"
+      Source="pack://application:,,,/ChatApp;component/Resources/shadow.png" />
 
     <DockPanel Margin="0">
       <Menu Background="Transparent" DockPanel.Dock="Top">

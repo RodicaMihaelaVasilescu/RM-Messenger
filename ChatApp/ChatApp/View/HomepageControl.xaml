@@ -20,6 +20,9 @@
   </UserControl.Resources>
 
   <Grid>
+    <Grid.Background>
+      <ImageBrush ImageSource="../Resources/shadow.png" Opacity="0.4" />
+    </Grid.Background>
     <Grid.RowDefinitions>
       <RowDefinition Height="auto" />
       <RowDefinition Height="auto" />
