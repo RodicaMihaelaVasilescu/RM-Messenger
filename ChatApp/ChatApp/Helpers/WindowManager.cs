@@ -22,10 +22,11 @@ namespace ChatApp.Helper
     }
     public static void ResizeWindow(Window window)
     {
+      
       var desktopWorkingArea = SystemParameters.WorkArea;
+      window.Width = desktopWorkingArea.Bottom / 3.5;
       window.Top = desktopWorkingArea.Top;
       window.Height = desktopWorkingArea.Bottom;
-      window.Width = window.Height / 2.35;
       window.Left = desktopWorkingArea.Right - window.Width;
     }
   }

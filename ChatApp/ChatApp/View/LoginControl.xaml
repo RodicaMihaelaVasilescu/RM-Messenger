@@ -129,7 +129,12 @@
       IsEnabled="True"
       Text="{Binding Email, Mode=TwoWay}"
       TextWrapping="NoWrap"
-      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" 
+      >
+      <!--<TextBox.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding Path=LoginCommmand}" />
+      </TextBox.InputBindings>-->
+    </TextBox>
 
     <Label
       Grid.Row="4"
@@ -138,6 +143,7 @@
       Content="_Password:"
       Foreground="White"
       Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+
     <PasswordBox
       Name="Password"
       Grid.Row="5"
@@ -152,7 +158,11 @@
       FontSize="12"
       Foreground="Black"
       PasswordChanged="Password_PasswordChanged"
-      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+      <PasswordBox.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding Path=LoginCommmand}" />
+      </PasswordBox.InputBindings>
+    </PasswordBox>
 
     <StackPanel
       Grid.Row="6"
