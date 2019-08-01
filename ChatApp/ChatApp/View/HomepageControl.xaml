@@ -74,7 +74,9 @@
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
 
-      <Button
+      <Button 
+        x:Name="ProfileImage"
+        MouseEnter="Button_MouseEnter"
         Grid.RowSpan="3"
         Grid.Column="0"
         Width="50"
@@ -88,7 +90,18 @@
             Height="50"
             Source="pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg" />
         </StackPanel>
+
       </Button>
+      <Popup
+        x:Name="ProfilePicturePopupTooltip"
+        MouseLeave="Tooltip_MouseLeave"
+        Placement="Left"
+        PlacementTarget="{Binding ElementName=ProfileImage}">
+        <StackPanel>
+          <local:ChangeProfilePictureControl />
+        </StackPanel>
+      </Popup>
+      
       <StackPanel
         Grid.Column="1"
         Margin="10,10,10,0"

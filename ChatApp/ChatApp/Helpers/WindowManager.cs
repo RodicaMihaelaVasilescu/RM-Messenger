@@ -24,7 +24,7 @@ namespace ChatApp.Helper
     {
       
       var desktopWorkingArea = SystemParameters.WorkArea;
-      window.Width = desktopWorkingArea.Bottom / 3.5;
+      window.Width = desktopWorkingArea.Right/4.5;
       window.Top = desktopWorkingArea.Top;
       window.Height = desktopWorkingArea.Bottom;
       window.Left = desktopWorkingArea.Right - window.Width;

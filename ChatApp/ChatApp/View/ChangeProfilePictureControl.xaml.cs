@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace ChatApp.View
 {
   /// <summary>
-  /// Interaction logic for HomepageControl.xaml
+  /// Interaction logic for ChangeProfilePictureControl.xaml
   /// </summary>
-  public partial class HomepageControl : UserControl
+  public partial class ChangeProfilePictureControl : UserControl
   {
-    public HomepageControl()
+    public ChangeProfilePictureControl()
     {
       InitializeComponent();
-      //MessageBox.Focus();
-    }
-
-    private void Button_MouseEnter(object sender, MouseEventArgs e)
-    {
-      ProfilePicturePopupTooltip.IsOpen = true;
-    }
-    private void Tooltip_MouseLeave(object sender, MouseEventArgs e)
-    {
-      ProfilePicturePopupTooltip.IsOpen = false;
     }
   }
 }
