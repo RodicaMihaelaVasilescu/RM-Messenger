@@ -11,6 +11,7 @@
   Height="650"
   Background="#782370"
   mc:Ignorable="d">
+
   <UserControl.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
@@ -129,12 +130,13 @@
       IsEnabled="True"
       Text="{Binding Email, Mode=TwoWay}"
       TextWrapping="NoWrap"
-      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" 
-      >
-      <!--<TextBox.InputBindings>
-        <KeyBinding Key="Enter" Command="{Binding Path=LoginCommmand}" />
-      </TextBox.InputBindings>-->
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+
+      <TextBox.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding Path=LoginCommand}" />
+      </TextBox.InputBindings>
     </TextBox>
+
 
     <Label
       Grid.Row="4"

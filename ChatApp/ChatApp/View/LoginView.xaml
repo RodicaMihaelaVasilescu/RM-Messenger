@@ -9,5 +9,5 @@
   Background="#782370"
   Icon="../Resources/YahooMessenger.png"
   mc:Ignorable="d">
-  <local:LoginControl VerticalAlignment="Top" />
+  <local:LoginControl/>
 </Window>

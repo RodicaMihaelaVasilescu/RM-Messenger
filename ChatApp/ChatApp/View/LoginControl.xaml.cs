@@ -24,6 +24,7 @@ namespace ChatApp.View
     public LoginControl()
     {
       InitializeComponent();
+      Email.Focus();
       VerticalAlignment = VerticalAlignment.Top;
     }
     private void Password_PasswordChanged(object sender, RoutedEventArgs e)
