@@ -28,6 +28,10 @@ namespace ChatApp.View
       Email.Focus();
       VerticalAlignment = VerticalAlignment.Top;
     }
+    private void Password_PasswordChanged(object sender, RoutedEventArgs e)
+    {
+      //UserModel.Instance.Password = Password.Password;
+    }
 
     private void Click(object sender, RoutedEventArgs e)
     {
@@ -45,6 +49,7 @@ namespace ChatApp.View
 
     private void Password_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
+      
       Login.IsDefault = true;
     }
   }
