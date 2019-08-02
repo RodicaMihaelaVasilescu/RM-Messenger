@@ -133,7 +133,7 @@
       FontSize="12"
       Foreground="Black"
       IsEnabled="True"
-      Text="{Binding Email, Mode=TwoWay}"
+      Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
       TextWrapping="NoWrap"
       Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
 
