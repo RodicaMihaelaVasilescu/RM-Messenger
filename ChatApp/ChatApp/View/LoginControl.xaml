@@ -125,6 +125,7 @@
       Height="25"
       Margin="40,0"
       Padding="3,0"
+      KeyDown="Email_KeyDown"
       HorizontalAlignment="Stretch"
       VerticalAlignment="Center"
       VerticalContentAlignment="Center"
@@ -137,9 +138,9 @@
       TextWrapping="NoWrap"
       Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
 
-      <TextBox.InputBindings>
+      <!--<TextBox.InputBindings>
         <KeyBinding Key="Enter" Command="{Binding Path=LoginCommand}" />
-      </TextBox.InputBindings>
+      </TextBox.InputBindings>-->
     </TextBox>
 
 
@@ -164,11 +165,12 @@
       BorderBrush="White"
       FontSize="12"
       Foreground="Black"
+      KeyDown="Password_KeyDown"
       PasswordChanged="Password_PasswordChanged"
       Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
-      <PasswordBox.InputBindings>
+      <!--<PasswordBox.InputBindings>
         <KeyBinding Key="Enter" Command="{Binding Path=LoginCommmand}" />
-      </PasswordBox.InputBindings>
+      </PasswordBox.InputBindings>-->
     </PasswordBox>
 
     <StackPanel

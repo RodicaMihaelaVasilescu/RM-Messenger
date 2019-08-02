@@ -26,16 +26,16 @@ namespace ChatApp.Helper
 
         public static bool AccountExists(string email, string password)
         {
-            return File.ReadAllText(Resources.TextPath).Contains(string.Format(":{0} {1} ", UserModel.Instance.Email, UserModel.Instance.Password));
+            return File.ReadAllText(Resources.TextPath).Contains(string.Format(":{0} ", UserModel.Instance.Email/*, UserModel.Instance.Password*/));
         }
 
-        public static void ChangePassword(Window window, string email, string newPassword)
+        public static void ChangePassword(Window window, string email/*, string newPassword*/)
         {
             var Text = File.ReadAllText(Resources.TextPath);
             int index1 = Text.IndexOf(string.Format(":{0} ", email));
             int index2 = Text.IndexOf('\n', index1);
             string oldCredentials = Text.Substring(index1, index2 - index1);
-            string newCredentials = string.Format(":{0} {1} ", email, newPassword);
+            string newCredentials = string.Format(":{0} ", email/*, newPassword*/);
             Text = Text.Replace(oldCredentials, newCredentials);
             File.WriteAllText(Resources.TextPath, Text);
             MessageBox.Show("Password successfully changed");

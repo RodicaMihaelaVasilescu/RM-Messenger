@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,7 +20,7 @@ namespace ChatApp.View
   /// <summary>
   /// Interaction logic for LoginControl.xaml
   /// </summary>
-  public partial class LoginControl : UserControl
+  public partial class LoginControl : System.Windows.Controls.UserControl
   {
     public LoginControl()
     {
@@ -27,15 +28,24 @@ namespace ChatApp.View
       Email.Focus();
       VerticalAlignment = VerticalAlignment.Top;
     }
-    private void Password_PasswordChanged(object sender, RoutedEventArgs e)
-    {
-      UserModel.Instance.Password = Password.Password;
-    }
 
     private void Click(object sender, RoutedEventArgs e)
     {
       Email.Text = null;
       Password.Password = null;
+    }
+
+    private void Email_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == Key.Enter)
+      {
+        Password.Focus();
+      }
+    }
+
+    private void Password_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      Login.IsDefault = true;
     }
   }
 }
