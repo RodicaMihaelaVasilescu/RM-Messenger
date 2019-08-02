@@ -179,7 +179,7 @@
     <Resource Include="Resources\ProfilePicture.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\On_YellowCircle.png" />
+    <Resource Include="Resources\IsOnline.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\mobile.png" />
@@ -195,6 +195,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\shadow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IsOffline.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

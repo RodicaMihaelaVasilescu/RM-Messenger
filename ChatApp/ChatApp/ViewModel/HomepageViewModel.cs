@@ -24,6 +24,7 @@ namespace ChatApp.ViewModel
     public ICommand LogoutCommand { get; set; }
 
     public ICommand SendCommand { get; set; }
+    public string IsActiveImagePath { get; set; } = UserModel.Instance.IsActive ? "pack://application:,,,/ChatApp;component/Resources/IsOnline.png" : "pack://application:,,,/ChatApp;component/Resources/IsOffline.png";
 
     private string _welcomeText;
 
@@ -168,7 +169,7 @@ namespace ChatApp.ViewModel
         window.VerticalContentAlignment = VerticalAlignment.Top;
         foreach (Window win in App.Current.Windows)
         {
-          if (win.Tag!= null && win.Tag.ToString().EndsWith("Child"))
+          if (win.Tag != null && win.Tag.ToString().EndsWith("Child"))
           {
             win.Close();
           }

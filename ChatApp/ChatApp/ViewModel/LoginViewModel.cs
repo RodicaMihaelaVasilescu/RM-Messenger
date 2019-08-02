@@ -35,6 +35,7 @@ namespace ChatApp.ViewModel
     private Visibility visibilityOfLoginFields;
     private Visibility visibilityOfMessageOnSingIn;
     private string messageOnSingingIn;
+    private bool isSignInAsInvisibleChecked;
 
     public string Email
     {
@@ -44,6 +45,18 @@ namespace ChatApp.ViewModel
         if (_email == value) return;
         _email = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Email"));
+      }
+    }
+
+    public bool IsSignInAsInvisibleChecked
+    {
+      get { return isSignInAsInvisibleChecked; }
+      set
+      {
+        if (isSignInAsInvisibleChecked == value) return;
+        isSignInAsInvisibleChecked = value;
+        UserModel.Instance.IsActive = !value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsSignInAsInvisibleChecked"));
       }
     }
 

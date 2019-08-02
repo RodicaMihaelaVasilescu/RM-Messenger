@@ -188,6 +188,7 @@
         Foreground="White" />
       <CheckBox
         Background="White"
+        IsChecked="{Binding IsSignInAsInvisibleChecked}"
         Content="Sign in as _invisible to everyone"
         Foreground="White" />
     </StackPanel>
