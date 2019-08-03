@@ -13,18 +13,46 @@
   mc:Ignorable="d">
 
   <UserControl.Resources>
-
-    <!--<converter:ValueToHorizontalAlignmentConverter x:Key="AlignmentConverter" />-->
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <!--  note you only need bring in these extra resource dictionaries when using non-default styles, so only bring them into your controls where the default style is not what you want  -->
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
       </ResourceDictionary.MergedDictionaries>
       <converter:NameConverter x:Key="NameConverter" />
-      <Style BasedOn="{StaticResource MaterialDesignTextBox}" TargetType="{x:Type TextBox}">
-        <Setter Property="Margin" Value="0,8,0,8" />
+      <Style
+        x:Key="placeHolder"
+        BasedOn="{StaticResource {x:Type TextBox}}"
+        TargetType="{x:Type TextBox}">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type TextBox}">
+              <Grid>
+                <TextBox
+                  x:Name="textSource"
+                  Panel.ZIndex="2"
+                  Background="Transparent"
+                  Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox
+                  Panel.ZIndex="1"
+                  Background="{TemplateBinding Background}"
+                  Text="{TemplateBinding Tag}">
+                  <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                      <Setter Property="Foreground" Value="Transparent" />
+                      <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                          <Setter Property="Foreground" Value="White" />
+                          <Setter Property="HorizontalContentAlignment" Value="Left" />
+                          <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </DataTrigger>
+                      </Style.Triggers>
+                    </Style>
+                  </TextBox.Style>
+                </TextBox>
+              </Grid>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
       </Style>
     </ResourceDictionary>
   </UserControl.Resources>
@@ -84,15 +112,16 @@
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="auto" />
-        <ColumnDefinition />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
 
       <Button
         x:Name="ProfileImage"
         Grid.RowSpan="3"
         Grid.Column="0"
-        Width="50"
-        Height="50"
+        Width="55"
+        Height="55"
         Margin="5"
         HorizontalAlignment="Left"
         Background="Transparent"
@@ -115,84 +144,81 @@
         </StackPanel>
       </Popup>
 
-      <StackPanel
+      <Button
+        Grid.Row="0"
         Grid.Column="1"
-        Margin="10,10,10,0"
-        Orientation="Horizontal">
-        <Image
+        Width="10"
+        Background="Yellow"
+        Height="10"
+        Margin="5,0,0,0"
+        HorizontalAlignment="Left"
+        Style="{StaticResource MaterialDesignRaisedAccentButton}">
+        <!--<Image
           Width="10"
           Height="10"
-          Source="{Binding IsActiveImagePath}" />
-        <Label Content="{Binding Email}" Foreground="White" />
-      </StackPanel>
+          Source="{Binding IsActiveImagePath}" />-->
+      </Button>
+      <Label
+        Grid.Row="0"
+        Grid.Column="2"
+        Margin="-10,2,5,0"
+        HorizontalAlignment="Left"
+        Content="{Binding Email}"
+        FontSize="10"
+        Foreground="White" />
 
       <TextBox
         x:Name="Email"
         Grid.Row="1"
         Grid.Column="1"
-        Margin="10,5,10,0"
+        Grid.ColumnSpan="2"
+        Height="19"
+        Margin="5,0,5,0"
+        Padding="5,0,5,0"
         HorizontalAlignment="Stretch"
-        Background="Purple"
-        BorderBrush="White"
-        BorderThickness="1"
-        FontSize="15"
+        HorizontalContentAlignment="Left"
+        VerticalContentAlignment="Center"
+        Background="#CC85BC"
+        FontSize="10"
         Foreground="Black"
+        Style="{StaticResource placeHolder}"
+        Tag="Have something to share?"
         TextWrapping="NoWrap">
 
         <materialDesign:HintAssist.Hint>
-          <TextBlock Foreground="White">Have something to share?</TextBlock>
+          <TextBlock Margin="0" Foreground="White">Have something to share?</TextBlock>
         </materialDesign:HintAssist.Hint>
 
       </TextBox>
 
-      <Button
+
+      <Image
         Grid.Row="2"
         Grid.Column="1"
-        Width="20"
-        Height="20"
-        Margin="10,0,10,0"
+        Width="10"
+        Height="10"
+        Margin="5,0,10,0"
         HorizontalAlignment="Left"
-        Background="Transparent">
-        <StackPanel>
-          <Image
-            Width="15"
-            Height="15"
-            Source="pack://application:,,,/ChatApp;component/Resources/Mobile.png" />
-        </StackPanel>
-      </Button>
+        Source="pack://application:,,,/ChatApp;component/Resources/Mobile.png" />
 
-      <Button
+      <StackPanel
         Grid.Row="2"
-        Grid.Column="1"
-        Width="15"
-        Height="15"
-        Margin="10,0,10,0"
-        HorizontalAlignment="Center"
-        Background="Transparent">
-        <StackPanel Orientation="Horizontal">
-          <Image
-            Width="15"
-            Height="15"
-            Source="pack://application:,,,/ChatApp;component/Resources/Phone.png" />
-          <Label Content="Y! Voice" Foreground="Black" />
-        </StackPanel>
-      </Button>
-
-      <Button
-        Grid.Row="2"
-        Grid.Column="1"
-        Width="15"
-        Height="15"
-        Margin="10,0,10,0"
+        Grid.Column="3"
+        Margin="5,0,5,0"
         HorizontalAlignment="Right"
-        Background="Transparent">
-        <StackPanel>
-          <Image
-            Width="15"
-            Height="15"
-            Source="pack://application:,,,/ChatApp;component/Resources/games.png" />
-        </StackPanel>
-      </Button>
+        Orientation="Horizontal">
+        <Image
+          Width="10"
+          Height="10"
+          Source="pack://application:,,,/ChatApp;component/Resources/games.png" />
+        <Label
+          VerticalAlignment="Center"
+          FontSize="9"
+          Foreground="White">
+          Games
+        </Label>
+      </StackPanel>
+
     </Grid>
 
     <!--<Button
