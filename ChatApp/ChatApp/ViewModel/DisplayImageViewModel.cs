@@ -45,9 +45,13 @@ namespace ChatApp.ViewModel
       dialog.Filter = "All files (*.*)|*.*|PNG files (*.png)|*.png*|JPG files (*.jpg)|*.jpg*";
       dialog.ShowDialog();
       var newFile = dialog.FileName;
+      if(string.IsNullOrEmpty(newFile))
+      {
+        return;
+      }
       var file = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Resources", "ProfilePicture.*").FirstOrDefault();
-      File.Delete(file);
-      File.Copy(newFile, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Resources/ProfilePicture2" + Path.GetExtension(newFile));
+      //File.Delete(file);
+      File.Copy(newFile, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Resources/ProfilePicture2" + Path.GetExtension(newFile), true);
       ProfilePicturePath = newFile;
     }
   }
