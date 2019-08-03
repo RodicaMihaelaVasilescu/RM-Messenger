@@ -17,7 +17,7 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </UserControl.Resources>
-  <StackPanel Margin="20">
+  <StackPanel Margin="10">
     <Label Content="When I start a conversation" Foreground="White" />
     <RadioButton
       Margin="30,10"
@@ -26,33 +26,40 @@
     <Separator Margin="50,0,0,0" />
 
     <Grid Margin="30,10,0,0">
-      <RadioButton Content="Share my picture" Foreground="White" />
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <RadioButton
+        HorizontalAlignment="Stretch"
+        Content="Share my picture"
+        Foreground="White" />
 
       <Button
         x:Name="ProfileImage"
-        Grid.RowSpan="3"
-        Grid.Column="0"
+        Grid.Column="1"
         Width="80"
         Height="80"
-        HorizontalAlignment="Left"
+        HorizontalAlignment="Center"
         Background="Transparent">
         <StackPanel>
           <Image
             Width="80"
             Height="80"
-            Source="pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg" />
+            Source="{Binding ProfilePicturePath, Mode=TwoWay}" />
         </StackPanel>
       </Button>
 
       <Button
-        Width="100"
+        Grid.Column="2"
         Height="25"
-        Margin="10,0,20,10"
+        HorizontalAlignment="Stretch"
         VerticalAlignment="Top"
         Background="#53244E"
         BorderBrush="White"
         BorderThickness="0.5"
-        Command="{Binding SelectCommand}"
+        Command="{Binding SelectImageCommand}"
         Content="Select.."
         FontSize="13"
         Foreground="White"
@@ -60,6 +67,6 @@
         Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
     </Grid>
 
-    <Separator Margin="50,20,20,0" />
+    <Separator Margin="50,30,0,0" />
   </StackPanel>
 </UserControl>

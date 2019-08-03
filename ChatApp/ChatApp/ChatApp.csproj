@@ -184,9 +184,6 @@
     <Resource Include="Resources\YahooMessengerSleep.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ProfilePicture.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\IsOnline.png" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +203,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\IsOffline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ProfilePicture.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

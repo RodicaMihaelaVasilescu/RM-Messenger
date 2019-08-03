@@ -32,10 +32,10 @@ namespace ChatApp.ViewModel
       var window =new Window();
       var displayImageViewModel = new DisplayImageViewModel();
       WindowManager.ChangeWindowContent(window, displayImageViewModel, Resources.DisplayImageTitle, Resources.DisplayImagePath);
-      window.Width = 376;
-      var padding = 10;
+      window.Width = 400;
+      var padding = 20;
       window.Left = Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - window.Width - padding;
-      window.Top = SystemParameters.WorkArea.Top - padding;
+      window.Top = SystemParameters.WorkArea.Top + padding;
 
       //foreach (Window win in App.Current.Windows)
       //{
