@@ -121,13 +121,19 @@
     <value>ChatApp.View.ChatControl</value>
   </data>
   <data name="ChatWindowTitle" xml:space="preserve">
-    <value>ChatApp - Chat</value>
+    <value>RM Messenger - Chat</value>
+  </data>
+  <data name="DisplayImagePath" xml:space="preserve">
+    <value>ChatApp.View.DisplayImageControl</value>
+  </data>
+  <data name="DisplayImageTitle" xml:space="preserve">
+    <value>Display Image</value>
   </data>
   <data name="HomepageControlPath" xml:space="preserve">
     <value>ChatApp.View.HomepageControl</value>
   </data>
   <data name="HomepageWindowTitle" xml:space="preserve">
-    <value>Homepage ChatApp</value>
+    <value>RM Messenger</value>
   </data>
   <data name="LoginControlPath" xml:space="preserve">
     <value>ChatApp.View.LoginControl</value>

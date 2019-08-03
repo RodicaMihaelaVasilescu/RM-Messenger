@@ -1,5 +1,4 @@
-﻿using ChatApp.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,13 @@ using System.Windows.Shapes;
 namespace ChatApp.View
 {
   /// <summary>
-  /// Interaction logic for ChangeProfilePictureControl.xaml
+  /// Interaction logic for DisplayImageControl.xaml
   /// </summary>
-  public partial class ChangeProfilePictureControl : UserControl
+  public partial class DisplayImageControl : UserControl
   {
-    public ChangeProfilePictureControl()
+    public DisplayImageControl()
     {
       InitializeComponent();
-      //var viewModel = new ChangeProfilePictureViewModel();
-      //DataContext = viewModel;
     }
   }
 }

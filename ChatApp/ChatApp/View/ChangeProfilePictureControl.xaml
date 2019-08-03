@@ -75,8 +75,8 @@
           VerticalContentAlignment="Center"
           Background="Transparent"
           BorderThickness="0"
-          Command="{Binding RegisterCommand}"
-          Content="DisplayImage"
+          Command="{Binding DisplayImageCommand}"
+          Content="Display Image"
           FontSize="10"
           Foreground="DodgerBlue"
           Style="{StaticResource MaterialDesignRaisedAccentButton}" />

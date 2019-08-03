@@ -132,8 +132,8 @@
             Height="50"
             Source="pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg" />
         </StackPanel>
-
       </Button>
+
       <Popup
         x:Name="ProfilePicturePopupTooltip"
         MouseLeave="Tooltip_MouseLeave"
@@ -148,10 +148,10 @@
         Grid.Row="0"
         Grid.Column="1"
         Width="10"
-        Background="Yellow"
         Height="10"
         Margin="5,0,0,0"
         HorizontalAlignment="Left"
+        Background="Yellow"
         Style="{StaticResource MaterialDesignRaisedAccentButton}">
         <!--<Image
           Width="10"
@@ -190,6 +190,10 @@
         </materialDesign:HintAssist.Hint>
 
       </TextBox>
+      <ComboBox
+        Grid.Row="1"
+        Grid.Column="1"
+        Grid.ColumnSpan="2" />
 
 
       <Image

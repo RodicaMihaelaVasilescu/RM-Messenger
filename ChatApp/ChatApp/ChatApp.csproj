@@ -75,6 +75,7 @@
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="ViewModel\ChangeProfilePictureViewModel.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
+    <Compile Include="ViewModel\DisplayImageViewModel.cs" />
     <Compile Include="ViewModel\HomepageViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="View\ChangeProfilePictureControl.xaml.cs">
@@ -82,6 +83,9 @@
     </Compile>
     <Compile Include="View\ChatControl.xaml.cs">
       <DependentUpon>ChatControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DisplayImageControl.xaml.cs">
+      <DependentUpon>DisplayImageControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomepageControl.xaml.cs">
       <DependentUpon>HomepageControl.xaml</DependentUpon>
@@ -101,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ChatControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DisplayImageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

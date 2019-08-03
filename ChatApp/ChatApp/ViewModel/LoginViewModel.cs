@@ -147,7 +147,7 @@ namespace ChatApp.ViewModel
         MessageOnSingingIn = "Sign in as " + Email;
         VisibilityOfLoginFields = Visibility.Hidden;
         VisibilityOfMessageOnSingIn = Visibility.Visible;
-        await Task.Delay(5000);
+        await Task.Delay(0);//5000
         if (cancelButtonPressed)
         {
           return;

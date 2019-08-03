@@ -70,11 +70,29 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ChatApp - Chat.
+        ///   Looks up a localized string similar to RM Messenger - Chat.
         /// </summary>
         internal static string ChatWindowTitle {
             get {
                 return ResourceManager.GetString("ChatWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ChatApp.View.DisplayImageControl.
+        /// </summary>
+        internal static string DisplayImagePath {
+            get {
+                return ResourceManager.GetString("DisplayImagePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Image.
+        /// </summary>
+        internal static string DisplayImageTitle {
+            get {
+                return ResourceManager.GetString("DisplayImageTitle", resourceCulture);
             }
         }
         
@@ -88,7 +106,7 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Homepage ChatApp.
+        ///   Looks up a localized string similar to RM Messenger.
         /// </summary>
         internal static string HomepageWindowTitle {
             get {
