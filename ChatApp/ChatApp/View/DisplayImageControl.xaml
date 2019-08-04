@@ -47,7 +47,7 @@
           <Image
             Width="80"
             Height="80"
-            Source="{Binding ProfilePicturePath, Mode=TwoWay}" />
+            Source="{Binding ProfilePicturePath, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
       </Button>
 
