@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ChatApp.ViewModel
@@ -31,7 +32,20 @@ namespace ChatApp.ViewModel
     {
       CloseCommand = new RelayCommand(CloseCommandExecute);
       SelectImageCommand = new RelayCommand(SelectImageCommandExecute);
-      ProfilePicturePath = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Resources", "ProfilePicture.*").FirstOrDefault();
+      string[] files = null;
+      try
+      {
+        files = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Resources", "ProfilePicture.*");
+      }
+      catch (Exception)
+      {
+        if (files == null)
+        {
+          MessageBox.Show("Error ocurred!");
+          return;
+        }
+      }
+      ProfilePicturePath = files.FirstOrDefault();
     }
 
     private void CloseCommandExecute()
@@ -45,13 +59,13 @@ namespace ChatApp.ViewModel
       dialog.Filter = "All files (*.*)|*.*|PNG files (*.png)|*.png*|JPG files (*.jpg)|*.jpg*";
       dialog.ShowDialog();
       var newFile = dialog.FileName;
-      if(string.IsNullOrEmpty(newFile))
+      if (string.IsNullOrEmpty(newFile))
       {
         return;
       }
-      var file = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Resources", "ProfilePicture.*").FirstOrDefault();
+      var file = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Resources", "ProfilePicture.*").FirstOrDefault();
       //File.Delete(file);
-      File.Copy(newFile, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/Resources/ProfilePicture2" + Path.GetExtension(newFile), true);
+      File.Copy(newFile, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Resources\\ProfilePicture2" + Path.GetExtension(newFile), true);
       ProfilePicturePath = newFile;
     }
   }
