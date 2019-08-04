@@ -125,7 +125,6 @@
       Height="25"
       Margin="40,0"
       Padding="3,0"
-      KeyDown="Email_KeyDown"
       HorizontalAlignment="Stretch"
       VerticalAlignment="Center"
       VerticalContentAlignment="Center"
@@ -134,6 +133,7 @@
       FontSize="12"
       Foreground="Black"
       IsEnabled="True"
+      KeyDown="Email_KeyDown"
       Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
       TextWrapping="NoWrap"
       Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
@@ -179,6 +179,7 @@
       HorizontalAlignment="Stretch"
       Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
       <CheckBox
+        x:Name="RemeberMyId"
         Background="White"
         Content="_Remember my ID password"
         Foreground="White" />
@@ -188,9 +189,9 @@
         Foreground="White" />
       <CheckBox
         Background="White"
-        IsChecked="{Binding IsSignInAsInvisibleChecked}"
         Content="Sign in as _invisible to everyone"
-        Foreground="White" />
+        Foreground="White"
+        IsChecked="{Binding IsSignInAsInvisibleChecked}" />
     </StackPanel>
 
     <Button

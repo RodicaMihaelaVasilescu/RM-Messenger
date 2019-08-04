@@ -33,19 +33,7 @@ namespace ChatApp.ViewModel
       CloseCommand = new RelayCommand(CloseCommandExecute);
       SelectImageCommand = new RelayCommand(SelectImageCommandExecute);
       string[] files = null;
-      try
-      {
-        files = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Resources", "ProfilePicture.*");
-      }
-      catch (Exception)
-      {
-        if (files == null)
-        {
-          MessageBox.Show("Error ocurred!");
-          return;
-        }
-      }
-      ProfilePicturePath = files.FirstOrDefault();
+      ProfilePicturePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg";
     }
 
     private void CloseCommandExecute()

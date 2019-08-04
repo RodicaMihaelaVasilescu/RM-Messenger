@@ -8,6 +8,7 @@ using ChatApp.Properties;
 using ChatApp.Command;
 using System.Threading;
 using System.Threading.Tasks;
+using ChatApp.Helpers;
 
 namespace ChatApp.ViewModel
 {
@@ -120,6 +121,10 @@ namespace ChatApp.ViewModel
       visibilityOfMessageOnSingIn = Visibility.Hidden;
       cancelButtonPressed = false;
 
+      if(AppConfigManager.ReadSetting("SignInAutomatically") == "true")
+      {
+        LoginCommandExecute();
+      }
       Login();
     }
 
