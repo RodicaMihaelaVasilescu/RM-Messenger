@@ -176,9 +176,8 @@
         Content="{Binding Email}"
         FontSize="10"
         Foreground="White" />-->
-
       <TextBox
-        x:Name="Email"
+        Name="EmailTextBox"
         Grid.Row="1"
         Grid.Column="1"
         Grid.ColumnSpan="2"
@@ -188,18 +187,128 @@
         HorizontalAlignment="Stretch"
         HorizontalContentAlignment="Left"
         VerticalContentAlignment="Center"
-        Background="#CC85BC"
-        FontSize="10"
-        Foreground="Black"
-        Style="{StaticResource placeHolder}"
-        Tag="Have something to share?"
-        TextWrapping="NoWrap">
+        Panel.ZIndex="0"
+        BorderBrush="LightGray"
+        BorderThickness="1"
+        FontFamily="SegoeUI"
+        FontSize="12"
+        Foreground="White"
+        Text="{Binding Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
 
-        <materialDesign:HintAssist.Hint>
-          <TextBlock Margin="0" Foreground="White">Have something to share?</TextBlock>
-        </materialDesign:HintAssist.Hint>
+        <TextBox.Style>
+          <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="TextBox">
+            <Style.Resources>
 
+              <VisualBrush
+                x:Key="GrayHelperTextBrush"
+                AlignmentX="Left"
+                AlignmentY="Center"
+                Stretch="None">
+                <VisualBrush.Visual>
+                  <Label
+                    Name="SearchLabel"
+                    Content="Have something to share?"
+                    FontFamily="SegoeUI"
+                    FontSize="12"
+                    Foreground="White" />
+                </VisualBrush.Visual>
+              </VisualBrush>
+
+              <VisualBrush
+                x:Key="BlackHelperTextBrush"
+                AlignmentX="Left"
+                AlignmentY="Center"
+                Stretch="None">
+                <VisualBrush.Visual>
+                  <Label
+                    Name="SearchBlackLabel"
+                    Content="Have something to share?"
+                    FontFamily="SegoeUI"
+                    FontSize="12"
+                    Foreground="DeepSkyBlue" />
+                </VisualBrush.Visual>
+              </VisualBrush>
+
+            </Style.Resources>
+            <Style.Triggers>
+
+              <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+              </Trigger>
+
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="Text" Value="{x:Null}" />
+                  <Condition Property="IsMouseOver" Value="False" />
+                  <Condition Property="IsMouseCaptured" Value="False" />
+                  <Condition Property="IsFocused" Value="False" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                  <Setter Property="Background" Value="{StaticResource GrayHelperTextBrush}" />
+                </MultiTrigger.Setters>
+              </MultiTrigger>
+
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="Text" Value="{x:Static sys:String.Empty}" />
+                  <Condition Property="IsMouseOver" Value="False" />
+                  <Condition Property="IsMouseCaptured" Value="False" />
+                  <Condition Property="IsFocused" Value="False" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                  <Setter Property="Background" Value="{StaticResource GrayHelperTextBrush}" />
+                </MultiTrigger.Setters>
+              </MultiTrigger>
+
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="Text" Value="{x:Null}" />
+                  <Condition Property="IsMouseOver" Value="True" />
+                  <Condition Property="IsFocused" Value="False" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                  <Setter Property="Background" Value="{StaticResource BlackHelperTextBrush}" />
+                </MultiTrigger.Setters>
+              </MultiTrigger>
+
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="Text" Value="{x:Static sys:String.Empty}" />
+                  <Condition Property="IsMouseOver" Value="True" />
+                  <Condition Property="IsFocused" Value="False" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                  <Setter Property="Background" Value="{StaticResource BlackHelperTextBrush}" />
+                </MultiTrigger.Setters>
+              </MultiTrigger>
+
+            </Style.Triggers>
+          </Style>
+        </TextBox.Style>
       </TextBox>
+      <!--<TextBox
+                x:Name="Email"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Height="19"
+                Margin="5,0,5,0"
+                Padding="5,0,5,0"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                Background="#CC85BC"
+                FontSize="10"
+                Foreground="Black"
+                Style="{StaticResource placeHolder}"
+                Tag="Have something to share?"
+                TextWrapping="NoWrap">-->
+
+      <!--<materialDesign:HintAssist.Hint>
+                    <TextBlock Margin="0" Foreground="White">Have something to share?</TextBlock>
+                </materialDesign:HintAssist.Hint>
+
+            </TextBox>-->
       <Button
         Grid.Row="1"
         Grid.Column="2"
