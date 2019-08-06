@@ -136,6 +136,7 @@
       </Button>
       <Popup
         x:Name="ProfilePicturePopupTooltip"
+        LostFocus="ProfilePicturePopupTooltip_LostFocus"
         MouseLeave="Tooltip_MouseLeave"
         Placement="Left"
         PlacementTarget="{Binding ElementName=ProfileImage}">
@@ -192,7 +193,7 @@
         BorderThickness="1"
         FontFamily="SegoeUI"
         FontSize="12"
-        Foreground="White"
+        Foreground="LightGray"
         Text="{Binding Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
 
         <TextBox.Style>
@@ -207,10 +208,11 @@
                 <VisualBrush.Visual>
                   <Label
                     Name="SearchLabel"
+                    BorderBrush="LightGray"
                     Content="Have something to share?"
                     FontFamily="SegoeUI"
                     FontSize="12"
-                    Foreground="White" />
+                    Foreground="LightGray" />
                 </VisualBrush.Visual>
               </VisualBrush>
 
@@ -327,7 +329,44 @@
         Height="10"
         Margin="5,0,10,0"
         HorizontalAlignment="Left"
-        Source="pack://application:,,,/ChatApp;component/Resources/Mobile.png" />
+        Source="pack://application:,,,/ChatApp;component/Resources/Phone.png" />
+
+      <Button
+        Grid.Row="2"
+        Grid.Column="2"
+        Margin="-20,0,0,0"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Center"
+        Background="Transparent"
+        BorderThickness="0"
+        Content="Y! Voice"
+        Cursor="Hand"
+        FontFamily="SegoeUI"
+        FontSize="11"
+        Foreground="White">
+
+        <Button.Template>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <Border>
+              <Grid>
+                <ContentPresenter />
+                <Grid
+                  x:Name="StatusPanel"
+                  Background="Black"
+                  Opacity="0" />
+              </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="true">
+                <Setter TargetName="StatusPanel" Property="Opacity" Value="0.1" />
+              </Trigger>
+              <Trigger Property="IsPressed" Value="true">
+                <Setter TargetName="StatusPanel" Property="Opacity" Value="0.3" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Button.Template>
+      </Button>
 
       <StackPanel
         Grid.Row="2"
