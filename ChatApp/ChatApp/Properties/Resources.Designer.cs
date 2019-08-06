@@ -133,6 +133,16 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ProfilePictureAccount {
+            get {
+                object obj = ResourceManager.GetObject("ProfilePictureAccount", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ..\..\Text\text.txt.
         /// </summary>
         internal static string TextPath {

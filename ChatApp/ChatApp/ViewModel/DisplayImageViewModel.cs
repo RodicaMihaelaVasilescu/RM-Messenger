@@ -1,6 +1,8 @@
 ﻿using ChatApp.Command;
+using ChatApp.Properties;
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -12,7 +14,7 @@ namespace ChatApp.ViewModel
 {
   class DisplayImageViewModel : INotifyPropertyChanged
   {
-    private BitmapImage profilePicturePath;
+    private Image profilePicturePath;
 
     public Action CloseAction { get; set; }
     public ICommand CloseCommand { get; set; }
@@ -20,7 +22,7 @@ namespace ChatApp.ViewModel
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public BitmapImage ProfilePicturePath
+    public Image ProfilePicturePath
     {
       get { return profilePicturePath; }
       set
@@ -33,9 +35,11 @@ namespace ChatApp.ViewModel
     {
       CloseCommand = new RelayCommand(CloseCommandExecute);
       SelectImageCommand = new RelayCommand(SelectImageCommandExecute);
-      ProfilePicturePath = new BitmapImage(
-        new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
-      ProfilePicturePath.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+      //ProfilePicturePath = new BitmapImage(
+      //  new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
+
+            ProfilePicturePath = Resources.ProfilePictureAccount;
+            //ProfilePicturePath.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
     }
 
     private void CloseCommandExecute()
@@ -68,7 +72,7 @@ namespace ChatApp.ViewModel
       //var y = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
       File.Copy(newFile, file);
       //var file = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Resources", "ProfilePicture.*").FirstOrDefault();
-      ProfilePicturePath = new BitmapImage(new Uri(file));
+      //ProfilePicturePath = new BitmapImage(new Uri(file));
       //ProfilePicturePath = new BitmapImage(
       //  new Uri("pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"));
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProfilePicturePath"));
