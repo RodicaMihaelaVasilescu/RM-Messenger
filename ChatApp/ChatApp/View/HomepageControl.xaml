@@ -345,7 +345,7 @@
         VerticalAlignment="Center"
         Background="Transparent"
         BorderThickness="0"
-        Content="Y! Voice"
+        Content="RM! Voice"
         Cursor="Hand"
         FontFamily="SegoeUI"
         FontSize="10"
