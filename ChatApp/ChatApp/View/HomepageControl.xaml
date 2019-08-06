@@ -9,7 +9,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   d:DesignHeight="800"
   d:DesignWidth="400"
-  Background="#782370"
+  Background="Purple"
   mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -194,7 +194,7 @@
         FontFamily="SegoeUI"
         FontSize="12"
         Foreground="LightGray"
-        Text="{Binding Email, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+        Text="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
 
         <TextBox.Style>
           <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="TextBox">
@@ -333,8 +333,8 @@
 
       <Button
         Grid.Row="2"
-        Grid.Column="2"
-        Margin="-20,0,0,0"
+        Grid.Column="1"
+        Margin="20,0,0,0"
         HorizontalAlignment="Left"
         VerticalAlignment="Center"
         Background="Transparent"
@@ -342,7 +342,7 @@
         Content="Y! Voice"
         Cursor="Hand"
         FontFamily="SegoeUI"
-        FontSize="11"
+        FontSize="10"
         Foreground="White">
 
         <Button.Template>
@@ -368,6 +368,36 @@
         </Button.Template>
       </Button>
 
+      <!--<Button
+        Grid.Row="2"
+        Grid.Column="3"
+        Margin="5,0,5,0"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Center"
+        Background="Transparent"
+        BorderThickness="0"
+        Content="Games"
+        Cursor="Hand"
+        FontFamily="SegoeUI"
+        FontSize="11"
+        Foreground="White">
+
+        <Button.Template>
+          <ControlTemplate TargetType="{x:Type Button}">
+            
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="true">
+                <Setter TargetName="StatusPanel" Property="Opacity" Value="0.1" />
+              </Trigger>
+              <Trigger Property="IsPressed" Value="true">
+                <Setter TargetName="StatusPanel" Property="Opacity" Value="0.3" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Button.Template>
+      </Button>-->
+
+
       <StackPanel
         Grid.Row="2"
         Grid.Column="3"
@@ -380,7 +410,7 @@
           Source="pack://application:,,,/ChatApp;component/Resources/games.png" />
         <Label
           VerticalAlignment="Center"
-          FontSize="9"
+          FontSize="10"
           Foreground="White">
           Games
         </Label>

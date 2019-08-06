@@ -7,7 +7,7 @@
   xmlns:local="clr-namespace:ChatApp.View"
   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  Background="#782370"
+  Background="Purple"
   mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -35,8 +35,7 @@
     </Grid.RowDefinitions>
 
     <Image
-      Grid.RowSpan="4"
-      Height="90"
+      Grid.RowSpan="9"
       VerticalAlignment="Top"
       Opacity="0.4"
       Source="pack://application:,,,/ChatApp;component/Resources/shadow.png" />
