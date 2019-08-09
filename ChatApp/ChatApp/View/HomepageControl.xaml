@@ -10,7 +10,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   d:DesignHeight="800"
   d:DesignWidth="400"
-  Background="Purple"
+  Background="#76246E"
   mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -20,12 +20,12 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
       </ResourceDictionary.MergedDictionaries>
       <converter:NameConverter x:Key="NameConverter" />
-      
-      <Style x:Key="TabControlStyle" TargetType="TabControl" >
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}"></Setter>
+
+      <Style x:Key="TabControlStyle" TargetType="TabControl">
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource MaterialDesignBody}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesignPaper}" />
       </Style>
-      
+
       <Style
         x:Key="placeHolder"
         BasedOn="{StaticResource {x:Type TextBox}}"
@@ -493,20 +493,27 @@
     </TabControl>-->
 
     <dragablz:TabablzControl
-      Style="{StaticResource TabControlStyle}"
       Grid.Row="2"
-      Margin="10,10,10,0">
+      Margin="10,10,10,0"
+      Style="{StaticResource TabControlStyle}">
       <TabItem
         HorizontalAlignment="Stretch"
-        Background="Purple"
+        Background="#76246E"
         Foreground="Red"
         Header="Contacts">
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Hello World</TextBlock>
       </TabItem>
-      <TabItem Header="RM! Updates" HorizontalAlignment="Stretch">
+      <TabItem HorizontalAlignment="Stretch" Header="RM! Updates">
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Material Design</TextBlock>
       </TabItem>
     </dragablz:TabablzControl>
+    <Button
+      x:Name="Logout"
+      Grid.Row="3"
+      Margin="10"
+      Command="{Binding LogoutCommand}"
+      Content="LOG OUT"
+      FontSize="18" />
 
     <!--<GroupBox
       Grid.Row="2"

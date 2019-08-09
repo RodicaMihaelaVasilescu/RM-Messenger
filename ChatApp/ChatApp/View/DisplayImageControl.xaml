@@ -7,7 +7,7 @@
   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   d:DesignHeight="450"
-  Background="Purple"
+  Background="#76246E"
   mc:Ignorable="d">
   <UserControl.Resources>
     <ResourceDictionary>
@@ -21,7 +21,10 @@
     <StackPanel.Background>
       <ImageBrush ImageSource="../Resources/shadow.png" Opacity="0.4" />
     </StackPanel.Background>
-    <Label Margin="10" Content="When I start a conversation" Foreground="White" />
+    <Label
+      Margin="10"
+      Content="When I start a conversation"
+      Foreground="White" />
     <RadioButton
       Margin="30,10"
       Content="Don't share a display image"
