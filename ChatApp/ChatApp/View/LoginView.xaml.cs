@@ -27,6 +27,8 @@ namespace ChatApp.View
       InitializeComponent();
       DataContext = new LoginViewModel(this);
       WindowManager.ResizeWindow(this);
+      var desktopWorkingArea = SystemParameters.WorkArea;
+      this.Height = desktopWorkingArea.Bottom;
     }
   }
 }

@@ -5,9 +5,8 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:local="clr-namespace:ChatApp.View"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  Title="ChatApp - Login"
-  Background="#782370"
-  Icon="../Resources/YahooMessenger.png"
+  Background="White"
+  Icon="../Resources/Empty.png"
   mc:Ignorable="d">
-  <local:LoginControl/>
+  <local:LoginControl />
 </Window>
