@@ -35,14 +35,14 @@
     </Grid.RowDefinitions>
 
     <Image
-        Grid.RowSpan="9"
-        VerticalAlignment="Top"
-        Opacity="0.4"
-        Source="pack://application:,,,/ChatApp;component/Resources/shadow.png" />
+      Grid.RowSpan="9"
+      VerticalAlignment="Top"
+      Opacity="0.4"
+      Source="pack://application:,,,/ChatApp;component/Resources/shadow.png" />
 
     <DockPanel Margin="0">
       <Menu Background="Transparent" DockPanel.Dock="Top">
-        <MenuItem Foreground="White" Header="_Messenger">
+        <MenuItem Foreground="White" Header="Messenger">
           <MenuItem Foreground="Black" Header="_New">
             <MenuItem.Icon>
               <materialDesign:PackIcon Kind="OpenInNew" />
@@ -71,11 +71,11 @@
     </DockPanel>
 
     <Image
-        Grid.Row="1"
-        Width="180"
-        Height="120"
-        Margin="0,20,0,0"
-        gif:ImageBehavior.AnimatedSource="{Binding Gif}" />
+      Grid.Row="1"
+      Width="180"
+      Height="120"
+      Margin="0,20,0,0"
+      gif:ImageBehavior.AnimatedSource="{Binding Gif}" />
     <!--  pack://application:,,,/ChatApp;component/Resources/YahooMessengerSleep.gif  -->
     <!--<Image
       Grid.Row="1"
@@ -86,56 +86,56 @@
       Source="pack://application:,,,/ChatApp;component/Resources/YahooMessenger.png" />-->
 
     <Label
-        Grid.Row="2"
-        Margin="40,0"
-        HorizontalAlignment="Stretch"
-        Content="Yahoo! _ID:"
-        Foreground="LightGray"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+      Grid.Row="2"
+      Margin="40,0"
+      HorizontalAlignment="Stretch"
+      Content="Yahoo! _ID:"
+      Foreground="LightGray"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
 
     <Label
-        Grid.Row="2"
-        Margin="40,0"
-        HorizontalAlignment="Center"
-        Content="{Binding MessageOnSingingIn}"
-        Foreground="White"
-        Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
+      Grid.Row="2"
+      Margin="40,0"
+      HorizontalAlignment="Center"
+      Content="{Binding MessageOnSingingIn}"
+      Foreground="White"
+      Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
 
     <Button
-        x:Name="Cancel"
-        Grid.Row="3"
-        Width="100"
-        Height="25"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Background="#53244E"
-        BorderBrush="White"
-        BorderThickness="0.5"
-        Command="{Binding CancelCommand}"
-        Content="Cancel"
-        FontSize="13"
-        Foreground="White"
-        Style="{StaticResource MaterialDesignRaisedAccentButton}"
-        Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
+      x:Name="Cancel"
+      Grid.Row="3"
+      Width="100"
+      Height="25"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Top"
+      Background="#53244E"
+      BorderBrush="White"
+      BorderThickness="0.5"
+      Command="{Binding CancelCommand}"
+      Content="Cancel"
+      FontSize="13"
+      Foreground="White"
+      Style="{StaticResource MaterialDesignRaisedAccentButton}"
+      Visibility="{Binding VisibilityOfMessageOnSingIn, Mode=TwoWay}" />
 
     <TextBox
-        x:Name="Email"
-        Grid.Row="3"
-        Height="20"
-        Margin="40,0"
-        Padding="3,0"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Center"
-        VerticalContentAlignment="Center"
-        Background="White"
-        BorderBrush="White"
-        FontSize="12"
-        Foreground="Black"
-        IsEnabled="True"
-        KeyDown="Email_KeyDown"
-        Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-        TextWrapping="NoWrap"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+      x:Name="Email"
+      Grid.Row="3"
+      Height="20"
+      Margin="40,0"
+      Padding="3,0"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Center"
+      VerticalContentAlignment="Center"
+      Background="White"
+      BorderBrush="White"
+      FontSize="12"
+      Foreground="Black"
+      IsEnabled="True"
+      KeyDown="Email_KeyDown"
+      Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+      TextWrapping="NoWrap"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
 
       <!--<TextBox.InputBindings>
         <KeyBinding Key="Enter" Command="{Binding Path=LoginCommand}" />
@@ -144,130 +144,140 @@
 
 
     <Label
-        Grid.Row="4"
-        Margin="40,0"
-        HorizontalAlignment="Stretch"
-        Content="_Password:"
-        Foreground="LightGray"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+      Grid.Row="4"
+      Margin="40,0"
+      HorizontalAlignment="Stretch"
+      Content="_Password:"
+      Foreground="LightGray"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
 
     <PasswordBox
-        Name="Password"
-        Grid.Row="5"
-        Height="20"
-        Margin="40,0"
-        Padding="3,0"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Center"
-        VerticalContentAlignment="Center"
-        Background="White"
-        BorderBrush="White"
-        FontSize="12"
-        Foreground="Black"
-        KeyDown="Password_KeyDown"
-        PasswordChanged="Password_PasswordChanged"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+      Name="Password"
+      Grid.Row="5"
+      Height="20"
+      Margin="40,0"
+      Padding="3,0"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Center"
+      VerticalContentAlignment="Center"
+      Background="White"
+      BorderBrush="White"
+      FontSize="12"
+      Foreground="Black"
+      KeyDown="Password_KeyDown"
+      PasswordChanged="Password_PasswordChanged"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
       <!--<PasswordBox.InputBindings>
         <KeyBinding Key="Enter" Command="{Binding Path=LoginCommmand}" />
       </PasswordBox.InputBindings>-->
     </PasswordBox>
 
     <StackPanel
-        Grid.Row="6"
-        Margin="40,20"
-        HorizontalAlignment="Stretch"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+      Grid.Row="6"
+      Margin="40,20"
+      HorizontalAlignment="Stretch"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
       <CheckBox
-          x:Name="RemeberMyId"
-          Background="White"
-          Content="_Remember my ID password"
-          FontSize="11"
-          Foreground="LightGray" />
+        x:Name="RemeberMyId"
+        Background="White"
+        Content="_Remember my ID password"
+        FontSize="11"
+        Foreground="LightGray" />
       <CheckBox
-          Background="White"
-          Content="Sign in _automatically"
-          FontSize="11"
-          Foreground="LightGray" />
+        Background="White"
+        Content="Sign in _automatically"
+        FontSize="11"
+        Foreground="LightGray" />
       <CheckBox
-          Background="White"
-          Content="Sign in as _invisible to everyone"
-          FontSize="11"
-          Foreground="LightGray"
-          IsChecked="{Binding IsSignInAsInvisibleChecked}" />
+        Background="White"
+        Content="Sign in as _invisible to everyone"
+        FontSize="11"
+        Foreground="LightGray"
+        IsChecked="{Binding IsSignInAsInvisibleChecked}" />
     </StackPanel>
 
     <Button
-        x:Name="Login"
-        Grid.Row="7"
-        Width="100"
-        Height="25"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
-        Background="#53244E"
-        BorderBrush="White"
-        BorderThickness="0.5"
-        Command="{Binding LoginCommand}"
-        Content="Sign in"
-        FontSize="13"
-        Foreground="White"
-        Style="{StaticResource MaterialDesignRaisedAccentButton}"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+      x:Name="Login"
+      Grid.Row="7"
+      Width="80"
+      Height="23"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Top"
+      BorderBrush="White"
+      BorderThickness="0.5"
+      Command="{Binding LoginCommand}"
+      Content="Sign in"
+      FontSize="11"
+      Foreground="White"
+      Style="{StaticResource MaterialDesignRaisedAccentButton}"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+      <!--<Button.Background>-->
+      <!--  Background="#53244E"  -->
+      <Button.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+          <GradientStop Offset="0" Color="#7B4171" />
+          <GradientStop Offset="0.445" Color="#693060" />
+          <GradientStop Offset="0.53" Color="#481041" />
+        </LinearGradientBrush>
+      </Button.Background>
+    </Button>
 
 
     <Label
-        Grid.Row="8"
-        Margin="30,20,40,0"
-        HorizontalAlignment="Stretch"
-        Content="_Language:"
-        Foreground="LightGray"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
+      Grid.Row="8"
+      Margin="30,20,40,0"
+      HorizontalAlignment="Stretch"
+      Content="_Language:"
+      Foreground="LightGray"
+      FontSize="11"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}" />
 
     <ComboBox
-        Grid.Row="9"
-        Margin="40,0"
-        HorizontalAlignment="Stretch"
-        IsReadOnly="True"
-        Text="Please Select"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+      Grid.Row="9"
+      Margin="40,0"
+      HorizontalAlignment="Stretch"
+      IsReadOnly="True"
+      Text="Please Select"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
       <ComboBoxItem Name="create" IsSelected="True">English (U.S.)</ComboBoxItem>
     </ComboBox>
 
     <StackPanel
-        Grid.Row="10"
-        Margin="0,160,0,10"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
+      Grid.Row="10"
+      Margin="0,160,0,10"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Center"
+      Visibility="{Binding VisibilityOfLoginFields, Mode=TwoWay}">
       <Button
-          x:Name="Register"
-          Height="21"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Bottom"
-          HorizontalContentAlignment="Left"
-          VerticalContentAlignment="Bottom"
-          Background="Transparent"
-          BorderThickness="0"
-          Click="Click"
-          Command="{Binding RegisterCommand}"
-          Content="Get a new Yahoo! ID..."
-          FontSize="10"
-          Foreground="DodgerBlue"
-          Style="{StaticResource MaterialDesignRaisedAccentButton}" />
+        x:Name="Register"
+        Height="21"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"
+        HorizontalContentAlignment="Left"
+        VerticalContentAlignment="Bottom"
+        Background="Transparent"
+        BorderThickness="0"
+        Click="Click"
+        Command="{Binding RegisterCommand}"
+        Content="Get a new Yahoo! ID..."
+        FontSize="10"
+        Foreground="DodgerBlue"
+        Style="{StaticResource MaterialDesignRaisedAccentButton}" />
       <Button
-          x:Name="ForgotPassword"
-          Height="21"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Bottom"
-          HorizontalContentAlignment="Center"
-          VerticalContentAlignment="Center"
-          Background="Transparent"
-          BorderThickness="0"
-          Click="Click"
-          Command="{Binding ForgotPasswordCommand}"
-          Content="Forgot your password?"
-          FontSize="10"
-          Foreground="DodgerBlue"
-          Style="{StaticResource MaterialDesignRaisedAccentButton}" />
+        x:Name="ForgotPassword"
+        Height="21"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"
+        HorizontalContentAlignment="Center"
+        VerticalContentAlignment="Center"
+        Background="Transparent"
+        BorderThickness="0"
+        Click="Click"
+        Command="{Binding ForgotPasswordCommand}"
+        Content="Forgot your password?"
+        FontSize="10"
+        Foreground="DodgerBlue"
+        Style="{StaticResource MaterialDesignRaisedAccentButton}" />
 
     </StackPanel>
   </Grid>
