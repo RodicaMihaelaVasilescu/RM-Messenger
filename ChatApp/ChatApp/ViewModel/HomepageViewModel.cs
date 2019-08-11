@@ -6,9 +6,12 @@ using ChatApp.View;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
 using MessageBox = System.Windows.Forms.MessageBox;
 
@@ -101,6 +104,19 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedContact"));
       }
     }
+
+    private BitmapImage profilePicturePath;
+    public BitmapImage ProfilePicturePath
+    {
+      get { return profilePicturePath; }
+      set
+      {
+        profilePicturePath = value;
+        if(value != null) profilePicturePath.CacheOption = BitmapCacheOption.None;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProfilePicturePath"));
+      }
+    }
+
     #endregion
 
     #region Constructor
@@ -111,7 +127,14 @@ namespace ChatApp.ViewModel
       Email = UserModel.Instance.Email;
       LogoutCommand = new RelayCommand(LogoutCommandExecute);
       SendCommand = new RelayCommand(SendCommandExecute);
-
+      ProfilePicturePath = null;
+      ProfilePicturePath = new BitmapImage(
+        new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
+      ProfilePicturePath.CacheOption = BitmapCacheOption.None;
+      Image image2 = Image.FromFile(Path.GetDirectoryName(
+          Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) +
+          "\\Resources\\ProfilePicture.jpg");
+      image2.Dispose();
       ContactsList = new ObservableCollection<UserModel>();
 
       ContactsList.Add(new UserModel { Email = "email", FirstName = "Rodica", LastName = "Mihaela" });

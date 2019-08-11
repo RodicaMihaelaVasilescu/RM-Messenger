@@ -10,7 +10,6 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   d:DesignHeight="800"
   d:DesignWidth="400"
-  Background="#76246E"
   mc:Ignorable="d">
 
   <UserControl.Resources>
@@ -63,119 +62,120 @@
       </Style>
     </ResourceDictionary>
   </UserControl.Resources>
-
-  <Grid>
-    <Grid.Background>
-      <ImageBrush ImageSource="../Resources/shadow.png" Opacity="0.4" />
-    </Grid.Background>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="auto" />
-      <RowDefinition Height="auto" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="auto" />
-    </Grid.RowDefinitions>
-
-    <DockPanel Margin="0">
-      <Menu Background="Transparent" DockPanel.Dock="Top">
-
-        <MenuItem Foreground="White" Header="_Messenger">
-          <MenuItem Foreground="Black" Header="_New">
-            <MenuItem.Icon>
-              <materialDesign:PackIcon Kind="OpenInNew" />
-            </MenuItem.Icon>
-          </MenuItem>
-          <MenuItem Foreground="Black" Header="_Open">
-            <MenuItem.Icon>
-              <materialDesign:PackIcon Kind="MenuOpen" />
-            </MenuItem.Icon>
-          </MenuItem>
-          <MenuItem Foreground="Black" Header="_Save">
-            <MenuItem.Icon>
-              <materialDesign:PackIcon Kind="ContentSave" />
-            </MenuItem.Icon>
-          </MenuItem>
-          <Separator />
-          <MenuItem Foreground="Black" Header="_Exit">
-            <MenuItem.Icon>
-              <materialDesign:PackIcon Kind="ExitRun" />
-            </MenuItem.Icon>
-          </MenuItem>
-        </MenuItem>
-
-        <MenuItem Foreground="White" Header="_Contacts" />
-
-        <MenuItem Foreground="White" Header="_Actions" />
-
-        <MenuItem Foreground="White" Header="_View" />
-      </Menu>
-
-    </DockPanel>
-
-    <Grid Grid.Row="1">
+  <Grid Margin="7,0,7,7" Background="#76246E">
+    <Grid Background="#76246E">
+      <!--<Grid.Background>
+        <ImageBrush ImageSource="../Resources/shadow.png" Opacity="0.4" />
+      </Grid.Background>-->
       <Grid.RowDefinitions>
-        <RowDefinition />
-        <RowDefinition />
-        <RowDefinition />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="auto" />
       </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="auto" />
-        <ColumnDefinition Width="auto" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
 
-      <Button
-        x:Name="ProfileImage"
-        Grid.RowSpan="3"
-        Grid.Column="0"
-        Width="55"
-        Height="55"
-        Margin="5,10,5,0"
-        HorizontalAlignment="Left"
-        Background="Transparent"
-        MouseEnter="Button_MouseEnter">
-        <StackPanel>
-          <Image
-            Width="50"
-            Height="50"
-            Source="pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg" />
-        </StackPanel>
+      <DockPanel Margin="0">
+        <Menu Background="Transparent" DockPanel.Dock="Top">
 
-      </Button>
-      <Popup
-        x:Name="ProfilePicturePopupTooltip"
-        MouseLeave="Tooltip_MouseLeave"
-        Placement="Left"
-        PlacementTarget="{Binding ElementName=ProfileImage}">
-        <StackPanel>
-          <local:ChangeProfilePictureControl x:Name="ChangeProfilePictureControl" />
-        </StackPanel>
-      </Popup>
+          <MenuItem Foreground="White" Header="_Messenger">
+            <MenuItem Foreground="Black" Header="_New">
+              <MenuItem.Icon>
+                <materialDesign:PackIcon Kind="OpenInNew" />
+              </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Foreground="Black" Header="_Open">
+              <MenuItem.Icon>
+                <materialDesign:PackIcon Kind="MenuOpen" />
+              </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Foreground="Black" Header="_Save">
+              <MenuItem.Icon>
+                <materialDesign:PackIcon Kind="ContentSave" />
+              </MenuItem.Icon>
+            </MenuItem>
+            <Separator />
+            <MenuItem Foreground="Black" Header="_Exit">
+              <MenuItem.Icon>
+                <materialDesign:PackIcon Kind="ExitRun" />
+              </MenuItem.Icon>
+            </MenuItem>
+          </MenuItem>
 
-      <Button
-        Grid.Row="0"
-        Grid.Column="1"
-        Height="12"
-        Margin="5,10,0,0"
-        HorizontalAlignment="Left"
-        Background="Transparent"
-        BorderThickness="0"
-        Style="{StaticResource MaterialDesignRaisedAccentButton}">
+          <MenuItem Foreground="White" Header="_Contacts" />
 
-        <StackPanel Margin="-5" Orientation="Horizontal">
-          <Image
-            Width="10"
-            Height="10"
-            Margin="-10,0,0,0"
-            Source="{Binding IsActiveImagePath}" />
-          <Label
-            Margin="0,-9"
-            Content="{Binding Email}"
-            FontSize="12"
-            Foreground="White" />
-        </StackPanel>
-      </Button>
+          <MenuItem Foreground="White" Header="_Actions" />
 
-      <!--<Label
+          <MenuItem Foreground="White" Header="_View" />
+        </Menu>
+
+      </DockPanel>
+
+      <Grid Grid.Row="1">
+        <Grid.RowDefinitions>
+          <RowDefinition />
+          <RowDefinition />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Button
+          x:Name="ProfileImage"
+          Grid.RowSpan="3"
+          Grid.Column="0"
+          Width="55"
+          Height="55"
+          Margin="5,10,5,0"
+          HorizontalAlignment="Left"
+          Background="Transparent"
+          MouseEnter="Button_MouseEnter">
+          <StackPanel>
+            <Image
+              x:Name="ProfilePicture"
+              Width="50"
+              Height="50"
+              Source="{Binding ProfilePicturePath}" />
+          </StackPanel>
+
+        </Button>
+        <Popup
+          x:Name="ProfilePicturePopupTooltip"
+          MouseLeave="Tooltip_MouseLeave"
+          Placement="Left"
+          PlacementTarget="{Binding ElementName=ProfileImage}">
+          <StackPanel>
+            <local:ChangeProfilePictureControl x:Name="ChangeProfilePictureControl" />
+          </StackPanel>
+        </Popup>
+
+        <Button
+          Grid.Row="0"
+          Grid.Column="1"
+          Height="12"
+          Margin="5,10,0,0"
+          HorizontalAlignment="Left"
+          Background="Transparent"
+          BorderThickness="0"
+          Style="{StaticResource MaterialDesignRaisedAccentButton}">
+
+          <StackPanel Margin="-5" Orientation="Horizontal">
+            <Image
+              Width="10"
+              Height="10"
+              Margin="-10,0,0,0"
+              Source="{Binding IsActiveImagePath}" />
+            <Label
+              Margin="0,-9"
+              Content="{Binding Email}"
+              FontSize="12"
+              Foreground="White" />
+          </StackPanel>
+        </Button>
+
+        <!--<Label
         Grid.Row="0"
         Grid.Column="2"
         Margin="-10,2,5,0"
@@ -183,118 +183,118 @@
         Content="{Binding Email}"
         FontSize="10"
         Foreground="White" />-->
-      <TextBox
-        Name="EmailTextBox"
-        Grid.Row="1"
-        Grid.Column="1"
-        Grid.ColumnSpan="2"
-        Height="19"
-        Margin="5,0,5,0"
-        Padding="5,0,5,0"
-        HorizontalAlignment="Stretch"
-        HorizontalContentAlignment="Left"
-        VerticalContentAlignment="Center"
-        Panel.ZIndex="0"
-        BorderBrush="LightGray"
-        BorderThickness="1"
-        FontFamily="SegoeUI"
-        FontSize="12"
-        Foreground="LightGray"
-        Text="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+        <TextBox
+          Name="EmailTextBox"
+          Grid.Row="1"
+          Grid.Column="1"
+          Grid.ColumnSpan="2"
+          Height="19"
+          Margin="5,0,5,0"
+          Padding="5,0,5,0"
+          HorizontalAlignment="Stretch"
+          HorizontalContentAlignment="Left"
+          VerticalContentAlignment="Center"
+          Panel.ZIndex="0"
+          BorderBrush="LightGray"
+          BorderThickness="1"
+          FontFamily="SegoeUI"
+          FontSize="12"
+          Foreground="LightGray"
+          Text="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
 
-        <TextBox.Style>
-          <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="TextBox">
-            <Style.Resources>
+          <TextBox.Style>
+            <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="TextBox">
+              <Style.Resources>
 
-              <VisualBrush
-                x:Key="GrayHelperTextBrush"
-                AlignmentX="Left"
-                AlignmentY="Center"
-                Stretch="None">
-                <VisualBrush.Visual>
-                  <Label
-                    Name="SearchLabel"
-                    BorderBrush="LightGray"
-                    Content="Have something to share?"
-                    FontFamily="SegoeUI"
-                    FontSize="12"
-                    Foreground="LightGray" />
-                </VisualBrush.Visual>
-              </VisualBrush>
+                <VisualBrush
+                  x:Key="GrayHelperTextBrush"
+                  AlignmentX="Left"
+                  AlignmentY="Center"
+                  Stretch="None">
+                  <VisualBrush.Visual>
+                    <Label
+                      Name="SearchLabel"
+                      BorderBrush="LightGray"
+                      Content="Have something to share?"
+                      FontFamily="SegoeUI"
+                      FontSize="12"
+                      Foreground="LightGray" />
+                  </VisualBrush.Visual>
+                </VisualBrush>
 
-              <VisualBrush
-                x:Key="BlackHelperTextBrush"
-                AlignmentX="Left"
-                AlignmentY="Center"
-                Stretch="None">
-                <VisualBrush.Visual>
-                  <Label
-                    Name="SearchBlackLabel"
-                    Content="Have something to share?"
-                    FontFamily="SegoeUI"
-                    FontSize="12"
-                    Foreground="DeepSkyBlue" />
-                </VisualBrush.Visual>
-              </VisualBrush>
+                <VisualBrush
+                  x:Key="BlackHelperTextBrush"
+                  AlignmentX="Left"
+                  AlignmentY="Center"
+                  Stretch="None">
+                  <VisualBrush.Visual>
+                    <Label
+                      Name="SearchBlackLabel"
+                      Content="Have something to share?"
+                      FontFamily="SegoeUI"
+                      FontSize="12"
+                      Foreground="DeepSkyBlue" />
+                  </VisualBrush.Visual>
+                </VisualBrush>
 
-            </Style.Resources>
-            <Style.Triggers>
+              </Style.Resources>
+              <Style.Triggers>
 
-              <Trigger Property="IsKeyboardFocused" Value="True">
-                <Setter Property="Background" Value="Transparent" />
-              </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                  <Setter Property="Background" Value="Transparent" />
+                </Trigger>
 
-              <MultiTrigger>
-                <MultiTrigger.Conditions>
-                  <Condition Property="Text" Value="{x:Null}" />
-                  <Condition Property="IsMouseOver" Value="False" />
-                  <Condition Property="IsMouseCaptured" Value="False" />
-                  <Condition Property="IsFocused" Value="False" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                  <Setter Property="Background" Value="{StaticResource GrayHelperTextBrush}" />
-                </MultiTrigger.Setters>
-              </MultiTrigger>
+                <MultiTrigger>
+                  <MultiTrigger.Conditions>
+                    <Condition Property="Text" Value="{x:Null}" />
+                    <Condition Property="IsMouseOver" Value="False" />
+                    <Condition Property="IsMouseCaptured" Value="False" />
+                    <Condition Property="IsFocused" Value="False" />
+                  </MultiTrigger.Conditions>
+                  <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource GrayHelperTextBrush}" />
+                  </MultiTrigger.Setters>
+                </MultiTrigger>
 
-              <MultiTrigger>
-                <MultiTrigger.Conditions>
-                  <Condition Property="Text" Value="{x:Static sys:String.Empty}" />
-                  <Condition Property="IsMouseOver" Value="False" />
-                  <Condition Property="IsMouseCaptured" Value="False" />
-                  <Condition Property="IsFocused" Value="False" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                  <Setter Property="Background" Value="{StaticResource GrayHelperTextBrush}" />
-                </MultiTrigger.Setters>
-              </MultiTrigger>
+                <MultiTrigger>
+                  <MultiTrigger.Conditions>
+                    <Condition Property="Text" Value="{x:Static sys:String.Empty}" />
+                    <Condition Property="IsMouseOver" Value="False" />
+                    <Condition Property="IsMouseCaptured" Value="False" />
+                    <Condition Property="IsFocused" Value="False" />
+                  </MultiTrigger.Conditions>
+                  <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource GrayHelperTextBrush}" />
+                  </MultiTrigger.Setters>
+                </MultiTrigger>
 
-              <MultiTrigger>
-                <MultiTrigger.Conditions>
-                  <Condition Property="Text" Value="{x:Null}" />
-                  <Condition Property="IsMouseOver" Value="True" />
-                  <Condition Property="IsFocused" Value="False" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                  <Setter Property="Background" Value="{StaticResource BlackHelperTextBrush}" />
-                </MultiTrigger.Setters>
-              </MultiTrigger>
+                <MultiTrigger>
+                  <MultiTrigger.Conditions>
+                    <Condition Property="Text" Value="{x:Null}" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsFocused" Value="False" />
+                  </MultiTrigger.Conditions>
+                  <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource BlackHelperTextBrush}" />
+                  </MultiTrigger.Setters>
+                </MultiTrigger>
 
-              <MultiTrigger>
-                <MultiTrigger.Conditions>
-                  <Condition Property="Text" Value="{x:Static sys:String.Empty}" />
-                  <Condition Property="IsMouseOver" Value="True" />
-                  <Condition Property="IsFocused" Value="False" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                  <Setter Property="Background" Value="{StaticResource BlackHelperTextBrush}" />
-                </MultiTrigger.Setters>
-              </MultiTrigger>
+                <MultiTrigger>
+                  <MultiTrigger.Conditions>
+                    <Condition Property="Text" Value="{x:Static sys:String.Empty}" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsFocused" Value="False" />
+                  </MultiTrigger.Conditions>
+                  <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource BlackHelperTextBrush}" />
+                  </MultiTrigger.Setters>
+                </MultiTrigger>
 
-            </Style.Triggers>
-          </Style>
-        </TextBox.Style>
-      </TextBox>
-      <!--<TextBox
+              </Style.Triggers>
+            </Style>
+          </TextBox.Style>
+        </TextBox>
+        <!--<TextBox
                 x:Name="Email"
                 Grid.Row="1"
                 Grid.Column="1"
@@ -312,69 +312,69 @@
                 Tag="Have something to share?"
                 TextWrapping="NoWrap">-->
 
-      <!--<materialDesign:HintAssist.Hint>
+        <!--<materialDesign:HintAssist.Hint>
                     <TextBlock Margin="0" Foreground="White">Have something to share?</TextBlock>
                 </materialDesign:HintAssist.Hint>
 
             </TextBox>-->
-      <Button
-        Grid.Row="1"
-        Grid.Column="2"
-        Grid.ColumnSpan="1"
-        Width="20"
-        Height="20"
-        Margin="5,0"
-        HorizontalAlignment="Right"
-        Background="Transparent" />
+        <Button
+          Grid.Row="1"
+          Grid.Column="2"
+          Grid.ColumnSpan="1"
+          Width="20"
+          Height="20"
+          Margin="5,0"
+          HorizontalAlignment="Right"
+          Background="Transparent" />
 
 
-      <Image
-        Grid.Row="2"
-        Grid.Column="1"
-        Width="10"
-        Height="10"
-        Margin="5,0,10,0"
-        HorizontalAlignment="Left"
-        Source="pack://application:,,,/ChatApp;component/Resources/Phone.png" />
+        <Image
+          Grid.Row="2"
+          Grid.Column="1"
+          Width="10"
+          Height="10"
+          Margin="5,0,10,0"
+          HorizontalAlignment="Left"
+          Source="pack://application:,,,/ChatApp;component/Resources/Phone.png" />
 
-      <Button
-        Grid.Row="2"
-        Grid.Column="1"
-        Margin="20,0,0,0"
-        HorizontalAlignment="Left"
-        VerticalAlignment="Center"
-        Background="Transparent"
-        BorderThickness="0"
-        Content="RM! Voice"
-        Cursor="Hand"
-        FontFamily="SegoeUI"
-        FontSize="10"
-        Foreground="White">
+        <Button
+          Grid.Row="2"
+          Grid.Column="1"
+          Margin="20,0,0,0"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Center"
+          Background="Transparent"
+          BorderThickness="0"
+          Content="RM! Voice"
+          Cursor="Hand"
+          FontFamily="SegoeUI"
+          FontSize="10"
+          Foreground="White">
 
-        <Button.Template>
-          <ControlTemplate TargetType="{x:Type Button}">
-            <Border>
-              <Grid>
-                <ContentPresenter />
-                <Grid
-                  x:Name="StatusPanel"
-                  Background="Black"
-                  Opacity="0" />
-              </Grid>
-            </Border>
-            <ControlTemplate.Triggers>
-              <Trigger Property="IsMouseOver" Value="true">
-                <Setter TargetName="StatusPanel" Property="Opacity" Value="0.1" />
-              </Trigger>
-              <Trigger Property="IsPressed" Value="true">
-                <Setter TargetName="StatusPanel" Property="Opacity" Value="0.3" />
-              </Trigger>
-            </ControlTemplate.Triggers>
-          </ControlTemplate>
-        </Button.Template>
-      </Button>
+          <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <Border>
+                <Grid>
+                  <ContentPresenter />
+                  <Grid
+                    x:Name="StatusPanel"
+                    Background="Black"
+                    Opacity="0" />
+                </Grid>
+              </Border>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                  <Setter TargetName="StatusPanel" Property="Opacity" Value="0.1" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                  <Setter TargetName="StatusPanel" Property="Opacity" Value="0.3" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+        </Button>
 
-      <!--<Button
+        <!--<Button
         Grid.Row="2"
         Grid.Column="3"
         Margin="5,0,5,0"
@@ -404,34 +404,34 @@
       </Button>-->
 
 
-      <StackPanel
-        Grid.Row="2"
-        Grid.Column="3"
-        Margin="5,0,5,0"
-        HorizontalAlignment="Right"
-        Orientation="Horizontal">
-        <Image
-          Width="10"
-          Height="10"
-          Source="pack://application:,,,/ChatApp;component/Resources/games.png" />
-        <Label
-          VerticalAlignment="Center"
-          FontSize="10"
-          Foreground="White">
-          Games
-        </Label>
-      </StackPanel>
+        <StackPanel
+          Grid.Row="2"
+          Grid.Column="3"
+          Margin="5,0,5,0"
+          HorizontalAlignment="Right"
+          Orientation="Horizontal">
+          <Image
+            Width="10"
+            Height="10"
+            Source="pack://application:,,,/ChatApp;component/Resources/games.png" />
+          <Label
+            VerticalAlignment="Center"
+            FontSize="10"
+            Foreground="White">
+            Games
+          </Label>
+        </StackPanel>
 
-    </Grid>
+      </Grid>
 
-    <!--<Button
+      <!--<Button
                 Grid.Row="0"
                 Grid.Column="0"
                 Margin="20,10,10,0"
                 HorizontalContentAlignment="Left"
                 Content="Rodica Mihaela"
                 Foreground="White" />-->
-    <!--<Border
+      <!--<Border
                 Grid.Row="1"
                 Grid.Column="0"
                 Margin="20,10,10,0"
@@ -473,12 +473,12 @@
             </Border>-->
 
 
-    <!--<Button
+      <!--<Button
       Margin="10,10,10,0"
       Content="{Binding WelcomeText}"
       Foreground="White" />-->
 
-    <!--<TabControl Grid.Row="2" Foreground="#782370" Margin="10,10,10,0">
+      <!--<TabControl Grid.Row="2" Foreground="#782370" Margin="10,10,10,0">
       <TabItem Header="Tab A" Background="Blue" Foreground="Red">
         <Grid />
       </TabItem>
@@ -492,30 +492,30 @@
       </TabItem>
     </TabControl>-->
 
-    <dragablz:TabablzControl
-      Grid.Row="2"
-      Margin="10,10,10,0"
-      Style="{StaticResource TabControlStyle}">
-      <TabItem
-        HorizontalAlignment="Stretch"
-        Background="#76246E"
-        Foreground="Red"
-        Header="Contacts">
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Hello World</TextBlock>
-      </TabItem>
-      <TabItem HorizontalAlignment="Stretch" Header="RM! Updates">
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Material Design</TextBlock>
-      </TabItem>
-    </dragablz:TabablzControl>
-    <Button
-      x:Name="Logout"
-      Grid.Row="3"
-      Margin="10"
-      Command="{Binding LogoutCommand}"
-      Content="LOG OUT"
-      FontSize="18" />
+      <dragablz:TabablzControl
+        Grid.Row="2"
+        Margin="10,10,10,0"
+        Style="{StaticResource TabControlStyle}">
+        <TabItem
+          HorizontalAlignment="Stretch"
+          Background="#76246E"
+          Foreground="Red"
+          Header="Contacts">
+          <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Hello World</TextBlock>
+        </TabItem>
+        <TabItem HorizontalAlignment="Stretch" Header="RM! Updates">
+          <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Material Design</TextBlock>
+        </TabItem>
+      </dragablz:TabablzControl>
+      <Button
+        x:Name="Logout"
+        Grid.Row="3"
+        Margin="10"
+        Command="{Binding LogoutCommand}"
+        Content="LOG OUT"
+        FontSize="18" />
 
-    <!--<GroupBox
+      <!--<GroupBox
       Grid.Row="2"
       Margin="10,10,10,0"
       Header="Contacts:">
@@ -561,7 +561,7 @@
       Content="LOG OUT"
       FontSize="18" />-->
 
-    <!--<Grid
+      <!--<Grid
                 Grid.Row="2"
                 Grid.Column="0"
                 Margin="20,0,10,20">
@@ -571,11 +571,11 @@
                     RadiusY="10"
                     Stroke="#1E98F7"
                     StrokeThickness="1" />
-    -->
-    <!--<Image Source="pack://application:,,,/ChatApp;component/Resources/ChatBubble.png"
+      -->
+      <!--<Image Source="pack://application:,,,/ChatApp;component/Resources/ChatBubble.png"
                Width="500"
                Height="30"/>-->
-    <!--
+      <!--
                 <TextBox
                     x:Name="MessageBox"
                     Margin="10,0,30,10"
@@ -608,7 +608,7 @@
                 </materialDesign:HintAssist.Hint>
             </Grid>-->
 
-    <!--<Border BorderThickness="1"
+      <!--<Border BorderThickness="1"
               BorderBrush="AliceBlue"
               Grid.Row="2"
               Grid.Column="0"
@@ -617,5 +617,6 @@
             Text="Write your message here.."
             FontSize="18" />
       </Border>-->
+    </Grid>
   </Grid>
 </UserControl>
