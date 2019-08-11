@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -14,7 +15,6 @@ namespace ChatApp.ViewModel
 {
   class DisplayImageViewModel : INotifyPropertyChanged
   {
-    private Image profilePicturePath;
 
     public Action CloseAction { get; set; }
     public ICommand CloseCommand { get; set; }
@@ -22,7 +22,8 @@ namespace ChatApp.ViewModel
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public Image ProfilePicturePath
+    private BitmapImage profilePicturePath;
+    public BitmapImage ProfilePicturePath
     {
       get { return profilePicturePath; }
       set
@@ -31,15 +32,22 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProfilePicturePath"));
       }
     }
+
     public DisplayImageViewModel()
     {
       CloseCommand = new RelayCommand(CloseCommandExecute);
       SelectImageCommand = new RelayCommand(SelectImageCommandExecute);
       //ProfilePicturePath = new BitmapImage(
-      //  new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
-
-            ProfilePicturePath = Resources.ProfilePictureAccount;
-            //ProfilePicturePath.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+      //    //  new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
+      ProfilePicturePath = new BitmapImage(
+  new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
+      ProfilePicturePath.CacheOption = BitmapCacheOption.None;
+      Image image2 = Image.FromFile(Path.GetDirectoryName(
+          Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) +
+          "\\Resources\\ProfilePicture.jpg");
+      image2.Dispose();
+      //ProfilePicturePath = Resources.ProfilePictureAccount;
+      //ProfilePicturePath.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
     }
 
     private void CloseCommandExecute()
@@ -57,27 +65,37 @@ namespace ChatApp.ViewModel
       {
         return;
       }
-      //var uri = new System.Uri("c:\\foo");
-      //var converted = uri.AbsoluteUri;
-      //var path = ProfilePicturePath.UriSource.AbsolutePath;
-      //File.Delete(ProfilePicturePath.UriSource.AbsolutePath);
-      //var file = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Resources", "ProfilePicture.*").FirstOrDefault();
-      ////File.Delete(file);
-      ///
-      var file = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) + "\\Resources\\ProfilePcture" + Guid.NewGuid() + ".jpg";
-   //   File.Create(file);
-      //String originalPath = ProfilePicturePath.UriSource.OriginalString;
-      //String parentDirectory = originalPath.Substring(0, originalPath.LastIndexOf("/"));
-      //var x = ProfilePicturePath.UriSource.AbsolutePath;
-      //var y = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
-      File.Copy(newFile, file);
-      //var file = Directory.GetFiles(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Resources", "ProfilePicture.*").FirstOrDefault();
-      //ProfilePicturePath = new BitmapImage(new Uri(file));
-      //ProfilePicturePath = new BitmapImage(
-      //  new Uri("pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"));
-      PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProfilePicturePath"));
-      // ProfilePicturePath = newFile;
-      //File.Copy(newFile, "pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg", true);
+
+      try
+      {
+        string path = Path.GetDirectoryName(
+          Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) +
+          "\\Resources\\ProfilePicture.jpg"; ;
+        Image image2 = Image.FromFile(path);
+        image2.Dispose();
+        File.Delete(path);  // works
+
+
+        //if (File.Exists(path))
+        //{
+        //  File.Delete(path);
+        //}
+        //string FileToReplace = newFile;
+        File.Copy(newFile, path);
+        ProfilePicturePath = new BitmapImage(new Uri(Path.GetDirectoryName(
+          Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) +
+          "\\Resources\\ProfilePicture.jpg"));
+        ProfilePicturePath.CacheOption = BitmapCacheOption.None;
+        Image image3 = Image.FromFile(Path.GetDirectoryName(
+          Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) +
+          "\\Resources\\ProfilePicture.jpg");
+        image3.Dispose();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e);
+      }
+
     }
   }
 }

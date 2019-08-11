@@ -34,11 +34,11 @@
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
 
-    <Image
+    <!--<Image
       Grid.RowSpan="9"
       VerticalAlignment="Top"
       Opacity="0.4"
-      Source="pack://application:,,,/ChatApp;component/Resources/shadow.png" />
+      Source="pack://application:,,,/ChatApp;component/Resources/shadow.png" />-->
 
     <DockPanel Margin="0">
       <Menu Background="Transparent" DockPanel.Dock="Top">
