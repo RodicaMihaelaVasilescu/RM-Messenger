@@ -111,7 +111,7 @@ namespace ChatApp.ViewModel
     public LoginViewModel(Window window)
     {
       this.window = window;
-      UserModel.Instance.Email = Email;
+      UserModel.Instance.Email = string.IsNullOrEmpty(Email) ? string.Empty : Email.Split('@')[0]; ;
       LoginCommand = new RelayCommand(LoginCommandExecute);
       RegisterCommand = new RelayCommand(RegisterCommandExecute);
       ForgotPasswordCommand = new RelayCommand(ForgotPasswordCommandExecute);
@@ -140,7 +140,7 @@ namespace ChatApp.ViewModel
     }
     private async void LoginCommandExecute()
     {
-      UserModel.Instance.Email = Email;
+      UserModel.Instance.Email = string.IsNullOrEmpty(Email) ? string.Empty : Email.Split('@')[0]; ;
       //if (UserModel.Instance.Email == null || UserModel.Instance.Password == null)
       //{
       //  MessageBox.Show("Both email and password should be filled in.");
