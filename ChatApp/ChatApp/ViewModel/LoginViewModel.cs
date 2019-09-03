@@ -149,7 +149,7 @@ namespace ChatApp.ViewModel
       if (true/*AccountManager.AccountExists(UserModel.Instance.Email, UserModel.Instance.Password)*/)
       {
         Gif = "pack://application:,,,/ChatApp;component/Resources/YahooMessengerAwake.gif";
-        MessageOnSingingIn = "Signing in as " + Email;
+        MessageOnSingingIn = "Signing in as " + Email.Split('@')[0];
         VisibilityOfLoginFields = Visibility.Hidden;
         VisibilityOfMessageOnSingIn = Visibility.Visible;
         await Task.Delay(5000);//5000
