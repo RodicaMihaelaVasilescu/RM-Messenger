@@ -112,7 +112,7 @@ namespace ChatApp.ViewModel
       set
       {
         profilePicturePath = value;
-        if(value != null) profilePicturePath.CacheOption = BitmapCacheOption.None;
+        if (value != null) profilePicturePath.CacheOption = BitmapCacheOption.None;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProfilePicturePath"));
       }
     }
@@ -131,10 +131,22 @@ namespace ChatApp.ViewModel
       ProfilePicturePath = new BitmapImage(
         new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
       ProfilePicturePath.CacheOption = BitmapCacheOption.None;
-      Image image2 = Image.FromFile(Path.GetDirectoryName(
+      var path = Path.GetDirectoryName(
           Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) +
-          "\\Resources\\ProfilePicture.jpg");
-      image2.Dispose();
+          "\\Resources\\ProfilePicture.jpg";
+      if (!File.Exists(path))
+      {
+        File.Create(path);
+      }
+      else
+      {
+
+        Image image2 = Image.FromFile(Path.GetDirectoryName(
+            Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())) +
+            "\\Resources\\ProfilePicture.jpg");
+        image2.Dispose();
+      }
+
       ContactsList = new ObservableCollection<UserModel>();
 
       ContactsList.Add(new UserModel { Email = "email", FirstName = "Rodica", LastName = "Mihaela" });
