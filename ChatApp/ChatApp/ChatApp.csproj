@@ -184,9 +184,6 @@
     <Resource Include="Resources\YahooMessenger.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\YahooMessengerAwake.GIF" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\YahooMessengerSleep2.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +218,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\YahooMessengerAwake.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RecentContact_Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
