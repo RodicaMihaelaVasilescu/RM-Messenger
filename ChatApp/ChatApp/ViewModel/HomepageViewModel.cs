@@ -49,7 +49,7 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Email"));
       }
     }
-
+    
     public string RecentContactsListName
     {
       get { return _recentContactsListName; }
@@ -60,6 +60,18 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RecentContactsListName"));
       }
     }
+
+    public string AddressBookListName
+    {
+      get { return _addressBookListName; }
+      set
+      {
+        if (_addressBookListName == value) return;
+        _addressBookListName = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddressBookListName"));
+      }
+    }
+
     public List<ContactsListingModel> RecentContactsList
     {
       get { return _recentContactsList; }
@@ -68,6 +80,17 @@ namespace ChatApp.ViewModel
         if (_recentContactsList == value) return;
         _recentContactsList = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RecentContactsList"));
+      }
+    }
+
+    public List<ContactsListingModel> AddressBookList
+    {
+      get { return _addressBookList; }
+      set
+      {
+        if (_addressBookList == value) return;
+        _addressBookList = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddressBookList"));
       }
     }
 
@@ -130,6 +153,8 @@ namespace ChatApp.ViewModel
     private BitmapImage profilePicturePath;
     private List<ContactsListingModel> _recentContactsList;
     private string _recentContactsListName;
+    private string _addressBookListName;
+    private List<ContactsListingModel> _addressBookList;
 
     public BitmapImage ProfilePicturePath
     {
@@ -161,6 +186,20 @@ namespace ChatApp.ViewModel
       });
 
       RecentContactsListName = string.Format("Recent Contacts (0/{0})", RecentContactsList.Count);
+
+      AddressBookList = new List<ContactsListingModel>();
+      AddressBookList.Add(new ContactsListingModel
+      {
+        Name = "Rodica",
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+      });
+      AddressBookList.Add(new ContactsListingModel
+      {
+        Name = "Mihaela",
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+      });
+
+      AddressBookListName = string.Format("Address Book (0/{0})", AddressBookList.Count);
 
 
       ProfilePicturePath = null;

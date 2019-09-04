@@ -702,7 +702,6 @@
             </Expander>
 
             <Expander
-              x:Name="AddressBook"
               ExpandDirection="Right"
               FontWeight="Bold"
               Foreground="Indigo">
@@ -710,7 +709,7 @@
                 <TextBlock
                     Margin="7,0,0,0"
                     VerticalAlignment="Center"
-                    Text="Address Book (0/0)" />
+                    Text="{Binding AddressBookListName}" />
               </Expander.Header>
               <Expander.Resources>
                 <SolidColorBrush x:Key="Expander.MouseOver.Circle.Stroke" Color="White" />
@@ -875,7 +874,7 @@
                 Margin="20,0,10,0"
                 VerticalAlignment="Top"
                 BorderThickness="0"
-                ItemsSource="{Binding RecentContactsList}">
+                ItemsSource="{Binding AddressBookList}">
                 <ListBox.ItemTemplate>
                   <DataTemplate DataType="{x:Type model:ContactsListingModel}">
                     <StackPanel Orientation="Horizontal">
