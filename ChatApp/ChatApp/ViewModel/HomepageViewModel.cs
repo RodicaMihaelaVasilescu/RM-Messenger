@@ -50,6 +50,16 @@ namespace ChatApp.ViewModel
       }
     }
 
+    public string RecentContactsListName
+    {
+      get { return _recentContactsListName; }
+      set
+      {
+        if (_recentContactsListName == value) return;
+        _recentContactsListName = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RecentContactsListName"));
+      }
+    }
     public List<ContactsListingModel> RecentContactsList
     {
       get { return _recentContactsList; }
@@ -119,6 +129,7 @@ namespace ChatApp.ViewModel
 
     private BitmapImage profilePicturePath;
     private List<ContactsListingModel> _recentContactsList;
+    private string _recentContactsListName;
 
     public BitmapImage ProfilePicturePath
     {
@@ -146,9 +157,10 @@ namespace ChatApp.ViewModel
       RecentContactsList.Add(new ContactsListingModel
       {
         Name = "Rodica",
-        ImagePath= "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
       });
 
+      RecentContactsListName = string.Format("Recent Contacts (0/{0})", RecentContactsList.Count);
 
 
       ProfilePicturePath = null;
