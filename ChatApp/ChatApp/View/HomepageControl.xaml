@@ -8,6 +8,7 @@
   xmlns:local="clr-namespace:ChatApp.View"
   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:model="clr-namespace:ChatApp.Model"
   d:DesignHeight="800"
   d:DesignWidth="400"
   mc:Ignorable="d">
@@ -503,14 +504,22 @@
           Header="Contacts">
 
           <StackPanel Orientation="Vertical">
-            <Expander ExpandDirection="Right" 
-                      
-                      Foreground="Indigo"
-                      FontWeight="Bold">
+            <Expander
+              x:Name="RecentContacts"
+              ExpandDirection="Right"
+              FontWeight="Bold"
+              Foreground="Indigo">
               <Expander.Header>
                 <StackPanel Orientation="Horizontal">
-                  <Image Name="img" Height="auto" Width="auto" Source="pack://application:,,,/ChatApp;component/Resources/RecentContact_Icon.png" />
-                  <TextBlock Text="Recent Contacts (0/0)" Margin="7,0,0,0" VerticalAlignment="Center" />
+                  <Image
+                    Name="img"
+                    Width="auto"
+                    Height="auto"
+                    Source="pack://application:,,,/ChatApp;component/Resources/RecentContact_Icon.png" />
+                  <TextBlock
+                    Margin="7,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Recent Contacts (0/0)" />
                 </StackPanel>
               </Expander.Header>
               <Expander.Resources>
@@ -558,9 +567,9 @@
                                 x:Name="arrow"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                Data="M -2,1.5 L -0.5,4 L 1,1.5 Z"
                                 SnapsToDevicePixels="false"
                                 Stroke="{StaticResource Expander.Static.Arrow.Stroke}"
-                                Data="M -2,1.5 L -0.5,4 L 1,1.5 Z"
                                 StrokeThickness="3" />
                             </Grid>
                             <ContentPresenter
@@ -574,9 +583,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                           <Trigger Property="IsChecked" Value="true">
-                            <Setter Value="M -0.5,1.5 L -2.5,2.75 L -0.5, 4 Z" 
-                                    TargetName="arrow" Property="Data" 
-                                    />
+                            <Setter TargetName="arrow" Property="Data" Value="M -0.5,1.5 L -2.5,2.75 L -0.5, 4 Z" />
                           </Trigger>
                           <!--<Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="circle" Property="Stroke" Value="{StaticResource Expander.MouseOver.Circle.Stroke}" />
@@ -600,7 +607,7 @@
                   </Setter>
                 </Style>
               </Expander.Resources>
-              
+
               <Expander.Template>
                 <ControlTemplate TargetType="{x:Type Expander}">
                   <Border
@@ -676,28 +683,211 @@
               <ListBox
                 Name="lbxTest"
                 MaxHeight="400"
-                VerticalAlignment="Top" >
-                <ListBoxItem Content="aJHKHDK">
-                  
-                </ListBoxItem>
-                <ListBoxItem Content="JHKADH">
-
-                </ListBoxItem>
+                Margin="20,0,10,0"
+                VerticalAlignment="Top"
+                BorderThickness="0"
+                ItemsSource="{Binding RecentContactsList}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate DataType="{x:Type model:ContactsListingModel}">
+                    <StackPanel Orientation="Horizontal">
+                      <Image
+                        Width="30"
+                        Height="30"
+                        Source="{Binding ImagePath}" />
+                      <TextBlock Margin="10" TextAlignment="Center" Text="{Binding Name}" />
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
               </ListBox>
             </Expander>
-            
-            
+
             <Expander
-              Name="myExpander2"
-              HorizontalAlignment="Left"
-              ExpandDirection="Down"
-              Header="My Expander"
-              IsExpanded="False">
-              <TextBlock TextWrapping="Wrap">
-                Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua
-              </TextBlock>
+              x:Name="AddressBook"
+              ExpandDirection="Right"
+              FontWeight="Bold"
+              Foreground="Indigo">
+              <Expander.Header>
+                <TextBlock
+                    Margin="7,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Address Book (0/0)" />
+              </Expander.Header>
+              <Expander.Resources>
+                <SolidColorBrush x:Key="Expander.MouseOver.Circle.Stroke" Color="White" />
+                <SolidColorBrush x:Key="Expander.MouseOver.Circle.Fill" Color="White" />
+                <SolidColorBrush x:Key="Expander.MouseOver.Arrow.Stroke" Color="Gray" />
+                <SolidColorBrush x:Key="Expander.Pressed.Circle.Stroke" Color="White" />
+                <SolidColorBrush x:Key="Expander.Pressed.Circle.Fill" Color="White" />
+                <SolidColorBrush x:Key="Expander.Pressed.Arrow.Stroke" Color="Gray" />
+                <SolidColorBrush x:Key="Expander.Disabled.Circle.Stroke" Color="White" />
+                <SolidColorBrush x:Key="Expander.Disabled.Circle.Fill" Color="White" />
+                <SolidColorBrush x:Key="Expander.Disabled.Arrow.Stroke" Color="Gray" />
+                <SolidColorBrush x:Key="Expander.Static.Circle.Fill" Color="White" />
+                <SolidColorBrush x:Key="Expander.Static.Circle.Stroke" Color="White" />
+                <SolidColorBrush x:Key="Expander.Static.Arrow.Stroke" Color="Gray" />
+                <Style x:Key="ExpanderRightHeaderStyle" TargetType="{x:Type ToggleButton}">
+                  <Setter Property="Template">
+                    <Setter.Value>
+                      <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Padding="{TemplateBinding Padding}">
+                          <Grid Background="Transparent" SnapsToDevicePixels="False">
+                            <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="Auto" />
+                              <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                              <Grid.LayoutTransform>
+                                <TransformGroup>
+                                  <TransformGroup.Children>
+                                    <TransformCollection>
+                                      <RotateTransform Angle="-90" />
+                                    </TransformCollection>
+                                  </TransformGroup.Children>
+                                </TransformGroup>
+                              </Grid.LayoutTransform>
+                              <Ellipse
+                                x:Name="circle"
+                                Width="19"
+                                Height="19"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Fill="{StaticResource Expander.Static.Circle.Fill}"
+                                Stroke="{StaticResource Expander.Static.Circle.Stroke}" />
+                              <Path
+                                x:Name="arrow"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Data="M -2,1.5 L -0.5,4 L 1,1.5 Z"
+                                SnapsToDevicePixels="false"
+                                Stroke="{StaticResource Expander.Static.Arrow.Stroke}"
+                                StrokeThickness="3" />
+                            </Grid>
+                            <ContentPresenter
+                              Grid.Column="1"
+                              Margin="4,4,0,0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              RecognizesAccessKey="True"
+                              SnapsToDevicePixels="True" />
+                          </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                          <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="arrow" Property="Data" Value="M -0.5,1.5 L -2.5,2.75 L -0.5, 4 Z" />
+                          </Trigger>
+                          <!--<Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="circle" Property="Stroke" Value="{StaticResource Expander.MouseOver.Circle.Stroke}" />
+                            <Setter TargetName="circle" Property="Fill" Value="{StaticResource Expander.MouseOver.Circle.Fill}" />
+                            <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource Expander.MouseOver.Arrow.Stroke}" />
+                          </Trigger>
+                          <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="circle" Property="Stroke" Value="{StaticResource Expander.Pressed.Circle.Stroke}" />
+                            <Setter TargetName="circle" Property="StrokeThickness" Value="1.5" />
+                            <Setter TargetName="circle" Property="Fill" Value="{StaticResource Expander.Pressed.Circle.Fill}" />
+                            <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource Expander.Pressed.Arrow.Stroke}" />
+                          </Trigger>
+                          <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="circle" Property="Stroke" Value="{StaticResource Expander.Disabled.Circle.Stroke}" />
+                            <Setter TargetName="circle" Property="Fill" Value="{StaticResource Expander.Disabled.Circle.Fill}" />
+                            <Setter TargetName="arrow" Property="Stroke" Value="{StaticResource Expander.Disabled.Arrow.Stroke}" />
+                          </Trigger>-->
+                        </ControlTemplate.Triggers>
+                      </ControlTemplate>
+                    </Setter.Value>
+                  </Setter>
+                </Style>
+              </Expander.Resources>
+
+              <Expander.Template>
+                <ControlTemplate TargetType="{x:Type Expander}">
+                  <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="3"
+                    SnapsToDevicePixels="true">
+                    <Grid>
+                      <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="*" />
+                      </Grid.RowDefinitions>
+                      <ToggleButton
+                        x:Name="HeaderSite"
+                        MinWidth="0"
+                        MinHeight="0"
+                        Margin="1"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                        FontFamily="{TemplateBinding FontFamily}"
+                        FontSize="{TemplateBinding FontSize}"
+                        FontStretch="{TemplateBinding FontStretch}"
+                        FontStyle="{TemplateBinding FontStyle}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        Foreground="{TemplateBinding Foreground}"
+                        IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                        Style="{StaticResource ExpanderRightHeaderStyle}">
+                        <ToggleButton.FocusVisualStyle>
+                          <Style>
+                            <Setter Property="Control.Template">
+                              <Setter.Value>
+                                <ControlTemplate>
+                                  <Border>
+                                    <Rectangle
+                                      Margin="0"
+                                      SnapsToDevicePixels="true"
+                                      Stroke="Black"
+                                      StrokeDashArray="1 2"
+                                      StrokeThickness="1" />
+                                  </Border>
+                                </ControlTemplate>
+                              </Setter.Value>
+                            </Setter>
+                          </Style>
+                        </ToggleButton.FocusVisualStyle>
+                      </ToggleButton>
+                      <ContentPresenter
+                        x:Name="ExpandSite"
+                        Grid.Row="1"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Focusable="false"
+                        Visibility="Collapsed" />
+                    </Grid>
+                  </Border>
+                  <ControlTemplate.Triggers>
+                    <Trigger Property="IsExpanded" Value="true">
+                      <Setter TargetName="ExpandSite" Property="Visibility" Value="Visible" />
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="false">
+                      <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                    </Trigger>
+                  </ControlTemplate.Triggers>
+                </ControlTemplate>
+              </Expander.Template>
+              <ListBox
+                MaxHeight="400"
+                Margin="20,0,10,0"
+                VerticalAlignment="Top"
+                BorderThickness="0"
+                ItemsSource="{Binding RecentContactsList}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate DataType="{x:Type model:ContactsListingModel}">
+                    <StackPanel Orientation="Horizontal">
+                      <Image
+                        Width="30"
+                        Height="30"
+                        Source="{Binding ImagePath}" />
+                      <TextBlock Margin="10" TextAlignment="Center" Text="{Binding Name}" />
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
             </Expander>
           </StackPanel>
 

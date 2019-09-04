@@ -4,6 +4,7 @@ using ChatApp.Model;
 using ChatApp.Properties;
 using ChatApp.View;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
@@ -46,6 +47,17 @@ namespace ChatApp.ViewModel
         if (_email == value) return;
         _email = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Email"));
+      }
+    }
+
+    public List<ContactsListingModel> RecentContactsList
+    {
+      get { return _recentContactsList; }
+      set
+      {
+        if (_recentContactsList == value) return;
+        _recentContactsList = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("RecentContactsList"));
       }
     }
 
@@ -106,6 +118,8 @@ namespace ChatApp.ViewModel
     }
 
     private BitmapImage profilePicturePath;
+    private List<ContactsListingModel> _recentContactsList;
+
     public BitmapImage ProfilePicturePath
     {
       get { return profilePicturePath; }
@@ -127,6 +141,16 @@ namespace ChatApp.ViewModel
       Email = UserModel.Instance.Email;
       LogoutCommand = new RelayCommand(LogoutCommandExecute);
       SendCommand = new RelayCommand(SendCommandExecute);
+
+      RecentContactsList = new List<ContactsListingModel>();
+      RecentContactsList.Add(new ContactsListingModel
+      {
+        Name = "Rodica",
+        ImagePath= "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+      });
+
+
+
       ProfilePicturePath = null;
       ProfilePicturePath = new BitmapImage(
         new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
