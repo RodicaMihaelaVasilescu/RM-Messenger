@@ -121,7 +121,7 @@
     <value>ChatApp.View.ChatControl</value>
   </data>
   <data name="ChatWindowTitle" xml:space="preserve">
-    <value>RM Messenger - Chat</value>
+    <value>RM!Messenger - Chat</value>
   </data>
   <data name="DisplayImagePath" xml:space="preserve">
     <value>ChatApp.View.DisplayImageControl</value>
@@ -133,13 +133,13 @@
     <value>ChatApp.View.HomepageControl</value>
   </data>
   <data name="HomepageWindowTitle" xml:space="preserve">
-    <value>RM Messenger</value>
+    <value>RM!Messenger</value>
   </data>
   <data name="LoginControlPath" xml:space="preserve">
     <value>ChatApp.View.LoginControl</value>
   </data>
   <data name="LoginWindowTitle" xml:space="preserve">
-    <value>Login</value>
+    <value>RM!Messenger</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ProfilePictureAccount" type="System.Resources.ResXFileRef, System.Windows.Forms">

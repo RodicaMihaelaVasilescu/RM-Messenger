@@ -70,7 +70,7 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RM Messenger - Chat.
+        ///   Looks up a localized string similar to RM!Messenger - Chat.
         /// </summary>
         internal static string ChatWindowTitle {
             get {
@@ -106,7 +106,7 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RM Messenger.
+        ///   Looks up a localized string similar to RM!Messenger.
         /// </summary>
         internal static string HomepageWindowTitle {
             get {
@@ -124,7 +124,7 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
+        ///   Looks up a localized string similar to RM!Messenger.
         /// </summary>
         internal static string LoginWindowTitle {
             get {
