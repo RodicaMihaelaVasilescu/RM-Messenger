@@ -822,7 +822,7 @@
                         Height="30"
                         Source="{Binding ImagePath}" />
                       <TextBlock
-                        Margin="10"
+                        Margin="5"
                         Text="{Binding Name}"
                         TextAlignment="Center" />
                     </StackPanel>
@@ -1015,7 +1015,7 @@
                         Height="30"
                         Source="{Binding ImagePath}" />
                       <TextBlock
-                        Margin="10"
+                        Margin="5"
                         Text="{Binding Name}"
                         TextAlignment="Center" />
                     </StackPanel>
