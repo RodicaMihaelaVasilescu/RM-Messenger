@@ -229,5 +229,26 @@
   <ItemGroup>
     <Resource Include="Resources\OfflineProfilePicture.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ProfilePicture2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddFriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SearchIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ClearSearchIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SearchBanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\GridIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

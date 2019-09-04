@@ -497,18 +497,146 @@
         Grid.Row="2"
         Margin="10,10,10,0"
         Style="{StaticResource TabControlStyle}">
-        <TabItem
-          HorizontalAlignment="Stretch"
-          Background="#76246E"
-          Foreground="Red"
-          Header="Contacts">
+        <TabItem Margin="20" HorizontalAlignment="Center">
+          <TabItem.Header>
+            <TextBlock
+              Margin="10,0"
+              Text="Contacts" />
+          </TabItem.Header>
 
-          <StackPanel Orientation="Vertical">
+          <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+            <DockPanel
+              HorizontalAlignment="Stretch"
+              Background="#3E0C3A">
+              <!--<StackPanel.Background>
+                <ImageBrush ImageSource="pack://application:,,,/ChatApp;component/Resources/banner.png" />
+              </StackPanel.Background>-->
+              <Button
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                BorderThickness="0">
+                <Image Height="20" Source="pack://application:,,,/ChatApp;component/Resources/AddFriend.png" />
+              </Button>
+              <Button
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                BorderThickness="0">
+                <Image Height="20" Source="pack://application:,,,/ChatApp;component/Resources/GridIcon.png" />
+              </Button>
+              <TextBox
+                Margin="1"
+                Padding="5,0,5,0"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                Panel.ZIndex="0"
+                Background="White"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                FontFamily="SegoeUI"
+                FontSize="12"
+                Foreground="Black"
+                Text="{Binding Status, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+
+                <TextBox.Style>
+                  <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="TextBox">
+                    <Style.Resources>
+
+                      <VisualBrush
+                        x:Key="GrayHelperTextBrush"
+                        AlignmentX="Left"
+                        AlignmentY="Center"
+                        Stretch="None">
+                        <VisualBrush.Visual>
+                          <Label
+                            Name="SearchLabel"
+                            BorderBrush="LightGray"
+                            Content="Have something to share?"
+                            FontFamily="SegoeUI"
+                            FontSize="12"
+                            Foreground="LightGray" />
+                        </VisualBrush.Visual>
+                      </VisualBrush>
+
+                      <VisualBrush
+                        x:Key="BlackHelperTextBrush"
+                        AlignmentX="Left"
+                        AlignmentY="Center"
+                        Stretch="None">
+                        <VisualBrush.Visual>
+                          <Label
+                            Name="SearchBlackLabel"
+                            Content="Have something to share?"
+                            FontFamily="SegoeUI"
+                            FontSize="12"
+                            Foreground="DeepSkyBlue" />
+                        </VisualBrush.Visual>
+                      </VisualBrush>
+
+                    </Style.Resources>
+                    <Style.Triggers>
+
+                      <Trigger Property="IsKeyboardFocused" Value="True">
+                        <Setter Property="Background" Value="White" />
+                      </Trigger>
+
+                      <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                          <Condition Property="Text" Value="{x:Null}" />
+                          <Condition Property="IsMouseOver" Value="False" />
+                          <Condition Property="IsMouseCaptured" Value="False" />
+                          <Condition Property="IsFocused" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                          <Setter Property="Background" Value="{StaticResource GrayHelperTextBrush}" />
+                        </MultiTrigger.Setters>
+                      </MultiTrigger>
+
+                      <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                          <Condition Property="Text" Value="{x:Static sys:String.Empty}" />
+                          <Condition Property="IsMouseOver" Value="False" />
+                          <Condition Property="IsMouseCaptured" Value="False" />
+                          <Condition Property="IsFocused" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                          <Setter Property="Background" Value="{StaticResource GrayHelperTextBrush}" />
+                        </MultiTrigger.Setters>
+                      </MultiTrigger>
+
+                      <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                          <Condition Property="Text" Value="{x:Null}" />
+                          <Condition Property="IsMouseOver" Value="True" />
+                          <Condition Property="IsFocused" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                          <Setter Property="Background" Value="{StaticResource BlackHelperTextBrush}" />
+                        </MultiTrigger.Setters>
+                      </MultiTrigger>
+
+                      <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                          <Condition Property="Text" Value="{x:Static sys:String.Empty}" />
+                          <Condition Property="IsMouseOver" Value="True" />
+                          <Condition Property="IsFocused" Value="False" />
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                          <Setter Property="Background" Value="{StaticResource BlackHelperTextBrush}" />
+                        </MultiTrigger.Setters>
+                      </MultiTrigger>
+
+                    </Style.Triggers>
+                  </Style>
+                </TextBox.Style>
+              </TextBox>
+            </DockPanel>
             <Expander
               x:Name="RecentContacts"
               ExpandDirection="Right"
               FontWeight="Bold"
-              Foreground="Indigo">
+              Foreground="Indigo"
+              IsExpanded="True">
               <Expander.Header>
                 <StackPanel Orientation="Horizontal">
                   <Image
@@ -540,7 +668,7 @@
                     <Setter.Value>
                       <ControlTemplate TargetType="{x:Type ToggleButton}">
                         <Border Padding="{TemplateBinding Padding}">
-                          <Grid Background="Transparent" SnapsToDevicePixels="False">
+                          <Grid Background="White" SnapsToDevicePixels="False">
                             <Grid.ColumnDefinitions>
                               <ColumnDefinition Width="Auto" />
                               <ColumnDefinition Width="*" />
@@ -681,7 +809,6 @@
                 </ControlTemplate>
               </Expander.Template>
               <ListBox
-                Name="lbxTest"
                 MaxHeight="400"
                 Margin="20,0,10,0"
                 VerticalAlignment="Top"
@@ -694,7 +821,10 @@
                         Width="30"
                         Height="30"
                         Source="{Binding ImagePath}" />
-                      <TextBlock Margin="10" TextAlignment="Center" Text="{Binding Name}" />
+                      <TextBlock
+                        Margin="10"
+                        Text="{Binding Name}"
+                        TextAlignment="Center" />
                     </StackPanel>
                   </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -702,14 +832,16 @@
             </Expander>
 
             <Expander
+              x:Name="AddressBook"
               ExpandDirection="Right"
               FontWeight="Bold"
-              Foreground="Indigo">
+              Foreground="Indigo"
+              IsExpanded="True">
               <Expander.Header>
                 <TextBlock
-                    Margin="7,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{Binding AddressBookListName}" />
+                  Margin="7,0,0,0"
+                  VerticalAlignment="Center"
+                  Text="{Binding AddressBookListName}" />
               </Expander.Header>
               <Expander.Resources>
                 <SolidColorBrush x:Key="Expander.MouseOver.Circle.Stroke" Color="White" />
@@ -882,7 +1014,10 @@
                         Width="30"
                         Height="30"
                         Source="{Binding ImagePath}" />
-                      <TextBlock Margin="10" TextAlignment="Center" Text="{Binding Name}" />
+                      <TextBlock
+                        Margin="10"
+                        Text="{Binding Name}"
+                        TextAlignment="Center" />
                     </StackPanel>
                   </DataTemplate>
                 </ListBox.ItemTemplate>

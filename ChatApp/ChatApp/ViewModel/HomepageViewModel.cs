@@ -179,10 +179,11 @@ namespace ChatApp.ViewModel
       SendCommand = new RelayCommand(SendCommandExecute);
 
       RecentContactsList = new List<ContactsListingModel>();
+
       RecentContactsList.Add(new ContactsListingModel
       {
-        Name = "Rodica",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+        Name = "rodica.mihaela",
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"
       });
 
       RecentContactsListName = string.Format("Recent Contacts (0/{0})", RecentContactsList.Count);
@@ -190,12 +191,17 @@ namespace ChatApp.ViewModel
       AddressBookList = new List<ContactsListingModel>();
       AddressBookList.Add(new ContactsListingModel
       {
-        Name = "Rodica",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+        Name = "rodica.mihaela",
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"
       });
       AddressBookList.Add(new ContactsListingModel
       {
-        Name = "Mihaela",
+        Name = "rodica.mihaela",
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"
+      });
+      AddressBookList.Add(new ContactsListingModel
+      {
+        Name = "rodica",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
       });
 
