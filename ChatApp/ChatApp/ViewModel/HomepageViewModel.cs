@@ -36,7 +36,6 @@ namespace ChatApp.ViewModel
 
     private ObservableCollection<UserModel> contactsList;
     private string messageBoxContent;
-    private UserModel selectedContact;
     private string _email;
 
     public string Email
@@ -60,7 +59,7 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ContactsLists"));
       }
     }
-
+  
     public string WelcomeText
     {
       get { return _welcomeText; }
@@ -102,18 +101,6 @@ namespace ChatApp.ViewModel
         if (contactsList == value) return;
         contactsList = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ContactsList"));
-      }
-    }
-
-    public UserModel SelectedContact
-    {
-      get { return selectedContact; }
-      set
-      {
-        if (selectedContact == value) return;
-        selectedContact = value;
-        SelectCommandExecute(SelectedContact);
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedContact"));
       }
     }
 
@@ -227,32 +214,6 @@ namespace ChatApp.ViewModel
       MessagesList.Add(new MessageModel { Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
       MessagesList.Add(new MessageModel { HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
       MessagesList.Add(new MessageModel { Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
-    }
-
-    private void SelectCommandExecute(UserModel user)
-    {
-      foreach (Window win in App.Current.Windows)
-      {
-        if (win != null)
-          if (win.Tag != null && win.Tag.ToString() == user.Email + "Child")
-          {
-            win.Focus();
-            return;
-          }
-      }
-      Window child = new Window();
-      child.Tag = user.Email + "Child";
-      child.Title = Resources.ChatWindowTitle;
-      var chatControl = new ChatControl();
-      var chatViewModel = new ChatViewModel(child, user, chatControl.AutoScrollViewer);
-      chatControl.DataContext = chatViewModel;
-      child.Content = chatControl;
-      if (chatViewModel.CloseAction == null)
-      {
-        chatViewModel.CloseAction = () => window.Close();
-      }
-      child.SizeToContent = SizeToContent.WidthAndHeight;
-      child.Show();
     }
 
     private void SendCommandExecute()

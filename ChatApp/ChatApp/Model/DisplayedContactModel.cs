@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatApp.Model
 {
-  class DisplayedContactModel
+  public class DisplayedContactModel
   {
     public string Name { get; set; }
     public string ImagePath { get; set; }
