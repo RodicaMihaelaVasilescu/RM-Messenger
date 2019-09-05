@@ -250,5 +250,8 @@
   <ItemGroup>
     <Resource Include="Resources\GridIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ProfilePicture3.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

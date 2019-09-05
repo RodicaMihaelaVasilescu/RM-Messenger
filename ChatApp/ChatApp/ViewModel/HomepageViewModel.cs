@@ -196,12 +196,12 @@ namespace ChatApp.ViewModel
       });
       AddressBookList.Add(new ContactsListingModel
       {
-        Name = "rodica.mihaela",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"
+        Name = "rodica_rodica224",
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture3.jpg"
       });
       AddressBookList.Add(new ContactsListingModel
       {
-        Name = "rodica",
+        Name = "mihaela1234",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
       });
 

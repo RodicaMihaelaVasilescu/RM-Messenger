@@ -499,15 +499,11 @@
         Style="{StaticResource TabControlStyle}">
         <TabItem Margin="20" HorizontalAlignment="Center">
           <TabItem.Header>
-            <TextBlock
-              Margin="10,0"
-              Text="Contacts" />
+            <TextBlock Margin="10,0" Text="Contacts" />
           </TabItem.Header>
 
           <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical">
-            <DockPanel
-              HorizontalAlignment="Stretch"
-              Background="#3E0C3A">
+            <DockPanel HorizontalAlignment="Stretch" Background="#3E0C3A">
               <!--<StackPanel.Background>
                 <ImageBrush ImageSource="pack://application:,,,/ChatApp;component/Resources/banner.png" />
               </StackPanel.Background>-->
