@@ -87,7 +87,7 @@ namespace ChatApp.ViewModel
     {
       this.window = window;
       User = user;
-      user.IsActiveImagePath = "pack://application:,,,/ChatApp;component/Resources/IsOnline.png";
+      user.IsActiveImagePath = "pack://application:,,,/ChatApp;component/Resources/IsOffline.png";
       AutoScroll = scroll;
       SendCommand = new RelayCommand(SendCommandExecute);
       ProfilePicture = user.ImagePath;
@@ -98,8 +98,10 @@ namespace ChatApp.ViewModel
       MessagesList = new ObservableCollection<MessageModel>();
       MessagesList.Add(new MessageModel {SentBy = user.Name + "\n05-Sep-19 23:35:44", Content = "My first Message", HorizontalAlignment = HorizontalAlignment.Left });
       MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email+ "\n05-Sep-19 23:36:43", Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
-      MessagesList.Add(new MessageModel { SentBy = user.Name+ "\n05-Sep-19 23:37:29", HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
-      MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email+ "\n05-Sep-19 23:37:58", Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
+      MessagesList.Add(new MessageModel { SentBy = user.Name+ "\n05-Sep-19 23:37:29", HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.AWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
+      MessagesList.Add(new MessageModel { SentBy = user.Name + "\n05-Sep-19 23:37:45", HorizontalAlignment = HorizontalAlignment.Left, Content = "My Message." });
+      MessagesList.Add(new MessageModel { SentBy = user.Name + "\n05-Sep-19 23:37:53", HorizontalAlignment = HorizontalAlignment.Left, Content = "Another Message." });
+      MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email+ "\n05-Sep-19 23:38:21", Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
     }
 
     private void SendCommandExecute()

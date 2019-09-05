@@ -263,5 +263,8 @@
     <Resource Include="Resources\IMVironmentsIcon.png" />
     <Resource Include="Resources\PhotosIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ProfilePicture4.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

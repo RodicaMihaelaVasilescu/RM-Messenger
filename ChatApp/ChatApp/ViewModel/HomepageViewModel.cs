@@ -158,18 +158,18 @@ namespace ChatApp.ViewModel
 
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
-        Name = "rodica94564",
+        Name = "ankii29.an",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"
       });
 
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
-        Name = "rodica.mihaela",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"
+        Name = "iasmi31_iasmi",
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture4.jpg"
       });
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
-        Name = "rodica_rodica224",
+        Name = "madalina.mada",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture3.jpg"
       });
       addressBook.ContactsList.Add(new DisplayedContactModel
