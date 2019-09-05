@@ -59,7 +59,7 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ContactsLists"));
       }
     }
-  
+
     public string WelcomeText
     {
       get { return _welcomeText; }
@@ -226,20 +226,20 @@ namespace ChatApp.ViewModel
     #region Private Methods
     private void LogoutCommandExecute()
     {
-      DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log out", MessageBoxButtons.YesNo);
-      if (dialogResult == DialogResult.Yes)
+      //DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log out", MessageBoxButtons.YesNo);
+      //if (dialogResult == DialogResult.Yes)
+      //{
+      var loginViewModel = new LoginViewModel(window);
+      WindowManager.ChangeWindowContent(window, loginViewModel, Resources.LoginWindowTitle, Resources.LoginControlPath);
+      window.VerticalContentAlignment = VerticalAlignment.Top;
+      foreach (Window win in App.Current.Windows)
       {
-        var loginViewModel = new LoginViewModel(window);
-        WindowManager.ChangeWindowContent(window, loginViewModel, Resources.LoginWindowTitle, Resources.LoginControlPath);
-        window.VerticalContentAlignment = VerticalAlignment.Top;
-        foreach (Window win in App.Current.Windows)
+        if (win.Tag != null && win.Tag.ToString().EndsWith("Child"))
         {
-          if (win.Tag != null && win.Tag.ToString().EndsWith("Child"))
-          {
-            win.Close();
-          }
+          win.Close();
         }
       }
+      //}
 
     }
     #endregion
