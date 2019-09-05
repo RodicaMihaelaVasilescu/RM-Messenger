@@ -78,6 +78,7 @@
     <Compile Include="Helpers\AutoScrollHelper.cs" />
     <Compile Include="Helpers\WindowManager.cs" />
     <Compile Include="Model\ContactsListingModel.cs" />
+    <Compile Include="Model\ContactsListModel.cs" />
     <Compile Include="Model\MessageModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="ViewModel\ChangeProfilePictureViewModel.cs" />
