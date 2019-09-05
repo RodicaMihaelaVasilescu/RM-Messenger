@@ -50,7 +50,7 @@ namespace ChatApp.ViewModel
       }
     }
 
-    public List<ContactsListModel> ContactsLists
+    public List<ContactListsModel> ContactsLists
     {
       get { return _contactsLists; }
       set
@@ -118,7 +118,7 @@ namespace ChatApp.ViewModel
     }
 
     private BitmapImage profilePicturePath;
-    private List<ContactsListModel> _contactsLists;
+    private List<ContactListsModel> _contactsLists;
 
     public BitmapImage ProfilePicturePath
     {
@@ -142,15 +142,15 @@ namespace ChatApp.ViewModel
       LogoutCommand = new RelayCommand(LogoutCommandExecute);
       SendCommand = new RelayCommand(SendCommandExecute);
 
-      ContactsLists = new List<ContactsListModel>();
+      ContactsLists = new List<ContactListsModel>();
 
-      var recent = new ContactsListModel
+      var recent = new ContactListsModel
       {
         ListName = "Recent",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/RecentContact_Icon.png",
-        ContactsList = new List<ContactsListingModel>()
+        ContactsList = new List<DisplayedContactModel>()
       };
-      recent.ContactsList.Add(new ContactsListingModel
+      recent.ContactsList.Add(new DisplayedContactModel
       {
         Name = "test",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
@@ -158,34 +158,34 @@ namespace ChatApp.ViewModel
 
       recent.ListName = string.Format("Recent Contacts (0/{0})", recent.ContactsList.Count);
 
-      var addressBook = new ContactsListModel
+      var addressBook = new ContactListsModel
       {
         ListName = "Family",
-        ContactsList = new List<ContactsListingModel>()
+        ContactsList = new List<DisplayedContactModel>()
       };
-      addressBook.ContactsList.Add(new ContactsListingModel
+      addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "test",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
       });
 
-      addressBook.ContactsList.Add(new ContactsListingModel
+      addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "rodica94564",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"
       });
 
-      addressBook.ContactsList.Add(new ContactsListingModel
+      addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "rodica.mihaela",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"
       });
-      addressBook.ContactsList.Add(new ContactsListingModel
+      addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "rodica_rodica224",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture3.jpg"
       });
-      addressBook.ContactsList.Add(new ContactsListingModel
+      addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "mihaela1234",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"

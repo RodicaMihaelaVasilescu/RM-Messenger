@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ChatApp.Model
 {
-  class ContactsListingModel
+  class ContactListsModel
   {
-    public string Name { get; set; }
+    public string ListName { get; set; }
     public string ImagePath { get; set; }
+    public List<DisplayedContactModel> ContactsList { get; set; }
   }
 }
