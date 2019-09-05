@@ -10,132 +10,271 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   Width="600"
   Height="500"
-  Background="#782370"
+  Background="White"
   mc:Ignorable="d">
 
   <UserControl.Resources>
-    <converter:ValueToHorizontalAlignmentConverter x:Key="AlignmentConverter" />
-    <converter:NameConverter x:Key="NameConverter" />
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <converter:ValueToHorizontalAlignmentConverter x:Key="AlignmentConverter" />
+      <converter:NameConverter x:Key="NameConverter" />
+
+      <Style x:Key="ButtonHighlight" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Gray" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <Border Background="{TemplateBinding Background}">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </Border>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+          <Trigger Property="IsMouseOver" Value="True">
+            <Setter Property="Background" Value="DarkGoldenrod" />
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+
+    </ResourceDictionary>
   </UserControl.Resources>
   <!--<UserControl.Background>
     <ImageBrush ImageSource="pack://application:,,,/ChatApp;component/Resources/Background.jpg" />
   </UserControl.Background>-->
 
-  <Grid>
+  <Grid Margin="7,0,7,7" Background="#782370">
     <Grid.RowDefinitions>
       <RowDefinition Height="auto" />
-      <RowDefinition Height="*" />
       <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition />
     </Grid.RowDefinitions>
+    <Image Opacity="0.3" Source="pack://application:,,,/ChatApp;component/Resources/Banner.png" />
+    <DockPanel Margin="0">
+      <Menu Background="Transparent" DockPanel.Dock="Top">
 
-    <Button
-      Grid.Row="0"
-      Margin="10"
-      HorizontalContentAlignment="Left"
-      Foreground="White">
-      <Button.Content>
-        <MultiBinding Converter="{StaticResource NameConverter}" ConverterParameter="FormatFirstLast">
-          <Binding Path="User.FirstName" />
-          <Binding Path="User.LastName" />
-        </MultiBinding>
-      </Button.Content>
-    </Button>
-    <Border
-      Grid.Row="1"
-      Margin="10"
-      Background="White"
-      BorderBrush="#1E98F7"
-      BorderThickness="1">
-      <ScrollViewer
-        x:Name="AutoScrollViewer"
-        helper:AutoScrollHelper.AutoScroll="{Binding IsLogsChangedPropertyInViewModel}"
-        PreviewMouseWheel="TS_PreviewMouseWheel"
-        VerticalScrollBarVisibility="Auto">
-        <ListBox ItemsSource="{Binding MessagesList, Mode=OneWay}">
-          <ListBox.Resources>
-            <Style TargetType="{x:Type ListBoxItem}">
-              <Setter Property="OverridesDefaultStyle" Value="true" />
-              <Setter Property="SnapsToDevicePixels" Value="true" />
-              <Setter Property="Template">
-                <Setter.Value>
-                  <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Grid
-                      MaxWidth="400"
-                      Margin="20,5"
-                      HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource AlignmentConverter}}"
-                      VerticalAlignment="Top">
-                      <Rectangle
-                        Fill="AliceBlue"
-                        RadiusX="10"
-                        RadiusY="10"
-                        Stroke="#1E98F7"
-                        StrokeThickness="1" />
-                      <TextBlock
-                        Margin="5"
-                        Text="{Binding Content}"
-                        TextWrapping="Wrap" />
-                    </Grid>
-                  </ControlTemplate>
-                </Setter.Value>
-              </Setter>
-            </Style>
-          </ListBox.Resources>
-        </ListBox>
-      </ScrollViewer>
-    </Border>
+        <MenuItem Foreground="White" Header="_Conversation">
+          <MenuItem Foreground="Black" Header="_New">
+            <MenuItem.Icon>
+              <materialDesign:PackIcon Kind="OpenInNew" />
+            </MenuItem.Icon>
+          </MenuItem>
+          <MenuItem Foreground="Black" Header="_Open">
+            <MenuItem.Icon>
+              <materialDesign:PackIcon Kind="MenuOpen" />
+            </MenuItem.Icon>
+          </MenuItem>
+          <MenuItem Foreground="Black" Header="_Save">
+            <MenuItem.Icon>
+              <materialDesign:PackIcon Kind="ContentSave" />
+            </MenuItem.Icon>
+          </MenuItem>
+          <Separator />
+          <MenuItem Foreground="Black" Header="_Exit">
+            <MenuItem.Icon>
+              <materialDesign:PackIcon Kind="ExitRun" />
+            </MenuItem.Icon>
+          </MenuItem>
+        </MenuItem>
 
-    <Grid Grid.Row="2" Margin="10,0,10,10">
-      <Rectangle
-        Fill="AliceBlue"
-        RadiusX="10"
-        RadiusY="10"
-        Stroke="#1E98F7"
-        StrokeThickness="1" />
+        <MenuItem Foreground="White" Header="_Edit" />
+        <MenuItem Foreground="White" Header="_View" />
+        <MenuItem Foreground="White" Header="_Actions" />
+        <MenuItem Foreground="White" Header="_Help" />
+      </Menu>
+    </DockPanel>
 
-      <TextBox
-        x:Name="MessageBox"
-        Grid.Row="2"
-        Margin="10,0,30,10"
-        Padding="0,0,50,0"
-        BorderBrush="Gray"
-        FontSize="18"
-        Foreground="Black"
-        Text="{Binding MessageBoxContent, UpdateSourceTrigger=PropertyChanged}"
-        TextWrapping="Wrap">
-        <TextBox.InputBindings>
-          <KeyBinding Key="Enter" Command="{Binding SendCommand}" />
-        </TextBox.InputBindings>
-      </TextBox>
-
-      <Image
-        Grid.Row="2"
-        Width="20"
-        Height="50"
-        Margin="10,0"
-        HorizontalAlignment="Right"
-        Source="pack://application:,,,/ChatApp;component/Resources/SendImage.png" />
+    <DockPanel Grid.Row="1">
+      <Button Background="Transparent" BorderThickness="0">
+        <StackPanel>
+          <Image
+            Width="30"
+            Height="30"
+            HorizontalAlignment="Center"
+            Source="pack://application:,,,/ChatApp;component/Resources/VideoCall.png" />
+          <Label
+            Background="Transparent"
+            Content="Video Call"
+            Foreground="White" />
+        </StackPanel>
+      </Button>
       <Button
-        Grid.Row="2"
-        Width="40"
-        Height="30"
-        HorizontalAlignment="Right"
+        HorizontalAlignment="Left"
         Background="Transparent"
-        BorderThickness="0"
-        Command="{Binding SendCommand}" />
+        BorderThickness="0">
 
-      <materialDesign:HintAssist.Hint>
-        <TextBlock Foreground="Gray">Write your message here...</TextBlock>
-      </materialDesign:HintAssist.Hint>
-    </Grid>
+        <StackPanel>
+          <Image
+            Width="30"
+            Height="30"
+            HorizontalAlignment="Center"
+            Source="pack://application:,,,/ChatApp;component/Resources/VoiceCall.png" />
+          <Label
+            Background="Transparent"
+            Content="Voice Call"
+            Foreground="White" />
+        </StackPanel>
+      </Button>
+      
+    </DockPanel>
+    <Button
+          Grid.Row="2"
+          Grid.Column="0"
+          Height="12"
+          Margin="5,10,0,0"
+          HorizontalAlignment="Left"
+          Background="Transparent"
+          BorderThickness="0"
+          Style="{StaticResource MaterialDesignRaisedAccentButton}">
 
-    <!--<Border BorderThickness="1"
-              BorderBrush="AliceBlue"
-              Grid.Row="2"
-              Grid.Column="0"
-              Margin="10, 10, 10, 0">
+      <StackPanel Margin="-5" Orientation="Horizontal">
+        <Image
+              Width="10"
+              Height="10"
+              Margin="-10,0,0,0"
+              Source="{Binding User.IsActiveImagePath}" />
+        <Label
+              Margin="0,-9"
+              Content="{Binding User.Name}"
+              FontSize="12"
+              Foreground="White" />
+      </StackPanel>
+    </Button>
+    <Grid Grid.Row="3" Grid.Column="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="4*" />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+      <DockPanel
+        Grid.RowSpan="3"
+        Grid.Column="1"
+        Margin="0,5,5,5"
+        Background="#945F8D">
+        <Grid>
+          <Image
+            Grid.Row="0"
+            VerticalAlignment="Top"
+            Source="{Binding ProfilePicture}" />
+          <Image
+            Grid.Row="1"
+            Margin="20,0"
+            VerticalAlignment="Bottom"
+            Source="{Binding PersonalProfilePicture}" />
+        </Grid>
+      </DockPanel>
+      <Button
+        Grid.Row="1"
+        Margin="10"
+        HorizontalContentAlignment="Left"
+        Foreground="White">
+        <Button.Content>
+          <MultiBinding Converter="{StaticResource NameConverter}" ConverterParameter="FormatFirstLast">
+            <Binding Path="User.FirstName" />
+            <Binding Path="User.LastName" />
+          </MultiBinding>
+        </Button.Content>
+      </Button>
+      <Border
+        Grid.Row="1"
+        Margin="5"
+        Background="White"
+        BorderBrush="#1E98F7"
+        BorderThickness="1">
+        <ScrollViewer
+          x:Name="AutoScrollViewer"
+          helper:AutoScrollHelper.AutoScroll="{Binding IsLogsChangedPropertyInViewModel}"
+          PreviewMouseWheel="TS_PreviewMouseWheel"
+          VerticalScrollBarVisibility="Auto">
+          <ListBox ItemsSource="{Binding MessagesList, Mode=OneWay}">
+            <ListBox.Resources>
+              <Style TargetType="{x:Type ListBoxItem}">
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                      <Grid
+                        MaxWidth="300"
+                        Margin="20,5"
+                        HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource AlignmentConverter}}"
+                        VerticalAlignment="Top">
+                        <Rectangle
+                          Fill="AliceBlue"
+                          RadiusX="10"
+                          RadiusY="10"
+                          Stroke="#1E98F7"
+                          StrokeThickness="1" />
+                        <TextBlock
+                          Margin="5"
+                          Text="{Binding Content}"
+                          TextWrapping="Wrap" />
+                      </Grid>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+              </Style>
+            </ListBox.Resources>
+          </ListBox>
+        </ScrollViewer>
+      </Border>
+
+      <Grid
+        Grid.Row="2"
+        Margin="5"
+        Background="White">
         <TextBox
-            Text="Write your message here.."
-            FontSize="18" />
-      </Border>-->
+          x:Name="MessageBox"
+          Grid.Row="2"
+          MaxHeight="30"
+          Margin="10,5,60,5"
+          VerticalContentAlignment="Center"
+          BorderBrush="Gray"
+          BorderThickness="0"
+          FontSize="15"
+          Foreground="Black"
+          Text="{Binding MessageBoxContent, UpdateSourceTrigger=PropertyChanged}"
+          TextWrapping="Wrap">
+          <TextBox.InputBindings>
+            <KeyBinding Key="Enter" Command="{Binding SendCommand}" />
+          </TextBox.InputBindings>
+        </TextBox>
+
+        <Button
+          Grid.Row="2"
+          Width="80"
+          Height="23"
+          Margin="3"
+          HorizontalAlignment="Right"
+          VerticalAlignment="Center"
+          BorderBrush="Indigo"
+          BorderThickness="2"
+          Command="{Binding SendCommand}"
+          Content="Send"
+          Foreground="White"
+          Style="{StaticResource ButtonHighlight}">
+          <Button.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+              <GradientStop Offset="0" Color="#7B4171" />
+              <GradientStop Offset="0.445" Color="#693060" />
+              <GradientStop Offset="0.53" Color="#481041" />
+            </LinearGradientBrush>
+          </Button.Background>
+        </Button>
+
+        <materialDesign:HintAssist.Hint>
+          <TextBlock Foreground="Gray">Write your message here...</TextBlock>
+        </materialDesign:HintAssist.Hint>
+      </Grid>
+    </Grid>
   </Grid>
 </UserControl>

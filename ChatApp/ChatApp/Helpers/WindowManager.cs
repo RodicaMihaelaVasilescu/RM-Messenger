@@ -60,7 +60,7 @@ namespace ChatApp.Helper
       child.Tag = user.Email + "Child";
       child.Title = Resources.ChatWindowTitle;
       var chatControl = new ChatControl();
-      var chatViewModel = new ChatViewModel(child, user, chatControl.AutoScrollViewer);
+      var chatViewModel = new ChatViewModel(child, displayedContact, chatControl.AutoScrollViewer);
       chatControl.DataContext = chatViewModel;
       child.Content = chatControl;
       child.SizeToContent = SizeToContent.WidthAndHeight;

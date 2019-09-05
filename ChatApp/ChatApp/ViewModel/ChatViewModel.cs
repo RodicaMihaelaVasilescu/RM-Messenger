@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace ChatApp.ViewModel
 {
@@ -18,14 +19,14 @@ namespace ChatApp.ViewModel
     public bool IsLogsChangedPropertyInViewModel { get; set; } = true;
     public Action CloseAction { get; set; }
 
-    private UserModel user;
+    private DisplayedContactModel user;
     private string messageBoxContent;
     private ObservableCollection<MessageModel> messagesList;
     private Window window;
 
     public ICommand SendCommand { get; set; }
 
-    public UserModel User
+    public DisplayedContactModel User
     {
       get { return user; }
       set
@@ -33,6 +34,28 @@ namespace ChatApp.ViewModel
         if (user == value) return;
         user = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("User"));
+      }
+    }
+
+    public string ProfilePicture
+    {
+      get { return _profilePicture; }
+      set
+      {
+        if (_profilePicture == value) return;
+        _profilePicture = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProfilePicture"));
+      }
+    }
+
+    public string PersonalProfilePicture
+    {
+      get { return _personalProfilePicture; }
+      set
+      {
+        if (_personalProfilePicture == value) return;
+        _personalProfilePicture = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PersonalProfilePicture"));
       }
     }
     public string MessageBoxContent
@@ -58,12 +81,21 @@ namespace ChatApp.ViewModel
     }
 
     public ScrollViewer AutoScroll;
-    public ChatViewModel(Window window, UserModel user, ScrollViewer scroll)
+    private string _profilePicture;
+    private string _personalProfilePicture;
+
+    public ChatViewModel(Window window, DisplayedContactModel user, ScrollViewer scroll)
     {
       this.window = window;
       User = user;
+      user.IsActiveImagePath = "pack://application:,,,/ChatApp;component/Resources/IsOnline.png";
       AutoScroll = scroll;
       SendCommand = new RelayCommand(SendCommandExecute);
+      ProfilePicture = user.ImagePath;
+      PersonalProfilePicture = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg";
+
+      //PersonalProfilePicture = new BitmapImage(
+      //  new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
       MessagesList = new ObservableCollection<MessageModel>();
       MessagesList.Add(new MessageModel { Content = "My first Message", HorizontalAlignment = HorizontalAlignment.Left });
       MessagesList.Add(new MessageModel { Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
@@ -73,6 +105,10 @@ namespace ChatApp.ViewModel
 
     private void SendCommandExecute()
     {
+      if(string.IsNullOrEmpty(messageBoxContent))
+      {
+        return;
+      }
       MessagesList.Add(new MessageModel { Content = MessageBoxContent, HorizontalAlignment = HorizontalAlignment.Right });
       MessageBoxContent = string.Empty;
       AutoScroll.ScrollToEnd();

@@ -254,5 +254,9 @@
   <ItemGroup>
     <Resource Include="Resources\ProfilePicture3.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\VideoCall.png" />
+    <Resource Include="Resources\VoiceCall.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
