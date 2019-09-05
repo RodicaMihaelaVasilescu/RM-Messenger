@@ -119,29 +119,29 @@
             Foreground="White" />
         </StackPanel>
       </Button>
-      
+
     </DockPanel>
     <Button
-          Grid.Row="2"
-          Grid.Column="0"
-          Height="12"
-          Margin="5,10,0,0"
-          HorizontalAlignment="Left"
-          Background="Transparent"
-          BorderThickness="0"
-          Style="{StaticResource MaterialDesignRaisedAccentButton}">
+      Grid.Row="2"
+      Grid.Column="0"
+      Height="12"
+      Margin="5,10,0,0"
+      HorizontalAlignment="Left"
+      Background="Transparent"
+      BorderThickness="0"
+      Style="{StaticResource MaterialDesignRaisedAccentButton}">
 
       <StackPanel Margin="-5" Orientation="Horizontal">
         <Image
-              Width="10"
-              Height="10"
-              Margin="-10,0,0,0"
-              Source="{Binding User.IsActiveImagePath}" />
+          Width="10"
+          Height="10"
+          Margin="-10,0,0,0"
+          Source="{Binding User.IsActiveImagePath}" />
         <Label
-              Margin="0,-9"
-              Content="{Binding User.Name}"
-              FontSize="12"
-              Foreground="White" />
+          Margin="0,-9"
+          Content="{Binding User.Name}"
+          FontSize="12"
+          Foreground="White" />
       </StackPanel>
     </Button>
     <Grid Grid.Row="3" Grid.Column="0">
@@ -208,16 +208,23 @@
                         Margin="20,5"
                         HorizontalAlignment="{Binding HorizontalAlignment, Converter={StaticResource AlignmentConverter}}"
                         VerticalAlignment="Top">
-                        <Rectangle
-                          Fill="AliceBlue"
-                          RadiusX="10"
-                          RadiusY="10"
-                          Stroke="#1E98F7"
-                          StrokeThickness="1" />
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="auto"/>
+                          <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Foreground="#693060"  Text="{Binding SentBy}" />
+                          <Rectangle
+                            Grid.Row="1"
+                            Fill="#d5cad9"
+                            RadiusX="10"
+                            RadiusY="10"
+                            Stroke="#693060"
+                            StrokeThickness="1" />
                         <TextBlock
-                          Margin="5"
-                          Text="{Binding Content}"
-                          TextWrapping="Wrap" />
+                            Grid.Row="1"
+                            Margin="5"
+                            Text="{Binding Content}"
+                            TextWrapping="Wrap" />
                       </Grid>
                     </ControlTemplate>
                   </Setter.Value>

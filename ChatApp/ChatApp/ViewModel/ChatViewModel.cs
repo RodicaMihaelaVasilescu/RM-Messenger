@@ -68,7 +68,6 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MessageBoxContent"));
       }
     }
-
     public ObservableCollection<MessageModel> MessagesList
     {
       get { return messagesList; }
@@ -97,10 +96,10 @@ namespace ChatApp.ViewModel
       //PersonalProfilePicture = new BitmapImage(
       //  new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
       MessagesList = new ObservableCollection<MessageModel>();
-      MessagesList.Add(new MessageModel { Content = "My first Message", HorizontalAlignment = HorizontalAlignment.Left });
-      MessagesList.Add(new MessageModel { Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
-      MessagesList.Add(new MessageModel { HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
-      MessagesList.Add(new MessageModel { Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
+      MessagesList.Add(new MessageModel {SentBy = user.Name, Content = "My first Message", HorizontalAlignment = HorizontalAlignment.Left });
+      MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email, Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
+      MessagesList.Add(new MessageModel { SentBy = user.Name, HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
+      MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email, Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
     }
 
     private void SendCommandExecute()
@@ -109,7 +108,7 @@ namespace ChatApp.ViewModel
       {
         return;
       }
-      MessagesList.Add(new MessageModel { Content = MessageBoxContent, HorizontalAlignment = HorizontalAlignment.Right });
+      MessagesList.Add(new MessageModel {SentBy = UserModel.Instance.Email, Content = MessageBoxContent, HorizontalAlignment = HorizontalAlignment.Right });
       MessageBoxContent = string.Empty;
       AutoScroll.ScrollToEnd();
     }
