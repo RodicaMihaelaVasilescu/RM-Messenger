@@ -1,30 +1,23 @@
 ﻿using ChatApp.Command;
 using ChatApp.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace ChatApp.ViewModel
 {
   class ChatViewModel : INotifyPropertyChanged
   {
-    public bool IsLogsChangedPropertyInViewModel { get; set; } = true;
-    public Action CloseAction { get; set; }
-
-    private DisplayedContactModel user;
-    private string messageBoxContent;
-    private ObservableCollection<MessageModel> messagesList;
-    private Window window;
+    #region Public Properties
 
     public ICommand SendCommand { get; set; }
+    public Action CloseAction { get; set; }
+    public event PropertyChangedEventHandler PropertyChanged;
+    public ScrollViewer AutoScroll;
+    public bool IsLogsChangedPropertyInViewModel { get; set; } = true;
 
     public DisplayedContactModel User
     {
@@ -79,10 +72,20 @@ namespace ChatApp.ViewModel
       }
     }
 
-    public ScrollViewer AutoScroll;
+    #endregion
+
+    #region Private Properties
+
     private string _profilePicture;
     private string _personalProfilePicture;
+    private string messageBoxContent;
+    private DisplayedContactModel user;
+    private ObservableCollection<MessageModel> messagesList;
+    private Window window;
 
+    #endregion
+
+    #region Constructor
     public ChatViewModel(Window window, DisplayedContactModel user, ScrollViewer scroll)
     {
       this.window = window;
@@ -93,15 +96,24 @@ namespace ChatApp.ViewModel
       ProfilePicture = user.ImagePath;
       PersonalProfilePicture = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg";
 
-      //PersonalProfilePicture = new BitmapImage(
-      //  new Uri(@"pack://application:,,,/ChatApp;component/Resources/ProfilePicture.jpg"));
+      //add fake messages 
+      //TO DO : Server
+      AddFakeMessages();
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private void AddFakeMessages()
+    {
       MessagesList = new ObservableCollection<MessageModel>();
-      MessagesList.Add(new MessageModel {SentBy = user.Name + "\n05-Sep-19 23:35:44", Content = "My first Message", HorizontalAlignment = HorizontalAlignment.Left });
-      MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email+ "\n05-Sep-19 23:36:43", Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
-      MessagesList.Add(new MessageModel { SentBy = user.Name+ "\n05-Sep-19 23:37:29", HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.AWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
+      MessagesList.Add(new MessageModel { SentBy = user.Name + "\n05-Sep-19 23:35:44", Content = "My first Message", HorizontalAlignment = HorizontalAlignment.Left });
+      MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email + "\n05-Sep-19 23:36:43", Content = "My second Message", HorizontalAlignment = HorizontalAlignment.Right });
+      MessagesList.Add(new MessageModel { SentBy = user.Name + "\n05-Sep-19 23:37:29", HorizontalAlignment = HorizontalAlignment.Left, Content = "My third Message.AWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" });
       MessagesList.Add(new MessageModel { SentBy = user.Name + "\n05-Sep-19 23:37:45", HorizontalAlignment = HorizontalAlignment.Left, Content = "My Message." });
       MessagesList.Add(new MessageModel { SentBy = user.Name + "\n05-Sep-19 23:37:53", HorizontalAlignment = HorizontalAlignment.Left, Content = "Another Message." });
-      MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email+ "\n05-Sep-19 23:38:21", Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
+      MessagesList.Add(new MessageModel { SentBy = UserModel.Instance.Email + "\n05-Sep-19 23:38:21", Content = "My last Message", HorizontalAlignment = HorizontalAlignment.Right });
     }
 
     private void SendCommandExecute()
@@ -115,6 +127,7 @@ namespace ChatApp.ViewModel
       AutoScroll.ScrollToEnd();
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    #endregion
+
   }
 }
