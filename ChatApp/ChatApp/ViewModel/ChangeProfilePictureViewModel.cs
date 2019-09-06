@@ -2,34 +2,43 @@
 using ChatApp.Helper;
 using ChatApp.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace ChatApp.ViewModel
 {
-  class ChangeProfilePictureViewModel : INotifyPropertyChanged
+  class ChangeProfilePictureViewModel //: INotifyPropertyChanged
   {
+    #region public Properties
+
     public Action CloseAction { get; set; }
+
     public ICommand CloseCommand { get; set; }
+
     public ICommand DisplayImageCommand { get; set; }
 
-    public event PropertyChangedEventHandler PropertyChanged;
     public Popup popup;
+
+    //public event PropertyChangedEventHandler PropertyChanged;
+
+    #endregion
+
+    #region Constructor
+
     public ChangeProfilePictureViewModel()
     {
       CloseCommand = new RelayCommand(CloseCommandExecute);
       DisplayImageCommand = new RelayCommand(DisplayImageCommandExecute);
     }
 
+    #endregion
+
+    #region Private Methods
+
     private void DisplayImageCommandExecute()
     {
-      var window =new Window();
+      var window = new Window();
       var displayImageViewModel = new DisplayImageViewModel();
       WindowManager.ChangeWindowContent(window, displayImageViewModel, Resources.DisplayImageTitle, Resources.DisplayImagePath);
       window.Width = 400;
@@ -52,5 +61,7 @@ namespace ChatApp.ViewModel
       //CloseAction?.Invoke();
       popup.IsOpen = false;
     }
+
+    #endregion
   }
 }
