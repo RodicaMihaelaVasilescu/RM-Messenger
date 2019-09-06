@@ -22,7 +22,7 @@ namespace ChatApp.ViewModel
     public Action CloseAction { get; set; }
     public ICommand LogoutCommand { get; set; }
     public ICommand SendCommand { get; set; }
-    public string IsActiveImagePath { get; set; } = UserModel.Instance.IsActive ? "pack://application:,,,/ChatApp;component/Resources/IsOnline.png" : "pack://application:,,,/ChatApp;component/Resources/IsOffline.png";
+    public string OnlineIcoPath { get; set; } = UserModel.Instance.IsOnline ? "pack://application:,,,/ChatApp;component/Resources/Online.ico" : "pack://application:,,,/ChatApp;component/Resources/Offline.ico";
 
     public string Email
     {
@@ -154,7 +154,8 @@ namespace ChatApp.ViewModel
       recent.ContactsList.Add(new DisplayedContactModel
       {
         Name = "test",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg",
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Busy.ico"
       });
 
       recent.ListName = string.Format("Recent Contacts (0/{0})", recent.ContactsList.Count);
@@ -170,29 +171,35 @@ namespace ChatApp.ViewModel
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "test",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg",
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Busy.ico"
       });
 
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "ankii29.an",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg"
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture2.jpg",
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Online.ico"
+
       });
 
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "iasmi31_iasmi",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture4.jpg"
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture4.jpg",
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Offline.ico"
       });
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "madalina.mada",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture3.jpg"
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture3.jpg",
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Idle.ico"
       });
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "mihaela1234",
-        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg"
+        ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg",
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Offline.ico"
       });
 
       addressBook.ListName = string.Format("Address Book (0/{0})", addressBook.ContactsList.Count);

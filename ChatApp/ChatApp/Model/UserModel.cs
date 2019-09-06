@@ -12,7 +12,7 @@
 
     public string LastName { get; set; }
 
-    public bool IsActive { get; set; } = true;
+    public bool IsOnline { get; set; } = true;
 
   }
 }

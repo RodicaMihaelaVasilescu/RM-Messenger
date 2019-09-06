@@ -39,7 +39,7 @@ namespace ChatApp.ViewModel
       {
         if (isSignInAsInvisibleChecked == value) return;
         isSignInAsInvisibleChecked = value;
-        UserModel.Instance.IsActive = !value;
+        UserModel.Instance.IsOnline = !value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsSignInAsInvisibleChecked"));
       }
     }

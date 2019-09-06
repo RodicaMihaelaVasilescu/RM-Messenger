@@ -45,7 +45,7 @@ namespace ChatApp.Helper
         Email = displayedContact.Name,
         FirstName = displayedContact.Name,
         LastName = displayedContact.Name,
-        IsActive = false
+        IsOnline = false
       };
       foreach (Window win in App.Current.Windows)
       {

@@ -179,7 +179,7 @@
               Width="10"
               Height="10"
               Margin="-10,0,0,0"
-              Source="{Binding IsActiveImagePath}" />
+              Source="{Binding OnlineIcoPath}" />
             <Label
               Margin="0,-9"
               Content="{Binding Email}"
@@ -757,7 +757,7 @@
                           </ControlTemplate.Triggers>
                         </ControlTemplate>
                       </Expander.Template>
-                      
+
                       <ListView
                         MaxHeight="400"
                         Margin="20,0,10,0"
@@ -773,10 +773,30 @@
                                 Width="30"
                                 Height="30"
                                 Source="{Binding ImagePath}" />
-                              <TextBlock
+                              <!--<TextBlock
                                 Margin="5"
                                 Text="{Binding Name}"
-                                TextAlignment="Center" />
+                                TextAlignment="Center" />-->
+                              <Button
+                                Height="12"
+                                Margin="5,10,0,0"
+                                HorizontalAlignment="Left"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Style="{StaticResource MaterialDesignRaisedAccentButton}">
+
+                                <StackPanel Margin="-5" Orientation="Horizontal">
+                                  <Image
+                                    Width="10"
+                                    Height="10"
+                                    Margin="-10,0,0,0"
+                                    Source="{Binding OnlineIcoPath}" />
+                                  <Label
+                                    Margin="0,-9"
+                                    Content="{Binding Name}"
+                                    FontSize="12" />
+                                </StackPanel>
+                              </Button>
                             </StackPanel>
                           </DataTemplate>
                         </ListView.ItemTemplate>

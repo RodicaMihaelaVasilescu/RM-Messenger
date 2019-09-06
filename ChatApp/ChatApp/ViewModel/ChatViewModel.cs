@@ -90,7 +90,7 @@ namespace ChatApp.ViewModel
     {
       this.window = window;
       User = user;
-      user.IsActiveImagePath = "pack://application:,,,/ChatApp;component/Resources/IsOffline.png";
+      user.OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Offline.ico";
       AutoScroll = scroll;
       SendCommand = new RelayCommand(SendCommandExecute);
       ProfilePicture = user.ImagePath;
