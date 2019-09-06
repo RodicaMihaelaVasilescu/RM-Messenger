@@ -6,7 +6,7 @@
   xmlns:local="clr-namespace:ChatApp.View"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   Background="White"
-  Icon="../Resources/Empty.png"
+  Icon="../Resources/Icon.png"
   mc:Ignorable="d">
   <local:LoginControl />
 </Window>

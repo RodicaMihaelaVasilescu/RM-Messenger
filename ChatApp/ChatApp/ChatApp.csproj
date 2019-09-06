@@ -266,5 +266,11 @@
     <Resource Include="Resources\Offline.ico" />
     <Resource Include="Resources\Online.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Chat.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

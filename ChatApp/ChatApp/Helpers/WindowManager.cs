@@ -64,6 +64,7 @@ namespace ChatApp.Helper
       chatControl.DataContext = chatViewModel;
       child.Content = chatControl;
       child.SizeToContent = SizeToContent.WidthAndHeight;
+      child.Icon = BitmapFrame.Create(new Uri("pack://application:,,,/Resources/Chat.ico", UriKind.RelativeOrAbsolute));
       child.Show();
     }
   }

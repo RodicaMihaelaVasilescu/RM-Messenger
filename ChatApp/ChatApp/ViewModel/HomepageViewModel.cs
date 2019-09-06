@@ -155,7 +155,7 @@ namespace ChatApp.ViewModel
       {
         Name = "test",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg",
-        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Busy.ico"
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Offline.ico"
       });
 
       recent.ListName = string.Format("Recent Contacts (0/{0})", recent.ContactsList.Count);
@@ -172,7 +172,7 @@ namespace ChatApp.ViewModel
       {
         Name = "test",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg",
-        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Busy.ico"
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Offline.ico"
       });
 
       addressBook.ContactsList.Add(new DisplayedContactModel
@@ -193,13 +193,13 @@ namespace ChatApp.ViewModel
       {
         Name = "madalina.mada",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/ProfilePicture3.jpg",
-        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Idle.ico"
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Online.ico"
       });
       addressBook.ContactsList.Add(new DisplayedContactModel
       {
         Name = "mihaela1234",
         ImagePath = "pack://application:,,,/ChatApp;component/Resources/OfflineProfilePicture.jpg",
-        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Offline.ico"
+        OnlineIcoPath = "pack://application:,,,/ChatApp;component/Resources/Busy.ico"
       });
 
       addressBook.ListName = string.Format("Address Book (0/{0})", addressBook.ContactsList.Count);
