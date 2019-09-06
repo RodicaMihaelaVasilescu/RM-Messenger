@@ -6,7 +6,6 @@ using System.Windows.Input;
 using ChatApp.Helper;
 using ChatApp.Properties;
 using ChatApp.Command;
-using System.Threading;
 using System.Threading.Tasks;
 using ChatApp.Helpers;
 
@@ -14,29 +13,13 @@ namespace ChatApp.ViewModel
 {
   class LoginViewModel : INotifyPropertyChanged
   {
-    #region Properties
+    #region Public Properties
 
-    //private ForgotPasswordViewModel forgotPasswordViewModel;
-
-    private Window window;
-
-    private bool cancelButtonPressed;
     public ICommand LoginCommand { get; set; }
-
     public ICommand RegisterCommand { get; set; }
-
     public ICommand ForgotPasswordCommand { get; set; }
-
     public ICommand CancelCommand { get; set; }
-
     public Action CloseAction { get; set; }
-
-    private string _email;
-    private string gif;
-    private Visibility visibilityOfLoginFields;
-    private Visibility visibilityOfMessageOnSingIn;
-    private string messageOnSingingIn;
-    private bool isSignInAsInvisibleChecked;
 
     public string Email
     {
@@ -107,25 +90,45 @@ namespace ChatApp.ViewModel
 
     #endregion
 
+    #region Private Properties
+
+    private string _email;
+    private string gif;
+    private string messageOnSingingIn;
+    private bool isSignInAsInvisibleChecked;
+    private bool cancelButtonPressed;
+    private Visibility visibilityOfLoginFields;
+    private Visibility visibilityOfMessageOnSingIn;
+    private Window window;
+
+    #endregion
+
     #region Constructor
     public LoginViewModel(Window window)
     {
       this.window = window;
       UserModel.Instance.Email = string.IsNullOrEmpty(Email) ? string.Empty : Email.Split('@')[0]; ;
+
       LoginCommand = new RelayCommand(LoginCommandExecute);
       RegisterCommand = new RelayCommand(RegisterCommandExecute);
       ForgotPasswordCommand = new RelayCommand(ForgotPasswordCommandExecute);
       CancelCommand = new RelayCommand(CancelCommandExecute);
-      Gif = "pack://application:,,,/ChatApp;component/Resources/YahooMessengerSleep.gif";
-      visibilityOfLoginFields = Visibility.Visible;
-      visibilityOfMessageOnSingIn = Visibility.Hidden;
-      cancelButtonPressed = false;
 
-      if(AppConfigManager.ReadSetting("SignInAutomatically") == "true")
+      StateBeforeLogin();
+
+      if (AppConfigManager.ReadSetting("SignInAutomatically") == "true")
       {
         LoginCommandExecute();
       }
       Login();
+    }
+
+    private void StateBeforeLogin()
+    {
+      Gif = "pack://application:,,,/ChatApp;component/Resources/YahooMessengerSleep.gif";
+      visibilityOfLoginFields = Visibility.Visible;
+      visibilityOfMessageOnSingIn = Visibility.Hidden;
+      cancelButtonPressed = false;
     }
 
     #endregion
@@ -136,81 +139,57 @@ namespace ChatApp.ViewModel
       cancelButtonPressed = true;
       var loginViewModel = new LoginViewModel(window);
       WindowManager.ChangeWindowContent(window, loginViewModel, Resources.LoginWindowTitle, Resources.LoginControlPath);
-      //window.VerticalContentAlignment = VerticalAlignment.Top;
     }
     private async void LoginCommandExecute()
     {
-      UserModel.Instance.Email = string.IsNullOrEmpty(Email) ? string.Empty : Email.Split('@')[0]; ;
-      //if (UserModel.Instance.Email == null || UserModel.Instance.Password == null)
-      //{
-      //  MessageBox.Show("Both email and password should be filled in.");
-      //  return;
-      //}
-      if (true/*AccountManager.AccountExists(UserModel.Instance.Email, UserModel.Instance.Password)*/)
+      StateAfterLogin();
+
+      await Task.Delay(5000);
+
+      if (cancelButtonPressed)
       {
-        Gif = "pack://application:,,,/ChatApp;component/Resources/YahooMessengerAwake.gif";
-        Email = string.IsNullOrEmpty(Email) ? string.Empty : Email.Split('@')[0];
-        MessageOnSingingIn = "Signing in as " + Email;
-        VisibilityOfLoginFields = Visibility.Hidden;
-        VisibilityOfMessageOnSingIn = Visibility.Visible;
-        //await Task.Delay(5000);//5000
-        if (cancelButtonPressed)
-        {
-          return;
-        }
-
-        var homepageViewModel = new HomepageViewModel(window);
-        WindowManager.ChangeWindowContent(window, homepageViewModel, Resources.HomepageWindowTitle, Resources.HomepageControlPath);
-
-        if (homepageViewModel.CloseAction == null)
-        {
-          homepageViewModel.CloseAction = () => window.Close();
-        }
-        var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
-
-        WindowManager.ResizeWindow(window);
-
-        window.ResizeMode = ResizeMode.NoResize;
+        return;
       }
-      else
+
+      SwitchToHomepageWindow();
+    }
+
+    private void SwitchToHomepageWindow()
+    {
+      var homepageViewModel = new HomepageViewModel(window);
+      WindowManager.ChangeWindowContent(window, homepageViewModel, Resources.HomepageWindowTitle, Resources.HomepageControlPath);
+
+      if (homepageViewModel.CloseAction == null)
       {
-        MessageBox.Show("Invalid credentials.");
+        homepageViewModel.CloseAction = () => window.Close();
       }
+
+      WindowManager.ResizeWindow(window);
+      window.ResizeMode = ResizeMode.NoResize;
+    }
+
+    private void StateAfterLogin()
+    {
+      Email = string.IsNullOrEmpty(Email) ? string.Empty : Email.Split('@')[0];
+      UserModel.Instance.Email = Email;
+      MessageOnSingingIn = "Signing in as " + Email;
+      VisibilityOfLoginFields = Visibility.Hidden;
+      VisibilityOfMessageOnSingIn = Visibility.Visible;
+      Gif = "pack://application:,,,/ChatApp;component/Resources/YahooMessengerAwake.gif";
     }
 
     private void RegisterCommandExecute()
     {
-      //Email = null;
-      //var registerViewModel = new RegisterViewModel(window);
-      //WindowManager.ChangeWindowContent(window, registerViewModel, Resources.RegisterAccountWindowTitle, Resources.RegisterAccountControlPath);
-      //if (registerViewModel.CloseAction == null)
-      //{
-      //  registerViewModel.CloseAction = () => window.Close();
-      //}
+      //to do
     }
+
     public void ForgotPasswordCommandExecute()
-    {
-      //forgotPasswordViewModel = new ForgotPasswordViewModel(window);
-      //WindowManager.ChangeWindowContent(window, forgotPasswordViewModel, Resources.ForgotPasswordWindowTitle, Resources.ForgotPasswordControlPath);
-      //if (forgotPasswordViewModel.CloseAction == null)
-      //{
-      //  forgotPasswordViewModel.CloseAction = () => window.Close();
-      //}
-      //window.Show();
+    {  
+      //to do
     }
+
     private void Login()
     {
-      //if (ApplicationDeployment.IsNetworkDeployed)
-      //{
-      //  ApplicationDeployment deployment = ApplicationDeployment.CurrentDeployment;
-      //  if (deployment.IsFirstRun)
-      //  {
-      //    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587); ;
-      //    SmtpServer.Credentials = new System.Net.NetworkCredential("ArtClub.App@gmail.com", "ArtClub.App@gmail.com");
-      //    SmtpServer.EnableSsl = true;
-      //    SmtpServer.Send(new MailMessage("ArtClub.App@gmail.com", "wpfapp.app@gmail.com", "Login Alert", DateTime.Now.ToString() + "\n" + System.Security.Principal.WindowsIdentity.GetCurrent().Name.ToString()));
-      //  }
-      //}
     }
     #endregion
 
