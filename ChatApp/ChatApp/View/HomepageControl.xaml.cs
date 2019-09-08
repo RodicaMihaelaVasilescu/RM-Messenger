@@ -41,5 +41,13 @@ namespace ChatApp.View
     {
       ProfilePicturePopupTooltip.IsOpen = false;
     }
+
+    private void Button_MouseLeave(object sender, MouseEventArgs e)
+    {
+      if (!ProfilePicturePopupTooltip.IsMouseOver)
+      {
+        ProfilePicturePopupTooltip.IsOpen = false;
+      }
+    }
   }
 }

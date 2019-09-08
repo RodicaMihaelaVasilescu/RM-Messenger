@@ -144,7 +144,8 @@
           Margin="5,10,5,0"
           HorizontalAlignment="Left"
           Background="Transparent"
-          MouseEnter="Button_MouseEnter">
+          MouseEnter="Button_MouseEnter"
+          MouseLeave="Button_MouseLeave">
           <StackPanel>
             <Image
               x:Name="ProfilePicture"
@@ -778,14 +779,12 @@
                                 Text="{Binding Name}"
                                 TextAlignment="Center" />-->
 
-                              <StackPanel Margin="5 0" Orientation="Horizontal">
+                              <StackPanel Margin="5,0" Orientation="Horizontal">
                                 <Image
-                                    Width="10"
-                                    Height="10"
-                                    Source="{Binding OnlineIcoPath}" />
-                                <Label
-                                    Content="{Binding Name}"
-                                    FontSize="12" />
+                                  Width="10"
+                                  Height="10"
+                                  Source="{Binding OnlineIcoPath}" />
+                                <Label Content="{Binding Name}" FontSize="12" />
                               </StackPanel>
                             </StackPanel>
                           </DataTemplate>
