@@ -99,6 +99,9 @@
     <Compile Include="View\DisplayImageControl.xaml.cs">
       <DependentUpon>DisplayImageControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EmoticonsControl.xaml.cs">
+      <DependentUpon>EmoticonsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomepageControl.xaml.cs">
       <DependentUpon>HomepageControl.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DisplayImageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmoticonsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,6 +312,10 @@
     <Resource Include="Resources\BuzzIcon_MouseOver.png" />
     <Resource Include="Resources\TextFormat.png" />
     <Resource Include="Resources\TextFormat_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\VideoCall_MouseOver.png" />
+    <Resource Include="Resources\VoiceCall_MouseOver.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

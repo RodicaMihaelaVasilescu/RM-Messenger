@@ -38,5 +38,22 @@ namespace ChatApp.View
       }
       e.Handled = true;
     }
+
+    private void EmoticonsButton_MouseEnter(object sender, MouseEventArgs e)
+    {
+      EmoticonsPopupTooltip.IsOpen = true;
+    }
+    private void EmoticonsTooltip_MouseLeave(object sender, MouseEventArgs e)
+    {
+      EmoticonsPopupTooltip.IsOpen = false;
+    }
+
+    private void EmoticonsButton_MouseLeave(object sender, MouseEventArgs e)
+    {
+      if (!EmoticonsPopupTooltip.IsMouseOver)
+      {
+        EmoticonsPopupTooltip.IsOpen = false;
+      }
+    }
   }
 }

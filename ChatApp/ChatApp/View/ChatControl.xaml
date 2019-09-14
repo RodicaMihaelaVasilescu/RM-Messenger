@@ -88,40 +88,62 @@
       </Menu>
     </DockPanel>
 
-    <DockPanel Grid.Row="1">
+    <DockPanel Margin="0 5" Grid.Row="1">
       <Button
+        ToolTip="Video Call"
         Background="Transparent"
         BorderThickness="0"
         Cursor="Hand">
-        <StackPanel>
-          <Image
-            Width="30"
-            Height="30"
-            HorizontalAlignment="Center"
-            Source="pack://application:,,,/ChatApp;component/Resources/VideoCall.png" />
-          <Label
-            Background="Transparent"
-            Content="Video Call"
-            Foreground="White" />
-        </StackPanel>
+        <Button.Template>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <StackPanel>
+              <Image
+                x:Name="VideoCallImage"
+                Width="30"
+                Height="30"
+                HorizontalAlignment="Center"
+                Source="pack://application:,,,/ChatApp;component/Resources/VideoCall.png" />
+              <Label
+                Background="Transparent"
+                Content="Video Call"
+                Foreground="White" />
+            </StackPanel>
+            <ControlTemplate.Triggers>
+              <Trigger Property="Button.IsMouseOver" Value="True">
+                <Setter TargetName="VideoCallImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/VideoCall_MouseOver.png" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Button.Template>
       </Button>
 
       <Button
+        ToolTip="Voice Call"
         HorizontalAlignment="Left"
         Background="Transparent"
         BorderThickness="0"
         Cursor="Hand">
-        <StackPanel>
-          <Image
-            Width="30"
-            Height="30"
-            HorizontalAlignment="Center"
-            Source="pack://application:,,,/ChatApp;component/Resources/VoiceCall.png" />
-          <Label
-            Background="Transparent"
-            Content="Voice Call"
-            Foreground="White" />
-        </StackPanel>
+        <Button.Template>
+          <ControlTemplate TargetType="{x:Type Button}">
+            <StackPanel>
+              <Image
+                x:Name="VoiceCallImage"
+                Width="30"
+                Height="30"
+                HorizontalAlignment="Center"
+                Source="pack://application:,,,/ChatApp;component/Resources/VoiceCall.png" />
+              <Label
+                Background="Transparent"
+                Content="Voice Call"
+                Foreground="White" />
+            </StackPanel>
+            <ControlTemplate.Triggers>
+              <Trigger Property="Button.IsMouseOver" Value="True">
+                <Setter TargetName="VoiceCallImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/VoiceCall_MouseOver.png" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Button.Template>
       </Button>
 
       <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
@@ -339,14 +361,16 @@
           </ListBox>
         </ScrollViewer>
       </Border>
-      
-      <DockPanel Margin="5 0" Grid.Row="2">
+
+      <DockPanel Grid.Row="2" Margin="5,0">
         <Button
           x:Name="Emoticons"
+          HorizontalAlignment="Left"
           Background="Transparent"
           BorderThickness="0"
           Cursor="Hand"
-          HorizontalAlignment="Left"
+          MouseEnter="EmoticonsButton_MouseEnter"
+          MouseLeave="EmoticonsButton_MouseLeave"
           ToolTip="Emoticons">
           <Button.Template>
             <ControlTemplate TargetType="{x:Type Button}">
@@ -364,15 +388,24 @@
               </ControlTemplate.Triggers>
             </ControlTemplate>
           </Button.Template>
+          <Popup
+            x:Name="EmoticonsPopupTooltip"
+            MouseLeave="EmoticonsTooltip_MouseLeave"
+            Placement="Top"
+            PlacementTarget="{Binding ElementName=Emoticons}">
+            <StackPanel>
+              <local:ChangeProfilePictureControl x:Name="ChangeProfilePictureControl" />
+            </StackPanel>
+          </Popup>
         </Button>
 
         <Button
-          Margin="5 0"
           x:Name="Audibles"
+          Margin="5,0"
+          HorizontalAlignment="Left"
           Background="Transparent"
           BorderThickness="0"
           Cursor="Hand"
-          HorizontalAlignment="Left"
           ToolTip="Audibles">
           <Button.Template>
             <ControlTemplate TargetType="{x:Type Button}">
@@ -391,14 +424,14 @@
             </ControlTemplate>
           </Button.Template>
         </Button>
-        
+
         <Button
-          Margin="5 0"
           x:Name="TextFormat"
+          Margin="5,0"
+          HorizontalAlignment="Left"
           Background="Transparent"
           BorderThickness="0"
           Cursor="Hand"
-          HorizontalAlignment="Left"
           ToolTip="Format">
           <Button.Template>
             <ControlTemplate TargetType="{x:Type Button}">
@@ -419,12 +452,12 @@
         </Button>
 
         <Button
-          Margin="5 0"
           x:Name="BuzzIcon"
+          Margin="5,0"
+          HorizontalAlignment="Left"
           Background="Transparent"
           BorderThickness="0"
           Cursor="Hand"
-          HorizontalAlignment="Left"
           ToolTip="Buzz">
           <Button.Template>
             <ControlTemplate TargetType="{x:Type Button}">
