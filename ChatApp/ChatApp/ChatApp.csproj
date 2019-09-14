@@ -261,9 +261,8 @@
     <Resource Include="Resources\VoiceCall.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ActivitiesIcon.png" />
-    <Resource Include="Resources\IMVironmentsIcon.png" />
-    <Resource Include="Resources\PhotosIcon.png" />
+    <Resource Include="Resources\ActivitiesButtonIcon.png" />
+    <Resource Include="Resources\IMVironmentsButtonIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ProfilePicture4.jpg" />
@@ -282,6 +281,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ContactsButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\IMVironmentsButtonIcon_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ActivitiesButtonIcon_MouseOver.png" />
+    <Resource Include="Resources\PhotosButtonIcon_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PhotosButtonIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

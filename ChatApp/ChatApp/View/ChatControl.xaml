@@ -89,7 +89,10 @@
     </DockPanel>
 
     <DockPanel Grid.Row="1">
-      <Button Background="Transparent" BorderThickness="0">
+      <Button
+        Background="Transparent"
+        BorderThickness="0"
+        Cursor="Hand">
         <StackPanel>
           <Image
             Width="30"
@@ -106,7 +109,8 @@
       <Button
         HorizontalAlignment="Left"
         Background="Transparent"
-        BorderThickness="0">
+        BorderThickness="0"
+        Cursor="Hand">
         <StackPanel>
           <Image
             Width="30"
@@ -119,54 +123,100 @@
             Foreground="White" />
         </StackPanel>
       </Button>
-      
-      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+      <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
         <Button
+          x:Name="IMVironmentsButton"
           Background="Transparent"
-          BorderThickness="0">
-          <StackPanel>
-            <Image
-              Width="30"
-              Height="30"
-              HorizontalAlignment="Center"
-              Source="pack://application:,,,/ChatApp;component/Resources/IMVironmentsIcon.png" />
-            <Label
-              Background="Transparent"
-              Content="IMVironments"
-              Foreground="White" />
-          </StackPanel>
+          BorderThickness="0"
+          Cursor="Hand"
+          ToolTip="IMVironments">
+          <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <StackPanel>
+                <Image
+                  x:Name="IMVironmentsImage"
+                  Width="30"
+                  Height="30"
+                  VerticalAlignment="Bottom"
+                  Source="pack://application:,,,/ChatApp;component/Resources/IMVironmentsButtonIcon.png" />
+                <Label
+                  Grid.Row="1"
+                  HorizontalContentAlignment="Center"
+                  Background="Transparent"
+                  Content="IMVironments"
+                  Foreground="White" />
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                  <Setter TargetName="IMVironmentsImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/IMVironmentsButtonIcon_MouseOver.png" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+
         </Button>
 
         <Button
+          x:Name="ActivitiesButton"
           Background="Transparent"
-          BorderThickness="0">
-          <StackPanel>
-            <Image
-              Width="30"
-              Height="30"
-              HorizontalAlignment="Center"
-              Source="pack://application:,,,/ChatApp;component/Resources/ActivitiesIcon.png" />
-            <Label
-              Background="Transparent"
-              Content="Activities"
-              Foreground="White" />
-          </StackPanel>
+          BorderThickness="0"
+          Cursor="Hand"
+          ToolTip="Activities">
+          <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <StackPanel>
+                <Image
+                  x:Name="ActivitiesImage"
+                  Width="30"
+                  Height="30"
+                  VerticalAlignment="Bottom"
+                  Source="pack://application:,,,/ChatApp;component/Resources/ActivitiesButtonIcon.png" />
+                <Label
+                  HorizontalContentAlignment="Center"
+                  Background="Transparent"
+                  Content="Activities"
+                  Foreground="White" />
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                  <Setter TargetName="ActivitiesImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/ActivitiesButtonIcon_MouseOver.png" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+
         </Button>
 
         <Button
+          x:Name="PhotosButton"
           Background="Transparent"
-          BorderThickness="0">
-          <StackPanel>
-            <Image
-              Width="30"
-              Height="30"
-              HorizontalAlignment="Center"
-              Source="pack://application:,,,/ChatApp;component/Resources/PhotosIcon.png" />
-            <Label
-              Background="Transparent"
-              Content="Photos"
-              Foreground="White" />
-          </StackPanel>
+          BorderThickness="0"
+          Cursor="Hand"
+          ToolTip="Photos">
+          <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <StackPanel>
+                <Image
+                  x:Name="PhotosImage"
+                  Width="30"
+                  Height="30"
+                  VerticalAlignment="Bottom"
+                  Source="pack://application:,,,/ChatApp;component/Resources/PhotosButtonIcon.png" />
+                <Label
+                  HorizontalContentAlignment="Center"
+                  Background="Transparent"
+                  Content="Photos"
+                  Foreground="White" />
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                  <Setter TargetName="PhotosImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/PhotosButtonIcon_MouseOver.png" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+
         </Button>
       </StackPanel>
     </DockPanel>
@@ -217,7 +267,9 @@
           <Image
             Grid.Row="0"
             VerticalAlignment="Top"
-            Source="{Binding ProfilePicture}" />
+            Cursor="Hand"
+            Source="{Binding ProfilePicture}"
+            ToolTip="Profile Picture" />
           <Image
             Grid.Row="1"
             Margin="20,0"
@@ -320,6 +372,7 @@
           BorderThickness="2"
           Command="{Binding SendCommand}"
           Content="Send"
+          Cursor="Hand"
           Foreground="White"
           Style="{StaticResource ButtonHighlight}">
           <Button.Background>
