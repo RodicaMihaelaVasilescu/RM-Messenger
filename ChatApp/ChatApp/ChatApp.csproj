@@ -292,5 +292,19 @@
   <ItemGroup>
     <Resource Include="Resources\PhotosButtonIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Emoticons.png" />
+    <Resource Include="Resources\Emoticons_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Audibles.png" />
+    <Resource Include="Resources\Audibles_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BuzzIcon.png" />
+    <Resource Include="Resources\BuzzIcon_MouseOver.png" />
+    <Resource Include="Resources\TextFormat.png" />
+    <Resource Include="Resources\TextFormat_MouseOver.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

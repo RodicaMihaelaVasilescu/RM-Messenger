@@ -339,9 +339,115 @@
           </ListBox>
         </ScrollViewer>
       </Border>
+      
+      <DockPanel Margin="5 0" Grid.Row="2">
+        <Button
+          x:Name="Emoticons"
+          Background="Transparent"
+          BorderThickness="0"
+          Cursor="Hand"
+          HorizontalAlignment="Left"
+          ToolTip="Emoticons">
+          <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <StackPanel>
+                <Image
+                  x:Name="EmoticonsImage"
+                  Width="18"
+                  Height="18"
+                  Source="pack://application:,,,/ChatApp;component/Resources/Emoticons.png" />
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                  <Setter TargetName="EmoticonsImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/Emoticons_MouseOver.png" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+        </Button>
+
+        <Button
+          Margin="5 0"
+          x:Name="Audibles"
+          Background="Transparent"
+          BorderThickness="0"
+          Cursor="Hand"
+          HorizontalAlignment="Left"
+          ToolTip="Audibles">
+          <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <StackPanel>
+                <Image
+                  x:Name="AudiblesImage"
+                  Width="18"
+                  Height="18"
+                  Source="pack://application:,,,/ChatApp;component/Resources/Audibles.png" />
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                  <Setter TargetName="AudiblesImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/Audibles_MouseOver.png" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+        </Button>
+        
+        <Button
+          Margin="5 0"
+          x:Name="TextFormat"
+          Background="Transparent"
+          BorderThickness="0"
+          Cursor="Hand"
+          HorizontalAlignment="Left"
+          ToolTip="Format">
+          <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <StackPanel>
+                <Image
+                  x:Name="TextFormatImage"
+                  Width="18"
+                  Height="18"
+                  Source="pack://application:,,,/ChatApp;component/Resources/TextFormat.png" />
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                  <Setter TargetName="TextFormatImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/TextFormat_MouseOver.png" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+        </Button>
+
+        <Button
+          Margin="5 0"
+          x:Name="BuzzIcon"
+          Background="Transparent"
+          BorderThickness="0"
+          Cursor="Hand"
+          HorizontalAlignment="Left"
+          ToolTip="Buzz">
+          <Button.Template>
+            <ControlTemplate TargetType="{x:Type Button}">
+              <StackPanel>
+                <Image
+                  x:Name="BuzzImage"
+                  Width="18"
+                  Height="18"
+                  Source="pack://application:,,,/ChatApp;component/Resources/BuzzIcon.png" />
+              </StackPanel>
+              <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="True">
+                  <Setter TargetName="BuzzImage" Property="Source" Value="pack://application:,,,/ChatApp;component/Resources/BuzzIcon_MouseOver.png" />
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+        </Button>
+
+      </DockPanel>
 
       <Grid
-        Grid.Row="2"
+        Grid.Row="3"
         Margin="5"
         Background="White">
         <TextBox
@@ -362,7 +468,7 @@
         </TextBox>
 
         <Button
-          Grid.Row="2"
+          Grid.Row="3"
           Width="80"
           Height="23"
           Margin="3"
