@@ -394,7 +394,7 @@
             Placement="Top"
             PlacementTarget="{Binding ElementName=Emoticons}">
             <StackPanel>
-              <local:ChangeProfilePictureControl x:Name="ChangeProfilePictureControl" />
+              <local:EmoticonsControl x:Name="EmoticonsControl" />
             </StackPanel>
           </Popup>
         </Button>

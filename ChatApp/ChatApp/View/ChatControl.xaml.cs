@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace ChatApp.View
     public ChatControl()
     {
       InitializeComponent();
+      EmoticonsControl.DataContext = new EmoticonsViewModel();
       MessageBox.Focus();
     }
     private void TS_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
