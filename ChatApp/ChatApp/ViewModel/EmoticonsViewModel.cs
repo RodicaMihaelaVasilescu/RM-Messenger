@@ -11,11 +11,10 @@ namespace ChatApp.ViewModel
 {
   class EmoticonsViewModel : INotifyPropertyChanged
   {
-    private string gif = "pack://application:,,,/ChatApp;component/Resources/Emoticons/43.gif";
-    private List<EmoticonsRowModel> _emoticonsMatrix;
+    private string _selectedEmoticon = "pack://application:,,,/ChatApp;component/Resources/Emoticons/43.gif";
+    private List<List<string>> _emoticonsMatrix;
 
-    //public ObservableCollection<string> EmoticonsList { get; set; }
-    public List<EmoticonsRowModel> EmoticonsMatrix
+    public List<List<string>> EmoticonsMatrix
     {
       get { return _emoticonsMatrix; }
       set
@@ -25,14 +24,14 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EmoticonsMatrix"));
       }
     }
-    public string Gif
+    public string SelectedEmoticon
     {
-      get { return gif; }
+      get { return _selectedEmoticon; }
       set
       {
-        if (gif == value) return;
-        gif = value;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Gif"));
+        if (_selectedEmoticon == value) return;
+        _selectedEmoticon = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedEmoticon"));
       }
     }
 
@@ -46,16 +45,7 @@ namespace ChatApp.ViewModel
     void InitializeEmoticonList()
     {
 
-      //for (int emoticonId = 1; emoticonId < 141; emoticonId++)
-      //{
-      //  if (emoticonId >= 80 || emoticonId < 100)
-      //  {
-      //    continue;
-      //  }
-      //  emoticons.Add(string.Format("pack://application:,,,/ChatApp;component/Resources/Emoticons/{0}.gif", emoticonId));
-      //}
-
-      EmoticonsMatrix = new List<EmoticonsRowModel>();
+      EmoticonsMatrix = new List<List<string>>();
       int counter = 1;
       for (int index = 1; index < 80 / 9; index++)
       {
@@ -68,10 +58,7 @@ namespace ChatApp.ViewModel
           }
         }
 
-        EmoticonsMatrix.Add(new EmoticonsRowModel
-        {
-          Emoticons = newLine
-        });
+        EmoticonsMatrix.Add(newLine);
       }
 
 

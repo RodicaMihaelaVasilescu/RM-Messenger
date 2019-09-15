@@ -57,12 +57,13 @@
         </ItemsPanelTemplate>
       </ListView.ItemsPanel>
       <ListView.ItemTemplate>
-        <DataTemplate DataType="{x:Type model:EmoticonsRowModel}">
+        <DataTemplate>
           <ListView
             Background="Transparent"
             BorderThickness="0"
+            SelectedItem="{Binding SelectedEmoticon}"
             ItemContainerStyle="{StaticResource RemoveListViewItemHighlight}"
-            ItemsSource="{Binding Emoticons}">
+            ItemsSource="{Binding}">
             <ListView.ItemTemplate>
               <DataTemplate>
                 <Image

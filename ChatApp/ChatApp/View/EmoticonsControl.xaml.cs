@@ -24,7 +24,6 @@ namespace ChatApp.View
     public EmoticonsControl()
     {
       InitializeComponent();
-      DataContext = new EmoticonsViewModel();
     }
   }
 }
