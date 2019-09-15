@@ -88,12 +88,12 @@
       </Menu>
     </DockPanel>
 
-    <DockPanel Margin="0 5" Grid.Row="1">
+    <DockPanel Grid.Row="1" Margin="0,5">
       <Button
-        ToolTip="Video Call"
         Background="Transparent"
         BorderThickness="0"
-        Cursor="Hand">
+        Cursor="Hand"
+        ToolTip="Video Call">
         <Button.Template>
           <ControlTemplate TargetType="{x:Type Button}">
             <StackPanel>
@@ -118,11 +118,11 @@
       </Button>
 
       <Button
-        ToolTip="Voice Call"
         HorizontalAlignment="Left"
         Background="Transparent"
         BorderThickness="0"
-        Cursor="Hand">
+        Cursor="Hand"
+        ToolTip="Voice Call">
         <Button.Template>
           <ControlTemplate TargetType="{x:Type Button}">
             <StackPanel>
@@ -377,8 +377,9 @@
               <StackPanel>
                 <Image
                   x:Name="EmoticonsImage"
-                  Width="18"
-                  Height="18"
+                  Width="21"
+                  Height="21"
+                  Margin="0,-3,0,0"
                   Source="pack://application:,,,/ChatApp;component/Resources/Emoticons.png" />
               </StackPanel>
               <ControlTemplate.Triggers>
