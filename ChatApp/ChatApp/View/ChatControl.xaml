@@ -281,7 +281,7 @@
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
       <DockPanel
-        Grid.RowSpan="3"
+        Grid.RowSpan="4"
         Grid.Column="1"
         Margin="0,5,5,5"
         Background="#945F8D">
