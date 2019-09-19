@@ -1,18 +1,24 @@
-﻿using System;
+﻿using ChatApp.Command;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatApp.Model;
+using System.Windows.Input;
 
 namespace ChatApp.ViewModel
 {
   class EmoticonsViewModel : INotifyPropertyChanged
   {
-    private string _selectedEmoticon = "pack://application:,,,/ChatApp;component/Resources/Emoticons/43.gif";
+    #region Private Properties
+
+    private string _selectedEmoticon;
     private List<List<string>> _emoticonsMatrix;
+
+    #endregion
+
+    #region Public Properties
+    public ICommand CancelCommand { get; set; }
+    public event PropertyChangedEventHandler PropertyChanged;
 
     public List<List<string>> EmoticonsMatrix
     {
@@ -24,6 +30,7 @@ namespace ChatApp.ViewModel
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EmoticonsMatrix"));
       }
     }
+
     public string SelectedEmoticon
     {
       get { return _selectedEmoticon; }
@@ -31,38 +38,47 @@ namespace ChatApp.ViewModel
       {
         if (_selectedEmoticon == value) return;
         _selectedEmoticon = value;
+        SelectedEmoticon = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedEmoticon"));
       }
     }
 
+    #endregion
+
+    #region Constructor
+
     public EmoticonsViewModel()
     {
       InitializeEmoticonList();
+      CancelCommand = new RelayCommand(CancelCommandExecute);
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    void InitializeEmoticonList()
+    private void CancelCommandExecute()
     {
 
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private void InitializeEmoticonList()
+    {
       EmoticonsMatrix = new List<List<string>>();
-      int counter = 1;
-      for (int index = 1; index < 80 / 9; index++)
+      int emoticonId = 1;
+      for (int row = 0; row < 8; row++)
       {
-        var newLine = new List<string>();
-        for (int index2 = 0; index2 < 6; index2++)
+        var emoticonsList = new List<string>();
+        for (int column = 0; column < 6; column++)
         {
-          if (counter < 80)
-          {
-            newLine.Add(string.Format("pack://application:,,,/ChatApp;component/Resources/Emoticons/{0}.gif", counter++));
-          }
+            emoticonsList.Add(string.Format("pack://application:,,,/ChatApp;component/Resources/Emoticons/{0}.gif", emoticonId++));
         }
 
-        EmoticonsMatrix.Add(newLine);
+        EmoticonsMatrix.Add(emoticonsList);
       }
-
-
-
+      SelectedEmoticon = EmoticonsMatrix.FirstOrDefault().FirstOrDefault();
     }
+
+    #endregion
   }
 }
