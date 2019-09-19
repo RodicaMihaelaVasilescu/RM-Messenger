@@ -5,6 +5,10 @@ Inspired by Yahoo!Messenger
 
 ![alt text](Preview/ChatGif.gif)
 
-Updates: Emoticons
+#### Updates: Profile picture
+
+![alt text](Preview/ProfilePicture.gif)
+
+#### Updates: Emoticons
 
 ![alt text](Preview/Emoticons.gif)
