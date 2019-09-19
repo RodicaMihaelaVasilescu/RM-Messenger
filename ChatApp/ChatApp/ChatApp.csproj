@@ -437,5 +437,8 @@
     <Resource Include="Resources\Emoticons\8.gif" />
     <Resource Include="Resources\Emoticons\9.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UpdatesButton.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
