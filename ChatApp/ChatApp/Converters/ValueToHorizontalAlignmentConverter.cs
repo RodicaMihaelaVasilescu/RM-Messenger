@@ -15,29 +15,6 @@ namespace ChatApp.Converters
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
       HorizontalAlignment horizontalAlignment = (HorizontalAlignment) value;
-      ////MessageModel message = (MessageModel)parameter;
-
-      //// All I'm doing here is simply getting the integer value of the Enumeration.
-      //switch ((int)horizontalAlignment)
-      //{
-      //  case 0:
-      //    // Left to Left
-      //    horizontalAlignment = HorizontalAlignment.Left;
-      //    break;
-      //  case 1:
-      //    // Center to Center
-      //    horizontalAlignment = HorizontalAlignment.Center;
-      //    break;
-      //  case 2:
-      //    // Right to Right
-      //    horizontalAlignment = HorizontalAlignment.Right;
-      //    break;
-      //  default:
-      //    // Stretch to Justify
-      //    horizontalAlignment = HorizontalAlignment.Stretch;
-      //    break;
-      //}
-
       return horizontalAlignment;
     }
 
