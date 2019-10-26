@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ChatApp
+namespace ChatApp.Database
 {
     using System;
     using System.Data.Entity;
