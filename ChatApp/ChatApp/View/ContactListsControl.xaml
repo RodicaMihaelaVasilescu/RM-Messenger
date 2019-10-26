@@ -285,6 +285,7 @@
                         <RowDefinition Height="*" />
                       </Grid.RowDefinitions>
                       <ToggleButton
+                        Cursor="Hand"
                         x:Name="HeaderSite"
                         MinWidth="0"
                         MinHeight="0"
@@ -345,6 +346,7 @@
               </Expander.Template>
 
               <ListView
+                Cursor="Hand"
                 MaxHeight="400"
                 Margin="20,0,10,0"
                 VerticalAlignment="Top"
