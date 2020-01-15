@@ -13,6 +13,7 @@
     public string LastName { get; set; }
 
     public bool IsOnline { get; set; } = true;
+    public string EncryptedPassword { get; set; }
 
   }
 }

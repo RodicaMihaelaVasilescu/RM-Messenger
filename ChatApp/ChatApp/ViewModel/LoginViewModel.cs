@@ -8,6 +8,9 @@ using ChatApp.Properties;
 using ChatApp.Command;
 using System.Threading.Tasks;
 using ChatApp.Helpers;
+using ChatApp.Database;
+using System.Linq;
+using System.Configuration;
 
 namespace ChatApp.ViewModel
 {
@@ -66,6 +69,38 @@ namespace ChatApp.ViewModel
       }
     }
 
+    public bool KeepMeLoggedIn
+    {
+      get { return _keepMeLoggedIn; }
+      set
+      {
+        if (_keepMeLoggedIn == value) return;
+        _keepMeLoggedIn = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("KeepMeLoggedIn"));
+      }
+    }
+    public bool SignInAutomatically
+    {
+      get { return _signInAutomatically; }
+      set
+      {
+        if (_signInAutomatically == value) return;
+        _signInAutomatically = value;
+        ConfigurationSettings.AppSettings["SignInAutomatically"] = value == true ? "True" : "False";
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SignInAutomatically"));
+      }
+    }
+
+    public bool SignInAsInvisible
+    {
+      get { return _signInAsInvisible; }
+      set
+      {
+        if (_signInAsInvisible == value) return;
+        _signInAsInvisible = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SignInAsInvisible"));
+      }
+    }
     public Visibility VisibilityOfLoginFields
     {
       get { return visibilityOfLoginFields; }
@@ -99,13 +134,18 @@ namespace ChatApp.ViewModel
     private bool cancelButtonPressed;
     private Visibility visibilityOfLoginFields;
     private Visibility visibilityOfMessageOnSingIn;
+    private RMMessengerEntities _context;
     private Window window;
+    private bool _keepMeLoggedIn;
+    private bool _signInAutomatically;
+    private bool _signInAsInvisible;
 
     #endregion
 
     #region Constructor
     public LoginViewModel(Window window)
     {
+      _context = new RMMessengerEntities();
       this.window = window;
       UserModel.Instance.Email = string.IsNullOrEmpty(Email) ? string.Empty : Email.Split('@')[0]; ;
 
@@ -113,10 +153,15 @@ namespace ChatApp.ViewModel
       RegisterCommand = new RelayCommand(RegisterCommandExecute);
       ForgotPasswordCommand = new RelayCommand(ForgotPasswordCommandExecute);
       CancelCommand = new RelayCommand(CancelCommandExecute);
-
       StateBeforeLogin();
+      if (KeepMeLoggedIn)
+      {
+        UserModel.Instance.Email = ConfigurationSettings.AppSettings.Get("Username");
+        UserModel.Instance.EncryptedPassword = ConfigurationSettings.AppSettings.Get("EncryptedPassword");
+        UserModel.Instance.Email = ConfigurationSettings.AppSettings.Get("Username");
 
-      if (AppConfigManager.ReadSetting("SignInAutomatically") == "true")
+      }
+      if (AppConfigManager.ReadSetting("SignInAutomatically") == "True")
       {
         LoginCommandExecute();
       }
@@ -129,6 +174,9 @@ namespace ChatApp.ViewModel
       visibilityOfLoginFields = Visibility.Visible;
       visibilityOfMessageOnSingIn = Visibility.Hidden;
       cancelButtonPressed = false;
+      KeepMeLoggedIn = ConfigurationSettings.AppSettings.Get("KeepMeLoggedIn") == "True" ? true : false;
+      SignInAutomatically = ConfigurationSettings.AppSettings.Get("SignInAutomatically") == "True" ? true : false;
+      SignInAsInvisible = ConfigurationSettings.AppSettings.Get("SignInAsInvisible") == "True" ? true : false;
     }
 
     #endregion
@@ -137,11 +185,24 @@ namespace ChatApp.ViewModel
     private void CancelCommandExecute()
     {
       cancelButtonPressed = true;
+      ConfigurationSettings.AppSettings["SignInAutomatically"] = "False";
       var loginViewModel = new LoginViewModel(window);
       WindowManager.ChangeWindowContent(window, loginViewModel, Resources.LoginWindowTitle, Resources.LoginControlPath);
     }
     private async void LoginCommandExecute()
     {
+      string keepMeLoggedIn = ConfigurationSettings.AppSettings.Get("KeepMeLoggedIn");
+      if (keepMeLoggedIn == "True")
+      {
+        Email = ConfigurationSettings.AppSettings.Get("Username");
+        UserModel.Instance.Email = ConfigurationSettings.AppSettings.Get("Username");
+        UserModel.Instance.EncryptedPassword = ConfigurationSettings.AppSettings.Get("EncryptedPassword");
+      }
+      if (!_context.Users.Any(u => u.Username == Email &&
+         u.Password == UserModel.Instance.EncryptedPassword))
+      {
+        return;
+      }
       StateAfterLogin();
 
       await Task.Delay(5000);
@@ -170,6 +231,27 @@ namespace ChatApp.ViewModel
 
     private void StateAfterLogin()
     {
+      var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+      var settings = configFile.AppSettings.Settings;
+      if (KeepMeLoggedIn)
+      {
+        settings["Username"].Value = Email;
+        settings["EncryptedPassword"].Value = UserModel.Instance.EncryptedPassword;
+
+      }
+      else
+      {
+        settings["Username"].Value = string.Empty;
+        settings["EncryptedPassword"].Value = string.Empty;
+
+      }
+
+      settings["KeepMeLoggedIn"].Value = KeepMeLoggedIn.ToString();
+      settings["SignInAutomatically"].Value = SignInAutomatically.ToString();
+      settings["SignInAsInvisible"].Value = SignInAsInvisible.ToString();
+      configFile.Save(ConfigurationSaveMode.Modified);
+
+      ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
       Email = string.IsNullOrEmpty(Email) ? string.Empty : Email.Split('@')[0];
       UserModel.Instance.Email = Email;
       MessageOnSingingIn = "Signing in as " + Email;
@@ -184,12 +266,19 @@ namespace ChatApp.ViewModel
     }
 
     public void ForgotPasswordCommandExecute()
-    {  
+    {
       //to do
     }
 
     private void Login()
     {
+      string keepMeLoggedIn = ConfigurationSettings.AppSettings.Get("KeepMeLoggedIn");
+      if (keepMeLoggedIn == "True")
+      {
+        UserModel.Instance.EncryptedPassword = ConfigurationSettings.AppSettings.Get("EncryptedPassword");
+        UserModel.Instance.Email = ConfigurationSettings.AppSettings.Get("Username");
+        //LoginCommandExecute();
+      }
     }
     #endregion
 

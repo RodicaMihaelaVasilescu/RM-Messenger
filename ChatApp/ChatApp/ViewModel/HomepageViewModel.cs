@@ -4,6 +4,7 @@ using ChatApp.Model;
 using ChatApp.Properties;
 using System;
 using System.ComponentModel;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Windows;
@@ -85,6 +86,7 @@ namespace ChatApp.ViewModel
 
     private void LogoutCommandExecute()
     {
+      ConfigurationSettings.AppSettings["SignInAutomatically"] = "False";
       var loginViewModel = new LoginViewModel(window);
       WindowManager.ChangeWindowContent(window, loginViewModel, Resources.LoginWindowTitle, Resources.LoginControlPath);
       window.VerticalContentAlignment = VerticalAlignment.Top;

@@ -1,7 +1,9 @@
 ﻿using ChatApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,16 +29,49 @@ namespace ChatApp.View
       InitializeComponent();
       Email.Focus();
       VerticalAlignment = VerticalAlignment.Top;
+      string keepMeLoggedIn = ConfigurationSettings.AppSettings.Get("KeepMeLoggedIn");
+      string signInAutomatically = ConfigurationSettings.AppSettings.Get("SignInAutomatically");
+      string signInAsInvisible = ConfigurationSettings.AppSettings.Get("SignInAsInvisible");
+      UserModel.Instance.IsOnline = signInAsInvisible == "True";
+
+      if (signInAutomatically == "True")
+      {
+        SignInAutomatically.IsChecked = true;
+      }
+
+      if (signInAsInvisible == "True")
+      {
+        SignInAsInvisible.IsChecked = true;
+      }
+
+      if (keepMeLoggedIn == "True")
+      {
+        KeepMeLoggedIn.IsChecked = true;
+        Password.Password = ConfigurationSettings.AppSettings.Get("EncryptedPassword");
+        UserModel.Instance.EncryptedPassword = ConfigurationSettings.AppSettings.Get("EncryptedPassword");
+        UserModel.Instance.Email = ConfigurationSettings.AppSettings.Get("Username");
+        Email.Text = ConfigurationSettings.AppSettings.Get("Username");
+      }
     }
     private void Password_PasswordChanged(object sender, RoutedEventArgs e)
     {
-      //UserModel.Instance.Password = Password.Password;
+      UserModel.Instance.EncryptedPassword = getHashSha256(Password.Password);
+    }
+    public static string getHashSha256(string text)
+    {
+      byte[] bytes = Encoding.Unicode.GetBytes(text);
+      SHA256Managed hashstring = new SHA256Managed();
+      byte[] hash = hashstring.ComputeHash(bytes);
+      string hashString = string.Empty;
+      foreach (byte x in hash)
+      {
+        hashString += String.Format("{0:x2}", x);
+      }
+      return hashString;
     }
 
     private void Click(object sender, RoutedEventArgs e)
     {
-      Email.Text = null;
-      Password.Password = null;
     }
 
     private void Email_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -49,7 +84,7 @@ namespace ChatApp.View
 
     private void Password_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
-      
+
       Login.IsDefault = true;
     }
   }
